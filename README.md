@@ -1,5 +1,5 @@
 # Mytendance
-Mytendance is een Presentie InformatieSysteem (PrIS). Dit systeem automatiseert de huidige werkwijze, waardoor verschillende processen efficiënter zullen verlopen.
+Mytendance is een Presentie InformatieSysteem (PrIS). Dit systeem automatiseert de huidige werkwijze, waardoor er verschillende processen efficiënter zullen verlopen.
 
 ## Benodigheden
 Dit project is geschreven in Java, met als UI-framework JavaFX. Dit project vereist een lokale installatie van het JavaFX framework.
@@ -11,7 +11,7 @@ $ git pull
 ```
 
 #### Branches
-Nadat je dit gedaan heb, is het handig om een branch aan te maken voor jouw specifieke story/task. Om alles geordend te houden maken we wel gebruik van een notatie.
+Nadat je dit gedaan heb, is het handig om een branch aan te maken voor jouw specifieke story/task. Om alles geordend te houden maken we gebruik van een notatie.
 
 Deze notatie is opgebouwd uit drie delen:
 - feature/
@@ -24,7 +24,7 @@ $ git branch feature/1-add-login-screen
 ```
 Let op! Op dit moment heb je alleen maar een branch aangemaakt. dat wil zeggen dat je nog steeds op `master` zit. 
 
-Om naar de niewue branch te gaan gebruik je de volgende commando:
+Om naar de nieuwe branch te gaan gebruik je de volgende commando:
 ```
 $ git checkout feature/1-add-login-screen
 ```
@@ -118,7 +118,7 @@ Dit laat een tekstuele weergave zien van al je commits (in de huidige branch!). 
 - Git Kraken
 - Sourcetree
 
-Maar dat raad ik af :)
+Maar dat raad ik af, van de command line kan je meer leren!
 
 #### Pushen
 Nu we lokale veranderingen opgeslagen hebben in commits, kunnen we het op de remote repository zetten. In dit geval is dat GitHub zelf.
@@ -129,7 +129,7 @@ Om te pushen moet je het volgende doen:
 ```
 $ git push
 ```
-Meestal, voor de eerste keer, weet Git nog niet waar de naartoe moet pushen. Als deze commando uitgevoerd wordt, krijg je ook het volgende:
+Meestal, voor de eerste keer, weet Git nog niet waar die naartoe moet pushen. Als deze commando uitgevoerd wordt, krijg je het volgende te zien:
 ```
 fatal: The current branch test has no upstream branch.
 To push the current branch and set the remote as upstream, use
@@ -140,10 +140,10 @@ Hier geeft Git al (slim) aan hoe je dit kan oplossen. Nadat je de voorgestelde c
 
 De volgende keren hoef je dus alleen maar `git push` te doen! 
 
-Nadat je gepushed heb kan je een Pull request maken, ga naar [Pull requests](#pull-requests).
+Nadat je gepushed heb kan je een [Pull request](#pull-requests) maken.
 
 #### Merge conflicts
-Als er merge conflicts zijn, zal @xandervedder wel laten zien hoe je dat kan oplossen :D.
+Als er merge conflicts zijn, zal @xandervedder wel laten zien hoe je dat kan oplossen.
 
 #### Overzicht meest gebruikte commando's
 | Commando                                       | Beschrijving                                                                     |
@@ -166,7 +166,7 @@ Als er merge conflicts zijn, zal @xandervedder wel laten zien hoe je dat kan opl
 Het kan gebeuren dat je niet meer weet wat je moet doen of je hebt iets gesloopt. Als je problemen heb met Git, vraag @xandervedder om hulp!
 
 ### Pull requests
-Nadat je hebt gepushed, moet je naar GitHub gaan. In GitHub zie je bovenaan het scherm de branch waarnaartoe je gepushed hebt. GitHub vraagt dan ook of je dan een Pull request wil maken. Dit zou ik ook gaan doen ;).
+Nadat je hebt gepushed, moet je naar GitHub gaan. In GitHub zie je bovenaan het scherm de branch waarnaartoe je gepushed hebt. GitHub vraagt dan ook of je dan een Pull request wil maken. Dit zou ik ook gaan doen.
 
 Voor elke Pull request **moeten** minstens twee personen gereviewed hebben. We doen dit om het niveau van code kwaliteit zo hoog mogelijk te houden. 
 
