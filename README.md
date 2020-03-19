@@ -1,16 +1,35 @@
 # Mytendance
 Mytendance is een Presentie InformatieSysteem (PrIS). Dit systeem automatiseert de huidige werkwijze, waardoor er verschillende processen efficiënter zullen verlopen.
 
-## Benodigheden
-Dit project is geschreven in Java, met als UI-framework JavaFX. Dit project vereist een lokale installatie van het JavaFX framework.
+## Inhoudsopgave
+- [Benodigheden](#benodigdheden)
+- [Git gerelateerd](#git-gerelateerd)
+  - [Branches](#branches)
+  - [Status](#check-de-status)
+  - [Staging area](#staging-area)
+  - [Commits](#commits)
+  - [Pushen](#pushen)
+  - [Merge conflicts](#merge-conflicts)
+  - [Commando cheatsheet](#commando-cheatsheet)
+  - [Help](#help)
+- [GitHub gerelateerd](#github-gerelateerd)
+  - [Pull requests](#pull-requests)
+  - [User Story en Sub Tasks](#user-story-en-sub-tasks)
+  - [Formatting](#formatting)
 
-### Git gerelateerd
+## Benodigheden
+Om het project te gebruiken is het volgende nodig:
+- Een Java versie die met het project werkt (onbekend welke Java versie).
+- Een lokale installatie van het UI-framework JavaFX.
+- Een installatie van Visual Paradigm waarmee de `.vvp` bestanden geopend kunnen worden.
+
+## Git gerelateerd
 Voordat je aan een user story/task begint moet je altijd even de laatste veranderingen ophalen (zonder $ natuurlijk):
 ```
 $ git pull
 ```
 
-#### Branches
+### Branches
 Nadat je dit gedaan heb, is het handig om een branch aan te maken voor jouw specifieke story/task. Om alles geordend te houden maken we gebruik van een notatie.
 
 Deze notatie is opgebouwd uit drie delen:
@@ -34,7 +53,7 @@ $ git checkout -b feature/2-add-register-screen
 ```
 de `-b` flag zorgt ervoor dat er gelijk een branche wordt aangemaakt.
 
-#### Check de status
+### Check de status
 Het is handig om eerst te kijken wat voor bestanden er (bijvoorbeeld) aangemaakt zijn, dit kan je doen door het volgende:
 ```
 $ git status
@@ -62,7 +81,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ```
 
-#### Staging area
+### Staging area
 De [staging area](https://softwareengineering.stackexchange.com/a/119790) is een gebied waar de veranderingen (tijdelijk) opstaan. Hier kan je aangeven wat er in de volgende commit mee wordt genomen.
 
 Om deze bestand(en) toe te voegen aan de staging area kan je het volgende gebruiken:
@@ -85,7 +104,7 @@ Changes to be committed:
 
 ```
 
-#### Commits
+### Commits
 Nadat je alles toegevoegd hebt aan de staging area, kan je het in een commit stoppen. Commits zijn lokale veranderingen die je in een soort van "moment" opslaat.
 
 Om een commmit te maken kan je het volgende doen:
@@ -120,7 +139,7 @@ Dit laat een tekstuele weergave zien van al je commits (in de huidige branch!). 
 
 Maar dat raad ik af, van de command line kan je meer leren!
 
-#### Pushen
+### Pushen
 Nu we lokale veranderingen opgeslagen hebben in commits, kunnen we het op de remote repository zetten. In dit geval is dat GitHub zelf.
 
 Waarschuwing: voordat je iets pushed, kijk altijd of je niet op de `master` branch zit!
@@ -142,10 +161,10 @@ De volgende keren hoef je dus alleen maar `git push` te doen!
 
 Nadat je gepushed heb kan je een [Pull request](#pull-requests) maken.
 
-#### Merge conflicts
-Als er merge conflicts zijn, zal @xandervedder wel laten zien hoe je dat kan oplossen.
+### Merge conflicts
+Als je probeert te pushen of je pulled iets en je krijgt merge conflicts, probeer het (voor nu) dan niet op te lossen. Vaak wordt het probleem alleen maar erger. Als je @xandervedder om hulp vraagt zal hij laten zien hoe je het kan oplossen.
 
-#### Overzicht meest gebruikte commando's
+### Commando cheatsheet
 | Commando                                       | Beschrijving                                                                     |
 | -----------------------------------------------|----------------------------------------------------------------------------------| 
 | git pull                                       | Haalt de nieuwste verandering van remote (GitHub)                                | 
@@ -162,8 +181,11 @@ Als er merge conflicts zijn, zal @xandervedder wel laten zien hoe je dat kan opl
 | git push --set-upstream origin naam_van_branch | Hierdoor weet Git waarnaartoe die moet pushen                                    | 
 | tig                                            | Toont een tekstuele representatie van de geschiedenis van commits                | 
 
-#### Ik kom er niet uit
+### Ik kom er niet uit
 Het kan gebeuren dat je niet meer weet wat je moet doen of je hebt iets gesloopt. Als je problemen heb met Git, vraag @xandervedder om hulp!
+
+## GitHub gerelateerd
+De functionaliteiten die hier besproken worden zijn specifiek voor GitHub.
 
 ### Pull requests
 Nadat je hebt gepushed, moet je naar GitHub gaan. In GitHub zie je bovenaan het scherm de branch waarnaartoe je gepushed hebt. GitHub vraagt dan ook of je dan een Pull request wil maken. Dit zou ik ook gaan doen.
@@ -180,16 +202,20 @@ De reviewers kunnen vragen of je bepaalde dingen kan aanpassen, hier kan je veel
 Nadat de twee personen je Pull request goedkeuren, kan er gemerged worden. 
 Let op: @xandervedder is de enige die (onofficieel) mag mergen! Hou je hier ook aan a.u.b.
 
-### Issues
-Dit gebruiken we vooral om de user stories uit te laten breiden. Je kan bijvoorbeeld subtaken toevoegen, hierdoor kan je precies zien wat er van je verwacht wordt.
+### User Story en Sub Tasks
+Een user story zegt wat de gebruiker wil in een korte zin. Omdat dit niet precies zegt wat er in de code moet gebeuren, kunnen we dit preciezer maken door een aantal Sub Tasks te hangen aan de User Story.
 
-#### Hoe maak ik deze subtaken?
-Doormiddel van [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) kunnen we gemakkelijk allerlei opmaak toevoegen aan een Issue (maar ook Pull requests!).
+Wij hebben als team gekozen om (standaard) de User Stories op te splitsen in de volgende Sub Tasks:
+- Klassendiagram
+- Schermen
+- Klassen implementeren
+- Unit test
+- Sequence diagram
 
-Om een subtaak te maken moet je het volgende doen:
-```
-- [ ] taak 1
-- [X] taak 2 (klaar)
-```
-- [ ] taak 1
-- [X] taak 2 (klaar)
+We gebruiken Issues om meer functionaliteit toe te voegen aan de Sub Task, zoals het assignen van mensen, labels en meer.
+
+
+### Formatting
+Doormiddel van [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) kunnen we gemakkelijk allerlei opmaak toevoegen aan Issues en aan Pull requests.
+
+In de link hierboven staat een soort van cheatsheet die alle mogelijke formatting opties laat zien.
