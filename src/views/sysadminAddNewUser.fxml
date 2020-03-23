@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
@@ -31,7 +30,7 @@
             <Label fx:id="userTypeLabel" text="Type gebruiker:" />
             <Label fx:id="userNumberLabel" text="Gebruikersnummer:" GridPane.rowIndex="1" />
             <Label fx:id="firstNameLabel" text="Voornaam:" GridPane.rowIndex="2" />
-            <Label fx:id="surnameLabel" text="Achernaam:" GridPane.rowIndex="3" />
+            <Label fx:id="surnameLabel" text="Achternaam:" GridPane.rowIndex="3" />
             <Label fx:id="emailLabel" text="Email:" GridPane.rowIndex="4" />
             <Label fx:id="passwordLabel" text="Wachtwoord:" GridPane.rowIndex="5" />
             <ComboBox fx:id="userTypeComboBox" maxHeight="25.0" maxWidth="232.0" prefHeight="25.0" prefWidth="232.0" promptText="Student" GridPane.columnIndex="1" />
