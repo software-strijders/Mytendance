@@ -1,4 +1,4 @@
-package models;
+package models.user;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -14,11 +14,13 @@ public abstract class User {
     protected UUID userId;
 
     public User(String email, String password, String firstname, String surname, UUID userId){
-        this.email = email;
-        this.password = password;
-        this.firstname = firstname;
-        this.surname = surname;
-        this.userId = userId;
+
+        // NEED TO MAKE CHECKS FOR REGISTERING
+        setEmail(email);
+        setPassword(password);
+        setFirstname(firstname);
+        setSurname(surname);
+        setUserId(userId);
     }
 
     public String getEmail() {
@@ -65,20 +67,11 @@ public abstract class User {
         return registeredUsers;
     }
 
-    public static void addUser(User newUser) {
-        if (!registeredUsers.contains(newUser)) {
-            registeredUsers.add(newUser);
-        } else {
-            throw new IllegalArgumentException("User bestaat al");
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId &&
-                email.equals(user.email);
+        return email.equals(user.email);
     }
 }

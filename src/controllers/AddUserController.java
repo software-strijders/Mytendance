@@ -5,14 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import models.*;
+import models.user.Administrator;
+import models.user.UserFactory;
+import enums.UserType;
 import utils.Utils;
-
-import java.util.UUID;
 
 public class AddUserController {
 
-    @FXML private ComboBox<String> userTypeComboBox;
+    @FXML private ComboBox<UserType> userTypeComboBox;
     @FXML private TextField firstNameTextField;
     @FXML private TextField surnameTextField;
     @FXML private TextField emailTextField;
@@ -22,15 +22,13 @@ public class AddUserController {
 
     @FXML
     private void initialize() {
-
-        ObservableList<String> items = FXCollections.observableArrayList("Docent", "Student");
-        userTypeComboBox.setValue("Student");
+        ObservableList<UserType> items = FXCollections.observableArrayList(UserType.values());
+        userTypeComboBox.setValue(UserType.STUDENT);
         userTypeComboBox.setItems(items);
         firstNameTextField.setText("");
         surnameTextField.setText("");
         emailTextField.setText("");
         passwordTextfield.setText("");
-
     }
 
     @FXML
@@ -40,30 +38,29 @@ public class AddUserController {
 
     @FXML
     public void onRegisterButtonClick(ActionEvent event) {
-        UUID id = Utils.idGenerator();
-        if (!emailTextField.getText().equals("") && !passwordTextfield.getText().equals("") && !firstNameTextField.getText().equals("") && !surnameTextField.getText().equals("")) {
-            if (userTypeComboBox.getValue().equals("Docent")) {
-                Teacher newUser = new Teacher(emailTextField.getText(), passwordTextfield.getText(), firstNameTextField.getText(), surnameTextField.getText(), id);
-                User.addUser(newUser);
-            }else if (userTypeComboBox.getValue().equals("Student")) {
-                Student newUser = new Student(emailTextField.getText(), passwordTextfield.getText(), firstNameTextField.getText(), surnameTextField.getText(), id);
-                User.addUser(newUser);
-            }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("User created");
-            alert.setHeaderText("Gebruiker gecreërd");
-            alert.show();
-            initialize();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("User not created");
-            alert.setHeaderText("Gebruiker niet gecreërd");
-            alert.setContentText("Foutieve informatie ingevoerd.");
-            alert.show();
+        if (emailTextField.getText().isEmpty() ||
+            passwordTextfield.getText().isEmpty() ||
+            firstNameTextField.getText().isEmpty() ||
+            surnameTextField.getText().isEmpty()) {
+
+            Utils.makeAlert(Alert.AlertType.ERROR, "Gebruiker niet aangemaakt");
+            return;
         }
 
+        try {
+            Administrator.addUser(
+                    UserFactory.create(emailTextField.getText(),
+                            passwordTextfield.getText(),
+                            firstNameTextField.getText(),
+                            surnameTextField.getText(),
+                            userTypeComboBox.getValue()));
+        } catch (IllegalArgumentException e){
+            Utils.makeAlert(Alert.AlertType.ERROR, e.getMessage());
+            return;
+        }
 
+        Utils.makeAlert(Alert.AlertType.INFORMATION, "Gebruiker aangemaakt");
 
+        initialize();
     }
-
 }

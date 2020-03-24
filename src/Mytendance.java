@@ -12,19 +12,10 @@ public class Mytendance extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         Parent root = FXMLLoader.load(getClass().getResource("views/AddUser.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Add new user");
         stage.setScene(scene);
         stage.show();
-
-//        String fxmlPage = "views/AddUser.fxml";
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPage));
-//        Parent root = loader.load();
-//        stage.setTitle("Add new user");
-//        stage.setScene(new Scene(root));
-//        stage.show();
-
     }
 }
