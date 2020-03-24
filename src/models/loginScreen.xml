@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2020-03-24T17:39:50.635Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/12.6.5 Chrome/80.0.3987.86 Electron/8.0.0 Safari/537.36" etag="cOYOCkb5dSf429fb7XnS" version="12.6.5" type="device">
+  <diagram id="zKkFsO7C2Lk3t6FEkUXZ" name="Page-1">
+    <mxGraphModel dx="1422" dy="822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="fb2vZ9S0kO2LCRifRb8T-2" value="Mytendance" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.window;align=left;verticalAlign=top;spacingLeft=8;strokeColor2=#008cff;strokeColor3=#c4c4c4;fontColor=#666666;mainText=;fontSize=17;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="138" y="250" width="550" height="380" as="geometry"/>
+        </mxCell>
+        <mxCell id="fb2vZ9S0kO2LCRifRb8T-3" value="I ben &#39;role&#39;" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.buttons.button;strokeColor=#666666;fontColor=#ffffff;mainText=;buttonStyle=round;fontSize=17;fontStyle=1;fillColor=#008cff;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="330" y="550" width="150" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="fb2vZ9S0kO2LCRifRb8T-4" value="Role" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="379" y="320" width="40" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="fb2vZ9S0kO2LCRifRb8T-8" value="Password" style="strokeWidth=1;html=1;shadow=0;dashed=0;shape=mxgraph.ios.iTextInput;strokeColor=#444444;buttonText=;fontSize=8;whiteSpace=wrap;align=left;" vertex="1" parent="1">
+          <mxGeometry x="330" y="440" width="138" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="fb2vZ9S0kO2LCRifRb8T-9" value="Email" style="strokeWidth=1;html=1;shadow=0;dashed=0;shape=mxgraph.ios.iTextInput;strokeColor=#444444;buttonText=;fontSize=8;whiteSpace=wrap;align=left;" vertex="1" parent="1">
+          <mxGeometry x="330" y="380" width="138" height="30" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
