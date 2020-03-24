@@ -25,6 +25,8 @@ public class AddUserController {
         ObservableList<UserType> items = FXCollections.observableArrayList(UserType.values());
         userTypeComboBox.setValue(UserType.STUDENT);
         userTypeComboBox.setItems(items);
+
+        // Clear textfields after user creation
         firstNameTextField.setText("");
         surnameTextField.setText("");
         emailTextField.setText("");
@@ -39,10 +41,9 @@ public class AddUserController {
     @FXML
     public void onRegisterButtonClick(ActionEvent event) {
         if (emailTextField.getText().isEmpty() ||
-            passwordTextfield.getText().isEmpty() ||
-            firstNameTextField.getText().isEmpty() ||
-            surnameTextField.getText().isEmpty()) {
-
+                passwordTextfield.getText().isEmpty() ||
+                firstNameTextField.getText().isEmpty() ||
+                surnameTextField.getText().isEmpty()) {
             Utils.makeAlert(Alert.AlertType.ERROR, "Gebruiker niet aangemaakt");
             return;
         }
@@ -54,7 +55,7 @@ public class AddUserController {
                             firstNameTextField.getText(),
                             surnameTextField.getText(),
                             userTypeComboBox.getValue()));
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             Utils.makeAlert(Alert.AlertType.ERROR, e.getMessage());
             return;
         }
