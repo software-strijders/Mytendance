@@ -18,5 +18,4 @@ class UserFactoryTest {
         User newUser = UserFactory.create("email1", "password1", "firstname1", "surname1", UserType.TEACHER);
         assertTrue(newUser instanceof Teacher);
     }
-
 }
