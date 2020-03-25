@@ -4,3 +4,4 @@ out/
 lib/
 *.bak_000f
 *.lck
+.DS_Store
