@@ -1,8 +1,11 @@
 package controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -16,72 +19,80 @@ import java.util.UUID;
 
 public class CreateClassWindowController {
 
-    @FXML
-    private ComboBox<FieldOfStudy> fieldOfStudy;
-    @FXML
-    private Spinner<Integer> studyYearNumber;
-    @FXML
-    private TextField classLetter;
-    @FXML
-    private Label generatedClassName;
-    @FXML
-    private ListView<Student> addedStudentsList;
-    @FXML
-    private ListView<Student> studentList;
-    @FXML
-    private Button generateClassIDButton;
-    @FXML
-    private Button moveStudentBackButton;
-    @FXML
-    private Button addStudentButton;
-    @FXML
-    private Button confirmButton;
-    @FXML
-    private Button cancelButton;
-
+    @FXML private ComboBox<FieldOfStudy> fieldOfStudy;
+    @FXML private Spinner<Integer> studyYearNumber;
+    @FXML private TextField classLetter;
+    @FXML private Label generatedClassName;
+    @FXML private ListView<Student> addedStudentsList;
+    @FXML private ListView<Student> studentList;
+    @FXML private Button cancelButton;
 
     public void initialize() {
         ObservableList<FieldOfStudy> studyField = FXCollections.observableArrayList(FieldOfStudy.getFieldOfStudies());
         fieldOfStudy.setItems(studyField);
+        fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, t1) -> showGeneratedName());
 
         SpinnerValueFactory<Integer> yearOfStudy = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 4, 1);
         studyYearNumber.setValueFactory(yearOfStudy);
+        studyYearNumber.getEditor().textProperty().addListener((observableValue, s, t1) -> showGeneratedName());
 
         classLetter.setPromptText("1 karakter");
-
+        classLetter.textProperty().addListener((observableValue, s, t1) -> showGeneratedName());
 
         studentList.setItems(FXCollections.observableArrayList(Student.getRegisteredStudents()));
         studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    public void onGenerateIdClick(ActionEvent actionEvent) {
-        if (fieldOfStudy.getValue() == null || studyYearNumber.getValue() == null || classLetter.getText() == null
-                || classLetter.getText().length() != 1 || Utils.isNumeric(classLetter.getText())) {
-            Utils.makeAlert(Alert.AlertType.ERROR, "Vul alle velden (correct) in!");
+    public void showGeneratedName() {
+        if (fieldOfStudy.getValue() == null ||
+                studyYearNumber.getValue() == null ||
+                classLetter.getText() == null ||
+                classLetter.getText().length() != 1 ||
+                Utils.isNumeric(classLetter.getText())) {
             return;
         }
-        generatedClassName.setText(fieldOfStudy.getValue().toString() + "-" + "V" + studyYearNumber.getValue().toString() + classLetter.getText().toUpperCase());
+
+        generatedClassName.setText(Utils.formatClassName(fieldOfStudy.getValue().toString(),
+                studyYearNumber.getValue(),
+                classLetter.getText().toUpperCase().charAt(0)));
     }
 
     public void onPutBackClick(ActionEvent actionEvent) {
         if (addedStudentsList.getSelectionModel().getSelectedItem() != null) {
-            studentList.getItems().add(addedStudentsList.getSelectionModel().getSelectedItem());
-            addedStudentsList.getItems().remove(addedStudentsList.getSelectionModel().getSelectedItem());
+            move(studentList, addedStudentsList);
         }
     }
 
     public void onAddUserClick(ActionEvent actionEvent) {
         if (studentList.getSelectionModel().getSelectedItem() != null) {
-            addedStudentsList.getItems().add(studentList.getSelectionModel().getSelectedItem());
-            studentList.getItems().remove(studentList.getSelectionModel().getSelectedItem());
+            move(addedStudentsList, studentList);
         }
     }
 
+    public void move(ListView<Student> left, ListView<Student> right) {
+        left.getItems().add(right.getSelectionModel().getSelectedItem());
+        right.getItems().remove(right.getSelectionModel().getSelectedItem());
+    }
+
     public void onConfirmClick(ActionEvent actionEvent) {
-        if (generatedClassName.getText() != null) {
-            Class c1 = new Class(UUID.randomUUID(), studyYearNumber.getValueFactory().getValue(), classLetter.getText().charAt(0), generatedClassName.getText(),
-            fieldOfStudy.getValue(), new ArrayList<>(addedStudentsList.getItems()));
+        if (generatedClassName.getText().isEmpty() && addedStudentsList.getItems().isEmpty()) {
+            Utils.makeAlert(Alert.AlertType.ERROR, "Vul alle velden (correct) in!");
+            return;
         }
+
+        Class aClass = new Class(UUID.randomUUID(),
+                studyYearNumber.getValueFactory().getValue(),
+                classLetter.getText().charAt(0),
+                fieldOfStudy.getValue(),
+                new ArrayList<>(addedStudentsList.getItems()));
+
+        if (Class.getAllClasses().contains(aClass)) {
+            Utils.makeAlert(Alert.AlertType.ERROR, "Klas bestaat al!");
+            return;
+        }
+
+        Class.getAllClasses().add(aClass);
+        Utils.makeAlert(Alert.AlertType.INFORMATION, "Klas toegevoegd.");
     }
 
     public void onCancelClick(ActionEvent actionEvent) {

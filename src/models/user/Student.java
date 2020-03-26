@@ -3,9 +3,8 @@ package models.user;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Student extends User{
+public class Student extends User {
 
-    private UUID studentetId;
     private ArrayList<Class> classes = new ArrayList<>();
 
     public Student(String email, String password, String firstname, String surname, UUID userId) {
@@ -24,8 +23,8 @@ public class Student extends User{
         return students;
     }
 
-    public String toString(){
-        return firstname + " " + surname;
+    public String toString() {
+        return String.format("%s %s", this.firstname, this.surname);
     }
 
 }
