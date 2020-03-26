@@ -16,4 +16,8 @@ public class Utils {
         alert.setHeaderText(message);
         alert.show();
     }
+
+    public static boolean isNumeric(String str) {
+        return str.chars().allMatch(Character::isDigit);
+    }
 }

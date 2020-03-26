@@ -25,7 +25,7 @@ public class MenuController {
 
     public void onClassCreateButtonPressed(ActionEvent actionEvent) throws IOException {
             FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("/views/CreateClass.fxml")); // doesn't exist yet
+                    new FXMLLoader(getClass().getResource("/views/CreateClassWindow.fxml")); // doesn't exist yet
             Parent root = loader.load();
 
             Stage newStage = new Stage();

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="424.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="424.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateClassWindowController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -81,7 +81,7 @@
                                                 <Insets />
                                              </GridPane.margin>
                                           </TextField>
-                                          <Button mnemonicParsing="false" onAction="#onGenerateIdClick" text="Genereer ID" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                          <Button fx:id="generateClassIDButton" mnemonicParsing="false" onAction="#onGenerateIdClick" text="Genereer ID" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                              <GridPane.margin>
                                                 <Insets />
                                              </GridPane.margin>
@@ -107,7 +107,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#onPutBackClick" text="Zet terug" GridPane.halignment="RIGHT" />
+                                    <Button fx:id="moveStudentBackButton" mnemonicParsing="false" onAction="#onPutBackClick" text="Zet terug" GridPane.halignment="RIGHT" />
                                  </children>
                               </GridPane>
                            </children>
@@ -147,7 +147,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#onAddUserClick" text="Voeg toe" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                          <Button fx:id="addStudentButton" mnemonicParsing="false" onAction="#onAddUserClick" text="Voeg toe" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets />
                                              </GridPane.margin>
@@ -162,12 +162,12 @@
                                                 <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
                                             </rowConstraints>
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#onConfirmClick" text="Bevestig" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                                                <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#onConfirmClick" text="Bevestig" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                                    <GridPane.margin>
                                                       <Insets />
                                                    </GridPane.margin>
                                                 </Button>
-                                                <Button mnemonicParsing="false" onAction="#onCancelClick" text="Annuleer" GridPane.halignment="RIGHT">
+                                                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClick" text="Annuleer" GridPane.halignment="RIGHT">
                                                    <GridPane.margin>
                                                       <Insets />
                                                    </GridPane.margin>
