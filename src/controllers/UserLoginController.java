@@ -8,6 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import models.user.Student;
+import models.user.Teacher;
 import models.user.User;
 import utils.Utils;
 import java.io.IOException;
@@ -18,10 +20,10 @@ public class UserLoginController {
     @FXML private TextField passwordField;
     @FXML private Button loginButton;
     @FXML private Button switchButton;
-    private String userType;
+    private UserType userType;
 
     public UserLoginController() {
-        this.userType = "User";
+        this.userType = UserType.TEACHER;
     }
 
     @FXML
@@ -50,7 +52,7 @@ public class UserLoginController {
     }
 
     private boolean isLoginSuccessful(String email, String password) {
-        for (User user : Utils.getRegisteredUsers(UserType.valueOf(this.userType)))
+        for (User user : Utils.getRegisteredUsers(this.userType))
             if (user.getEmail().equals(email) && user.getPassword().equals(password))
                 return true;
 
@@ -64,10 +66,20 @@ public class UserLoginController {
 
     @FXML
     public void handleLogin(ActionEvent event) throws IOException {
+//        Student st1 = new Student("email@site.com", "bla",
+//                "Joeri", "Kok", Utils.idGenerator());
+//        Student st2 = new Student("email2@site.com", "bla2",
+//                "Piet", "Lut", Utils.idGenerator());
+//        Teacher t1 = new Teacher("email3@site.com", "bla3",
+//                "Leraar", "Docent", Utils.idGenerator());
+
         String email = emailField.getText().trim();
         String password = passwordField.getText();
 
-        if (isInputValid(email, password) && isLoginSuccessful(email, password))
+        if (!isInputValid(email, password))
+            return;
+
+        if (isLoginSuccessful(email, password))
             Utils.showAlert("U bent succesvol ingelogd :)", Alert.AlertType.INFORMATION);
         else {
             Utils.showAlert("Het opgegeven e-mailadres of wachtwoord is verkeerd :(",
@@ -78,7 +90,7 @@ public class UserLoginController {
 
     public void setUserType(String userType) {
         userTypeLabel.setText(userType);
-        this.userType = userType.toUpperCase();
+        this.userType = UserType.valueOf(userType.toUpperCase());
     }
 }
 
