@@ -1,10 +1,16 @@
 package models.user;
 
 import java.util.List;
+import models.Lecture;
+
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class Teacher extends User {
+
+    private ArrayList<Class> classes =  new ArrayList<Class>();
+    private ArrayList<Lecture> lectures = new ArrayList<Lecture>();
 
     public Teacher(String firstName, String lastName, String email, String password) {
         this(firstName, lastName, email, password, UUID.randomUUID());
@@ -18,5 +24,13 @@ public class Teacher extends User {
     public static List<Teacher> getRegisteredTeachers() {
         return User.getRegisteredUsers().stream().filter(user -> user.getClass() == Teacher.class)
                 .map(user -> (Teacher)user).collect(Collectors.toList());
+    }
+
+    public ArrayList<Lecture> getLectures() {
+        return this.lectures;
+    }
+
+    public ArrayList<Class> getAllClasses() {
+        return this.classes;
     }
 }
