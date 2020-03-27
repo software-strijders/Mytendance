@@ -31,6 +31,50 @@ public class Class {
         return Utils.formatClassName(this.studyField.toString(), this.yearOfStudy, this.group);
     }
 
+    public static void setAllClasses(List<Class> allClasses) {
+        Class.allClasses = allClasses;
+    }
+
+    public UUID getClassId() {
+        return classId;
+    }
+
+    public void setClassId(UUID classId) {
+        this.classId = classId;
+    }
+
+    public int getYearOfStudy() {
+        return yearOfStudy;
+    }
+
+    public void setYearOfStudy(int yearOfStudy) {
+        this.yearOfStudy = yearOfStudy;
+    }
+
+    public char getGroup() {
+        return group;
+    }
+
+    public void setGroup(char group) {
+        this.group = group;
+    }
+
+    public FieldOfStudy getStudyField() {
+        return studyField;
+    }
+
+    public void setStudyField(FieldOfStudy studyField) {
+        this.studyField = studyField;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     public ArrayList<Lecture> getAllLectures() {
         return this.allLectures;
     }
@@ -49,11 +93,6 @@ public class Class {
                 || other instanceof Class
                 && this.yearOfStudy == ((Class)other).yearOfStudy
                 && this.group == ((Class)other).group;
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;            // what's going on here?
     }
 
     @Override
