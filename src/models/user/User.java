@@ -1,7 +1,13 @@
 package models.user;
 
+import enums.UserType;
+import javafx.print.Collation;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public abstract class User {
 
@@ -21,7 +27,7 @@ public abstract class User {
         setFirstname(firstname);
         setSurname(surname);
         setUserId(userId);
-        registeredUsers.add(this);
+        //registeredUsers.add(this);
     }
 
     public String getEmail() {
@@ -64,8 +70,13 @@ public abstract class User {
         this.userId = userId;
     }
 
-    public static ArrayList<User> getRegisteredUsers() {
-        return registeredUsers;
+    public static List<User> getRegisteredUsers() {
+        return Collections.unmodifiableList(registeredUsers);
+    }
+
+    public static List<User> getRegisteredUsersByType(UserType userType) {
+        return registeredUsers.stream().filter(user ->
+                user.getClass() == userType.typeClass()).collect(Collectors.toList());
     }
 
     @Override

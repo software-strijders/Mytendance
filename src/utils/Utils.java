@@ -3,17 +3,12 @@ package utils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import enums.UserType;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import models.user.User;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -65,13 +60,6 @@ public class Utils {
         }
 
         return string.charAt(index);
-    }
-
-    public static List<User> getRegisteredUsers(UserType userType) {
-        ArrayList<User> users = User.getRegisteredUsers();
-        users.removeIf(user -> user.getClass() != userType.typeClass());
-
-        return users;
     }
 
     // Author: Jason Buberel

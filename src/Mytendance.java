@@ -1,7 +1,4 @@
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import models.user.Administrator;
 import models.FieldOfStudy;
@@ -46,6 +43,7 @@ public class Mytendance extends Application {
     public void start(Stage stage) throws Exception {
         // Simply comment out the screens you're not currently testing
         Utils.loadScreen("User role selection", "/views/RoleSelection.fxml", stage);
-        // Utils.loadScreen("Add new user", "../views/AddUser.fxml", stage);
+        // Utils.loadScreen("Add new user", "/views/AddUser.fxml", stage);
+        Utils.loadScreen("Main menu", "/views/Menu.fxml", stage);
     }
 }

@@ -8,8 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import models.user.Student;
-import models.user.Teacher;
 import models.user.User;
 import utils.Utils;
 import java.io.IOException;
@@ -52,8 +50,10 @@ public class UserLoginController {
     }
 
     private boolean isLoginSuccessful(String email, String password) {
-        for (User user : Utils.getRegisteredUsers(this.userType))
-            if (user.getEmail().equals(email) && user.getPassword().equals(password))
+        for (User user : User.getRegisteredUsers())
+            if (user.getClass() == this.userType.typeClass()
+                    && user.getEmail().equals(email)
+                    && user.getPassword().equals(password))
                 return true;
 
         return false;
@@ -66,13 +66,6 @@ public class UserLoginController {
 
     @FXML
     public void handleLogin(ActionEvent event) throws IOException {
-//        Student st1 = new Student("email@site.com", "bla",
-//                "Joeri", "Kok", Utils.idGenerator());
-//        Student st2 = new Student("email2@site.com", "bla2",
-//                "Piet", "Lut", Utils.idGenerator());
-//        Teacher t1 = new Teacher("email3@site.com", "bla3",
-//                "Leraar", "Docent", Utils.idGenerator());
-
         String email = emailField.getText().trim();
         String password = passwordField.getText();
 
