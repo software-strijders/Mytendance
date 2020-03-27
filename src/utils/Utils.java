@@ -63,10 +63,6 @@ public class Utils {
         return loadStage("Mytendance", resource, stage, modality);
     }
 
-    public static Stage loadStage(String title, String resource, Modality modality) throws IOException {
-        return loadStage(title, resource, new Stage(), modality);
-    }
-
     public static Stage loadStage(String title, String resource, Stage stage, Modality modality) throws IOException {
         loadStage(title, resource, stage);
         stage.initModality(modality);
@@ -102,5 +98,12 @@ public class Utils {
         stage.setTitle(title);
 
         return loader;
+    }
+
+    public static String capitalize(String string) {
+        if (string == null || string.isEmpty())
+            return ""; // Nothing to capitalize here
+
+        return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }
 }

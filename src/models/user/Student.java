@@ -27,6 +27,6 @@ public class Student extends User {
     }
 
     public String toString() {
-        return String.format("%s %s", this.firstName, this.lastName);
+        return String.format("%s %s", Utils.capitalize(this.firstname), Utils.capitalize(this.surname));
     }
 }
