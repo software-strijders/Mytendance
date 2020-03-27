@@ -21,6 +21,7 @@ public abstract class User {
         setFirstname(firstname);
         setSurname(surname);
         setUserId(userId);
+        registeredUsers.add(this);
     }
 
     public String getEmail() {

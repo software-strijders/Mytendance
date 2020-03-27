@@ -1,6 +1,25 @@
 package enums;
 
+import models.user.Student;
+import models.user.Teacher;
+
 public enum UserType {
-    TEACHER,
-    STUDENT
+    TEACHER("Teacher", Teacher.class),
+    STUDENT("Student", Student.class);
+
+    private final String typeName;
+    private final Class typeClass;
+
+    UserType(String typeName, Class typeClass) {
+        this.typeName = typeName;
+        this.typeClass = typeClass;
+    }
+
+    public Class typeClass() {
+        return this.typeClass;
+    }
+
+    public String typeName() {
+        return this.typeName;
+    }
 }

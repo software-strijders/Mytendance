@@ -8,6 +8,7 @@ import models.FieldOfStudy;
 import models.user.Student;
 
 import java.util.UUID;
+import utils.Utils;
 
 public class Mytendance extends Application {
 
@@ -43,10 +44,8 @@ public class Mytendance extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/Menu.fxml"));
-        Scene scene = new Scene(root);
-        stage.setTitle("Add new user");
-        stage.setScene(scene);
-        stage.show();
+        // Simply comment out the screens you're not currently testing
+        Utils.loadScreen("User role selection", "/views/RoleSelection.fxml", stage);
+        // Utils.loadScreen("Add new user", "../views/AddUser.fxml", stage);
     }
 }
