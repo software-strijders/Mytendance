@@ -13,15 +13,12 @@ import java.io.IOException;
 public class MenuController {
 
     public void onUserCreatePressed(ActionEvent actionEvent) throws IOException {
-        Stage newStage = Utils.loadStage("/views/AddUser.fxml");
-        newStage.initModality(Modality.APPLICATION_MODAL);
+        Stage newStage = Utils.loadStage("/views/AddUser.fxml", "Voeg gebruiker toe", Modality.APPLICATION_MODAL);
         newStage.showAndWait();
     }
 
     public void onClassCreateButtonPressed(ActionEvent actionEvent) throws IOException {
-        Stage newStage = Utils.loadStage("/views/CreateClassWindow.fxml");
-        newStage.initModality(Modality.APPLICATION_MODAL);
-        newStage.setTitle("Klas aanmaken");
+        Stage newStage = Utils.loadStage("/views/CreateClassWindow.fxml", "Klas aanmaken", Modality.APPLICATION_MODAL);
         newStage.showAndWait();
     }
 }

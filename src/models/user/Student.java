@@ -13,11 +13,10 @@ public class Student extends User {
 
     public static ArrayList<Student> getRegisteredStudents() {
         ArrayList<User> users = User.getRegisteredUsers();
-        users.removeIf(user -> user instanceof Teacher);
-
         ArrayList<Student> students = new ArrayList<>();
         for (User user : users) {
-            students.add((Student)user);
+            if (user instanceof Student)
+                students.add((Student)user);
         }
 
         return students;

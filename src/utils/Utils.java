@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,12 +31,20 @@ public class Utils {
         return String.format("%s-V%d%s", field, studyYear, group);
     }
 
-    public static Stage loadStage(String resourceName) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Utils.class.getResource(resourceName));
-        Parent root = loader.load();
-
+    public static Stage loadStage(String resourceName, String title, Modality modality) throws IOException {
+        Parent root = FXMLLoader.load(Utils.class.getResource(resourceName));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        stage.initModality(modality);
         return stage;
+    }
+
+    public static char getCharFromStringByIndex(String string, int index) {
+        if (string.isEmpty()) {
+            return '0'; // Unsure what to return here
+        }
+
+        return string.charAt(index);
     }
 }

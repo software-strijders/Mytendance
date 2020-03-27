@@ -49,12 +49,14 @@ public class CreateClassWindowController {
                 classLetter.getText() == null ||
                 classLetter.getText().length() != 1 ||
                 Utils.isNumeric(classLetter.getText())) {
+            // We don't want to show an error here. If not all fields are filled in it would show an error. Instead
+            // what we do now, is that we ignore it. Once all fields are filled in, it will generate the Class name.
             return;
         }
 
         generatedClassName.setText(Utils.formatClassName(fieldOfStudy.getValue().toString(),
                 studyYearNumber.getValue(),
-                classLetter.getText().toUpperCase().charAt(0)));
+                Utils.getCharFromStringByIndex(classLetter.getText(), 0)));
     }
 
     public void onPutBackClick(ActionEvent actionEvent) {
@@ -80,18 +82,18 @@ public class CreateClassWindowController {
             return;
         }
 
-        Class aClass = new Class(UUID.randomUUID(),
+        Class newClass = new Class(UUID.randomUUID(),
                 studyYearNumber.getValueFactory().getValue(),
-                classLetter.getText().charAt(0),
+                Utils.getCharFromStringByIndex(classLetter.getText(), 0),
                 fieldOfStudy.getValue(),
                 new ArrayList<>(addedStudentsList.getItems()));
 
-        if (Class.getAllClasses().contains(aClass)) {
+        if (Class.getAllClasses().contains(newClass)) {
             Utils.makeAlert(Alert.AlertType.ERROR, "Klas bestaat al!");
             return;
         }
 
-        Class.getAllClasses().add(aClass);
+        Class.getAllClasses().add(newClass);
         Utils.makeAlert(Alert.AlertType.INFORMATION, "Klas toegevoegd.");
     }
 
