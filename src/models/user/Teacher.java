@@ -1,7 +1,9 @@
 package models.user;
 
 import java.util.List;
+import models.Class;
 import models.Lecture;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -13,7 +15,7 @@ public class Teacher extends User {
     private ArrayList<Lecture> lectures = new ArrayList<Lecture>();
 
     public Teacher(String firstName, String lastName, String email, String password) {
-        this(firstName, lastName, email, password, UUID.randomUUID());
+        this(firstName, lastName, email, password, Utils.idGenerator());
     }
 
     public Teacher(String firstName, String lastName, String email, String password, UUID userId) {
@@ -32,5 +34,10 @@ public class Teacher extends User {
 
     public ArrayList<Class> getAllClasses() {
         return this.classes;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", firstName, lastName);
     }
 }

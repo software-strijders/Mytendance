@@ -1,5 +1,7 @@
 package models.user;
 
+import utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -10,7 +12,7 @@ public class Student extends User {
     private List<Class> classes;
 
     public Student(String firstName, String lastName, String email, String password) {
-        this(firstName, lastName, email, password, UUID.randomUUID());
+        this(firstName, lastName, email, password, Utils.idGenerator());
     }
 
     public Student(String firstName, String lastName, String email, String password, UUID userId) {
