@@ -24,7 +24,7 @@ public class UserLoginController {
     private UserType userType;
 
     public void setUserType(String userType) {
-        userTypeLabel.setText(userType);
+        this.userTypeLabel.setText(userType);
         this.userType = UserType.valueOf(userType.toUpperCase());
     }
 
@@ -48,7 +48,6 @@ public class UserLoginController {
             throw new InputMismatchException("Het e-mailadres is ongeldig :(");
         else if (this.password.isEmpty())
             throw new InputMismatchException("Het wachtwoord ontbreekt :(");
-
     }
 
     private void logonUser() throws IllegalArgumentException {
@@ -70,7 +69,7 @@ public class UserLoginController {
         } catch (IllegalArgumentException exception) {
             Utils.showAlert("Het e-mailadres of wachtwoord is incorrect :(",
                     Alert.AlertType.INFORMATION);
-            passwordField.clear();
+            this.passwordField.clear();
             return;
         }
         this.clearPassword();
