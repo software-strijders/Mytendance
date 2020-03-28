@@ -63,16 +63,14 @@ public class UserLoginController {
         try {
             this.obtainCredentials();
             this.logonUser();
+            this.clearPassword();
+            Utils.showAlert("U bent succesvol ingelogd :)", Alert.AlertType.INFORMATION);
         } catch (InputMismatchException exception) {
             Utils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
-            return;
         } catch (IllegalArgumentException exception) {
             Utils.showAlert("Het e-mailadres of wachtwoord is incorrect :(",
                     Alert.AlertType.INFORMATION);
             this.passwordField.clear();
-            return;
         }
-        this.clearPassword();
-        Utils.showAlert("U bent succesvol ingelogd :)", Alert.AlertType.INFORMATION);
     }
 }
