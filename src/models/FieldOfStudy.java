@@ -1,10 +1,12 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FieldOfStudy {
 
-    private static ArrayList<FieldOfStudy> studyFields = new ArrayList<>();
+    private static List<FieldOfStudy> studyFields = new ArrayList<>();
 
     private String code;
     private String description;
@@ -18,11 +20,15 @@ public class FieldOfStudy {
         this.description = description;
     }
 
-    public static ArrayList<FieldOfStudy> getFieldOfStudies() {
-        return studyFields;
+    public static List<FieldOfStudy> getFieldOfStudies() {
+        return Collections.unmodifiableList(studyFields);
+    }
+
+    public static void addStudyField(FieldOfStudy studyField) {
+        studyFields.add(studyField);
     }
 
     public String toString() {
-        return code.toUpperCase();
+        return this.code.toUpperCase();
     }
 }

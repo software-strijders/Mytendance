@@ -1,11 +1,8 @@
 package controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -13,8 +10,7 @@ import models.Class;
 import models.FieldOfStudy;
 import models.user.Student;
 import utils.Utils;
-
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 public class CreateClassWindowController {
@@ -39,7 +35,7 @@ public class CreateClassWindowController {
         classLetter.setPromptText("1 karakter");
         classLetter.textProperty().addListener((observableValue, s, t1) -> showGeneratedName());
 
-        studentList.setItems(FXCollections.observableArrayList(Student.getRegisteredStudents()));
+        studentList.setItems(FXCollections.observableList(Student.getRegisteredStudents()));
         studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -59,13 +55,13 @@ public class CreateClassWindowController {
                 Utils.getCharFromStringByIndex(classLetter.getText(), 0)));
     }
 
-    public void onPutBackClick(ActionEvent actionEvent) {
+    public void onPutBackClick(ActionEvent event) {
         if (addedStudentsList.getSelectionModel().getSelectedItem() != null) {
             move(studentList, addedStudentsList);
         }
     }
 
-    public void onAddUserClick(ActionEvent actionEvent) {
+    public void onAddUserClick(ActionEvent event) {
         if (studentList.getSelectionModel().getSelectedItem() != null) {
             move(addedStudentsList, studentList);
         }
@@ -76,9 +72,11 @@ public class CreateClassWindowController {
         right.getItems().remove(right.getSelectionModel().getSelectedItem());
     }
 
-    public void onConfirmClick(ActionEvent actionEvent) {
+    public void onConfirmClick(ActionEvent event) {
         if (generatedClassName.getText().isEmpty() && addedStudentsList.getItems().isEmpty()) {
-            Utils.makeAlert(Alert.AlertType.ERROR, "Vul alle velden (correct) in!");
+            // Warnings en errors zijn eigenlijk bedoeld voor harde systeemfouten, bij foutieve gebruikersinvoer
+            // zijn info messages voldoende. Dit komt een stuk vriendelijker over en wordt ook over het algemeen aangeraden
+            Utils.showAlert("Vul alle velden (correct) in!", Alert.AlertType.INFORMATION);
             return;
         }
 
@@ -86,19 +84,18 @@ public class CreateClassWindowController {
                 studyYearNumber.getValueFactory().getValue(),
                 Utils.getCharFromStringByIndex(classLetter.getText(), 0),
                 fieldOfStudy.getValue(),
-                new ArrayList<>(addedStudentsList.getItems()));
+                Collections.unmodifiableList(addedStudentsList.getItems()));
 
         if (Class.getAllClasses().contains(newClass)) {
-            Utils.makeAlert(Alert.AlertType.ERROR, "Klas bestaat al!");
+            Utils.showAlert("Klas bestaat al!", Alert.AlertType.INFORMATION); // Zie comment hierboven
             return;
         }
 
-        Class.getAllClasses().add(newClass);
-        Utils.makeAlert(Alert.AlertType.INFORMATION, "Klas toegevoegd.");
+        Class.addClass(newClass);
+        Utils.showAlert("Klas toegevoegd.", Alert.AlertType.INFORMATION); // Zie comment hierboven
     }
 
-    public void onCancelClick(ActionEvent actionEvent) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+    public void onCancelClick(ActionEvent event) {
+        ((Stage)cancelButton.getScene().getWindow()).close();
     }
 }

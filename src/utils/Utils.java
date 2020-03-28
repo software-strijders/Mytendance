@@ -25,15 +25,8 @@ public class Utils {
 
     public static void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
+        alert.setHeaderText(message);
         alert.setTitle(title);
-        alert.setHeaderText(message);
-        alert.show();
-    }
-
-    public static void makeAlert(Alert.AlertType alertType, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(message);
-        alert.setHeaderText(message);
         alert.show();
     }
 
@@ -43,15 +36,6 @@ public class Utils {
 
     public static String formatClassName(String field, int studyYear, char group) {
         return String.format("%s-V%d%s", field, studyYear, group);
-    }
-
-    public static Stage loadStage(String resourceName, String title, Modality modality) throws IOException {
-        Parent root = FXMLLoader.load(Utils.class.getResource(resourceName));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle(title);
-        stage.initModality(modality);
-        return stage;
     }
 
     public static char getCharFromStringByIndex(String string, int index) {
@@ -66,23 +50,47 @@ public class Utils {
     public static final Pattern EMAIL_ADDR_REGEX = Pattern.compile(
             "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    // Author: Jason Buberel
-    public static boolean isValidEmail(String email) {
+    public static boolean isEmailValid(String email) {
         Matcher matcher = EMAIL_ADDR_REGEX.matcher(email);
         return matcher.find();
     }
 
-    // This method might be removed once the testing phases are completed
-    public static Stage loadScreen(String title, String resource) throws IOException {
-        return loadScreen(title, resource, new Stage());
+    public static Stage loadStage(String resource, Modality modality) throws IOException {
+        return loadStage(resource, new Stage(), modality);
     }
 
-    // This method might be removed once the testing phases are completed
-    public static Stage loadScreen(String title, String resource, Stage stage) throws IOException {
+    public static Stage loadStage(String resource, Stage stage, Modality modality) throws IOException {
+        return loadStage("Mytendance", resource, stage, modality);
+    }
+
+    public static Stage loadStage(String title, String resource, Modality modality) throws IOException {
+        return loadStage(title, resource, new Stage(), modality);
+    }
+
+    public static Stage loadStage(String title, String resource, Stage stage, Modality modality) throws IOException {
+        loadStage(title, resource, stage);
+        stage.initModality(modality);
+
+        return stage;
+    }
+
+    public static Stage loadStage(String resource) throws IOException {
+        return loadStage("Mytendance", resource);
+    }
+
+    public static Stage loadStage(String resource, Stage stage) throws IOException {
+        return loadStage("Mytendance", resource, stage);
+    }
+
+    public static Stage loadStage(String title, String resource) throws IOException {
+        return loadStage(title, resource, new Stage());
+    }
+
+    // This method might be deemed unnecessary once the testing phases are completed
+    public static Stage loadStage(String title, String resource, Stage stage) throws IOException {
         Parent root = FXMLLoader.load(Utils.class.getResource(resource));
         stage.setScene(new Scene(root));
         stage.setTitle(title);
-        stage.show();
 
         return stage;
     }
@@ -92,7 +100,6 @@ public class Utils {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(loader.load()));
         stage.setTitle(title);
-        stage.show();
 
         return loader;
     }

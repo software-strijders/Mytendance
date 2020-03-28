@@ -3,19 +3,17 @@ import javafx.stage.Stage;
 import models.user.Administrator;
 import models.FieldOfStudy;
 import models.user.Student;
-
-import java.util.UUID;
 import utils.Utils;
 
 public class Mytendance extends Application {
 
     public static void main(String[] args){
-        Student s1 = new Student("arjen.norbart@student.hu.nl", "password", "Arjen", "Norbart", UUID.randomUUID());
-        Student s2 = new Student("jort.willemsen@student.hu.nl", "p@ssword", "Jort", "Willemsen", UUID.randomUUID());
-        Student s3 = new Student("milan.dol@student.hu.nl", "m1lan", "Milan", "Dol", UUID.randomUUID());
-        Student s4 = new Student("xander.vedder@student.hu.nl", "sander", "Xander", "Vedder", UUID.randomUUID());
-        Student s5 = new Student("ruben.brink@student.hu.nl", "rururuben", "Ruben", "van den Brink", UUID.randomUUID());
-        Student s6 = new Student("joeri.kok@student.hu.nl", "c++", "Joeri", "Kok", UUID.randomUUID());
+        Student s1 = new Student("Arjen","Norbart","arjen.norbart@student.hu.nl","password");
+        Student s2 = new Student("Jort","Willemsen","jort.willemsen@student.hu.nl","p@ssword");
+        Student s3 = new Student("Milan","Dol","milan.dol@student.hu.nl","m1lan");
+        Student s4 = new Student("Xander","Vedder","xander.vedder@student.hu.nl","sander");
+        Student s5 = new Student("Ruben","van den Brink","ruben.brink@student.hu.nl","rururuben");
+        Student s6 = new Student("Joeri","Kok","joeri.j.kok@student.hu.nl","c++");
 
         Administrator.addUser(s1);
         Administrator.addUser(s2);
@@ -30,20 +28,21 @@ public class Mytendance extends Application {
         FieldOfStudy f4 = new FieldOfStudy("TICT-CSC");
         FieldOfStudy f5 = new FieldOfStudy("TICT-BIM");
 
-        FieldOfStudy.getFieldOfStudies().add(f1);
-        FieldOfStudy.getFieldOfStudies().add(f2);
-        FieldOfStudy.getFieldOfStudies().add(f3);
-        FieldOfStudy.getFieldOfStudies().add(f4);
-        FieldOfStudy.getFieldOfStudies().add(f5);
+        FieldOfStudy.addStudyField(f1);
+        FieldOfStudy.addStudyField(f2);
+        FieldOfStudy.addStudyField(f3);
+        FieldOfStudy.addStudyField(f4);
+        FieldOfStudy.addStudyField(f5);
 
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Simply comment out the screens you're not currently testing
-        Utils.loadScreen("User role selection", "/views/RoleSelection.fxml", stage);
-        // Utils.loadScreen("Add new user", "/views/AddUser.fxml", stage);
-        Utils.loadScreen("Main menu", "/views/Menu.fxml", stage);
+        // Simply comment out the screens that you're not currently testing
+        Utils.loadStage("User role selection", "/views/RoleSelection.fxml", stage);
+        // Utils.loadStage("Add new user", "/views/AddUser.fxml", stage);
+        // Utils.loadStage("Main menu", "/views/Menu.fxml", stage);
+        stage.show();
     }
 }

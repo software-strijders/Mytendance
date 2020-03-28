@@ -4,16 +4,18 @@ import java.util.UUID;
 
 public class Administrator extends User {
 
-    public Administrator(String email, String password, String firstname, String surname, UUID userId) {
-        super(email, password, firstname, surname, userId);
+    public Administrator(String firstName, String lastName, String email, String password) {
+        super(firstName, lastName, email, password, UUID.randomUUID());
+    }
+
+    public Administrator(String firstName, String lastName, String email, String password, UUID userId) {
+        super(firstName, lastName, email, password, userId);
     }
 
     public static void addUser(User newUser) throws IllegalArgumentException {
-        if (!User.getRegisteredUsers().contains(newUser)) {
-            User.getRegisteredUsers().add(newUser);
-            return;
-        }
-
-        throw new IllegalArgumentException("User bestaat al");
+        if (User.getRegisteredUsers().contains(newUser))
+            throw new IllegalArgumentException("User bestaat al");
+        else
+            User.addUser(newUser);
     }
 }

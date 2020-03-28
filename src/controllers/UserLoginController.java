@@ -3,7 +3,6 @@ package controllers;
 import enums.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,80 +10,70 @@ import javafx.scene.control.TextField;
 import models.user.User;
 import utils.Utils;
 import java.io.IOException;
+import java.util.InputMismatchException;
 
 public class UserLoginController {
+
     @FXML private Label userTypeLabel;
     @FXML private TextField emailField;
     @FXML private TextField passwordField;
     @FXML private Button loginButton;
     @FXML private Button switchButton;
+    private String email;
+    private String password;
     private UserType userType;
-
-    public UserLoginController() {
-        this.userType = UserType.TEACHER;
-    }
-
-    @FXML
-    public void initialize() {
-        // will sort this mess out later
-        //  emailField.focusedProperty().addListener((argument, oldValue, newValue) ->
-        //          emailField.setText(emailField.getText().equals("E-mail") ? "" : emailField.getText()));
-    }
-
-    private FXMLLoader loadRoleSelection(ActionEvent event) throws IOException {
-        return Utils.loadComponent("User role selection",
-                "/views/RoleSelection.fxml", event);
-    }
-
-    private boolean isInputValid(String email, String password) {
-        if (email.isEmpty())
-            Utils.showAlert("Het e-mailadres ontbreekt :(", Alert.AlertType.INFORMATION);
-        else if (!Utils.isValidEmail(email))
-            Utils.showAlert("Het opgegeven e-mailadres is ongeldig :(", Alert.AlertType.INFORMATION);
-        else if (password.isEmpty())
-            Utils.showAlert("Het wachtwoord ontbreekt :(", Alert.AlertType.INFORMATION);
-        else
-            return true;
-
-        return false;
-    }
-
-    private boolean isLoginSuccessful(String email, String password) {
-        for (User user : User.getRegisteredUsers())
-            if (user.getClass() == this.userType.typeClass()
-                    && user.getEmail().equals(email)
-                    && user.getPassword().equals(password))
-                return true;
-
-        return false;
-    }
-
-    @FXML
-    public void handleSwitch(ActionEvent event) throws IOException {
-        loadRoleSelection(event);
-    }
-
-    @FXML
-    public void handleLogin(ActionEvent event) throws IOException {
-        String email = emailField.getText().trim();
-        String password = passwordField.getText();
-
-        if (!isInputValid(email, password))
-            return;
-
-        if (isLoginSuccessful(email, password))
-            Utils.showAlert("U bent succesvol ingelogd :)", Alert.AlertType.INFORMATION);
-        else {
-            Utils.showAlert("Het opgegeven e-mailadres of wachtwoord is verkeerd :(",
-                    Alert.AlertType.INFORMATION);
-            passwordField.clear();
-        }
-    }
 
     public void setUserType(String userType) {
         userTypeLabel.setText(userType);
         this.userType = UserType.valueOf(userType.toUpperCase());
     }
+
+    private void loadRoleSelection(ActionEvent event) throws IOException {
+        Utils.loadComponent("User role selection",
+                "/views/RoleSelection.fxml", event);
+    }
+
+    @FXML
+    public void handleSwitch(ActionEvent event) throws IOException {
+        this.loadRoleSelection(event);
+    }
+
+    private void obtainCredentials() throws InputMismatchException {
+        this.email = emailField.getText().trim();
+        this.password = passwordField.getText();
+
+        if (this.email.isEmpty())
+            throw new InputMismatchException("Het e-mailadres ontbreekt :(");
+        else if (!Utils.isEmailValid(this.email))
+            throw new InputMismatchException("Het e-mailadres is ongeldig :(");
+        else if (this.password.isEmpty())
+            throw new InputMismatchException("Het wachtwoord ontbreekt :(");
+
+    }
+
+    private void logonUser() throws IllegalArgumentException {
+        User.setLoggedInUser(User.authenticateUser(this.email, this.password, this.userType));
+    }
+
+    private void clearPassword() {
+        this.password = null;
+    }
+
+    @FXML
+    public void handleLogin(ActionEvent event) throws IOException {
+        try {
+            this.obtainCredentials();
+            this.logonUser();
+        } catch (InputMismatchException exception) {
+            Utils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
+            return;
+        } catch (IllegalArgumentException exception) {
+            Utils.showAlert("Het e-mailadres of wachtwoord is incorrect :(",
+                    Alert.AlertType.INFORMATION);
+            passwordField.clear();
+            return;
+        }
+        this.clearPassword();
+        Utils.showAlert("U bent succesvol ingelogd :)", Alert.AlertType.INFORMATION);
+    }
 }
-
-

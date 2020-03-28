@@ -8,6 +8,7 @@ import java.io.IOException;
 import utils.Utils;
 
 public class RoleSelectionController {
+
     private FXMLLoader loadUserLogin(ActionEvent event) throws IOException {
         return Utils.loadComponent("User login", "/views/UserLogin.fxml", event);
     }
