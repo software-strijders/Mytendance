@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 public class Utils {
 
-    public static UUID idGenerator(){
+    public static UUID idGenerator() {
         return UUID.randomUUID();
     }
 
@@ -30,8 +30,8 @@ public class Utils {
         alert.show();
     }
 
-    public static boolean isNumeric(String str) {
-        return str.chars().allMatch(Character::isDigit);
+    public static boolean isNumeric(String text) {
+        return text.chars().allMatch(Character::isDigit);
     }
 
     public static String formatClassName(String field, int studyYear, char group) {

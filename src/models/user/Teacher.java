@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class Teacher extends User{
+public class Teacher extends User {
 
     public Teacher(String firstName, String lastName, String email, String password) {
         this(firstName, lastName, email, password, UUID.randomUUID());

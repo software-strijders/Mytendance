@@ -4,7 +4,6 @@ import enums.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.user.User;
@@ -17,8 +16,6 @@ public class UserLoginController {
     @FXML private Label userTypeLabel;
     @FXML private TextField emailField;
     @FXML private TextField passwordField;
-    @FXML private Button loginButton;
-    @FXML private Button switchButton;
     private String email;
     private String password;
     private UserType userType;
@@ -34,7 +31,7 @@ public class UserLoginController {
     }
 
     @FXML
-    public void handleSwitch(ActionEvent event) throws IOException {
+    public void handleSwitchRole(ActionEvent event) throws IOException {
         this.loadRoleSelection(event);
     }
 
@@ -55,7 +52,12 @@ public class UserLoginController {
     }
 
     private void clearPassword() {
+        passwordField.clear();
         this.password = null;
+    }
+
+    private void loadMainMenu(ActionEvent event) throws IOException {
+        Utils.loadComponent("Main menu", "/views/Menu.fxml", event);
     }
 
     @FXML
@@ -64,13 +66,13 @@ public class UserLoginController {
             this.obtainCredentials();
             this.logonUser();
             this.clearPassword();
-            Utils.showAlert("U bent succesvol ingelogd :)", Alert.AlertType.INFORMATION);
+            this.loadMainMenu(event);            // Currently loads the same component regardless of the role specified
         } catch (InputMismatchException exception) {
             Utils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
         } catch (IllegalArgumentException exception) {
+            this.clearPassword();
             Utils.showAlert("Het e-mailadres of wachtwoord is incorrect :(",
                     Alert.AlertType.INFORMATION);
-            this.passwordField.clear();
         }
     }
 }

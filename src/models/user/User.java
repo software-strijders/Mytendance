@@ -52,7 +52,8 @@ public abstract class User {
     public static User authenticateUser(String email, String password, UserType type) {
         for (User user : registeredUsers)
             if (user.getClass() == type.typeClass()
-                    && user.getEmail().equals(email) && user.getPassword().equals(password))
+                    && user.getEmail().equals(email)
+                    && user.getPassword().equals(password))
                 return user;
 
         return null;

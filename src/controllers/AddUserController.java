@@ -16,8 +16,6 @@ public class AddUserController {
     @FXML private TextField surnameTextField;
     @FXML private TextField emailTextField;
     @FXML private PasswordField passwordTextfield;
-    @FXML private Button cancelButton;
-    @FXML private Button registrerButton;
 
     @FXML
     private void initialize() {
@@ -46,7 +44,6 @@ public class AddUserController {
             Utils.showAlert("Gebruiker niet aangemaakt", Alert.AlertType.INFORMATION);
             return;
         }
-
         try {
             Administrator.addUser(
                     UserFactory.create(emailTextField.getText(),
@@ -54,13 +51,11 @@ public class AddUserController {
                             firstNameTextField.getText(),
                             surnameTextField.getText(),
                             userTypeComboBox.getValue()));
+            Utils.showAlert("Gebruiker aangemaakt", Alert.AlertType.INFORMATION);
+            initialize();
         } catch (IllegalArgumentException exception) {
             // Zie comment over de AlertType in CreateClassWindowController
             Utils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
-            return;
         }
-
-        Utils.showAlert("Gebruiker aangemaakt", Alert.AlertType.INFORMATION);
-        initialize();
     }
 }

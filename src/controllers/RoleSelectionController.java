@@ -16,6 +16,6 @@ public class RoleSelectionController {
     @FXML
     public void handleSelection(ActionEvent event) throws IOException {
         UserLoginController userLogin = loadUserLogin(event).getController();
-        userLogin.setUserType(((Button)event.getSource()).getText());
+        userLogin.setUserType(((Button) event.getSource()).getText());
     }
 }

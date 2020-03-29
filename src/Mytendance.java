@@ -7,13 +7,13 @@ import utils.Utils;
 
 public class Mytendance extends Application {
 
-    public static void main(String[] args){
-        Student s1 = new Student("Arjen","Norbart","arjen.norbart@student.hu.nl","password");
-        Student s2 = new Student("Jort","Willemsen","jort.willemsen@student.hu.nl","p@ssword");
-        Student s3 = new Student("Milan","Dol","milan.dol@student.hu.nl","m1lan");
-        Student s4 = new Student("Xander","Vedder","xander.vedder@student.hu.nl","sander");
-        Student s5 = new Student("Ruben","van den Brink","ruben.brink@student.hu.nl","rururuben");
-        Student s6 = new Student("Joeri","Kok","joeri.j.kok@student.hu.nl","c++");
+    public static void main(String[] args) {
+        Student s1 = new Student("Arjen", "Norbart", "arjen.norbart@student.hu.nl", "password");
+        Student s2 = new Student("Jort", "Willemsen", "jort.willemsen@student.hu.nl", "p@ssword");
+        Student s3 = new Student("Milan", "Dol", "milan.dol@student.hu.nl", "m1lan");
+        Student s4 = new Student("Xander", "Vedder", "xander.vedder@student.hu.nl", "sander");
+        Student s5 = new Student("Ruben", "van den Brink", "ruben.brink@student.hu.nl", "rururuben");
+        Student s6 = new Student("Joeri", "Kok", "joeri.j.kok@student.hu.nl", "c++");
 
         Administrator.addUser(s1);
         Administrator.addUser(s2);
@@ -40,6 +40,7 @@ public class Mytendance extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // Simply comment out the screens that you're not currently testing
+        // Please do not remove this setup, we don't want to keep logging in for every test we run
         Utils.loadStage("User role selection", "/views/RoleSelection.fxml", stage);
         // Utils.loadStage("Add new user", "/views/AddUser.fxml", stage);
         // Utils.loadStage("Main menu", "/views/Menu.fxml", stage);
