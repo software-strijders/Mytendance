@@ -31,100 +31,99 @@ public class CreateClassWindowController {
     @FXML private Button cancelButton;
 
     public void initialize() {
-        allStudents = Student.getRegisteredStudents();
+        this.allStudents = Student.getRegisteredStudents();
 
         ObservableList<FieldOfStudy> studyField = FXCollections.observableArrayList(FieldOfStudy.getFieldOfStudies());
-        fieldOfStudy.setItems(studyField);
-        fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, t1) -> showGeneratedName());
+        this.fieldOfStudy.setItems(studyField);
+        this.fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, t1) -> this.showGeneratedName());
 
         SpinnerValueFactory<Integer> yearOfStudy = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 4, 1);
-        studyYearNumber.setValueFactory(yearOfStudy);
-        studyYearNumber.getEditor().textProperty().addListener((observableValue, s, t1) -> showGeneratedName());
+        this.studyYearNumber.setValueFactory(yearOfStudy);
+        this.studyYearNumber.getEditor().textProperty().addListener((observableValue, s, t1) -> this.showGeneratedName());
 
-        classLetter.setPromptText("1 karakter");
-        classLetter.textProperty().addListener((observableValue, s, t1) -> showGeneratedName());
+        this.classLetter.setPromptText("1 karakter");
+        this.classLetter.textProperty().addListener((observableValue, s, t1) -> this.showGeneratedName());
 
-        studentList.setItems(FXCollections.observableList(allStudents));
-        studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        this.studentList.setItems(FXCollections.observableList(this.allStudents));
+        this.studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    public void showGeneratedName() {
-        if (fieldOfStudy.getValue() == null ||
-                studyYearNumber.getValue() == null ||
-                classLetter.getText() == null ||
-                classLetter.getText().length() != 1 ||
-                Utils.isNumeric(classLetter.getText())) {
-            // We don't want to show an error here. If not all fields are filled in it would show an error. Instead
-            // what we do now, is that we ignore it. Once all fields are filled in, it will generate the Class name.
+    private void showGeneratedName() {
+        if (this.fieldOfStudy.getValue() == null ||
+                this.studyYearNumber.getValue() == null ||
+                this.classLetter.getText() == null ||
+                this.classLetter.getText().length() != 1 ||
+                Utils.isNumeric(this.classLetter.getText())) {
             return;
         }
-
-        generatedClassName.setText(Utils.formatClassName(fieldOfStudy.getValue().toString(),
-                studyYearNumber.getValue(),
-                Utils.getCharFromStringByIndex(classLetter.getText(), 0)));
+        this.generatedClassName.setText(Utils.formatClassName(this.fieldOfStudy.getValue().toString(),
+                this.studyYearNumber.getValue(),
+                Utils.getCharFromStringByIndex(this.classLetter.getText(), 0)));
     }
 
-    public void onPutBackClick(ActionEvent event) {
-        if (addedStudentsList.getSelectionModel().getSelectedItem() != null) {
-            move(addedStudentsList, false);
+    @FXML
+    private void onPutBackClick(ActionEvent event) {
+        if (this.addedStudentsList.getSelectionModel().getSelectedItem() != null) {
+            this.move(this.addedStudentsList, false);
         }
     }
 
-    public void onAddUserClick(ActionEvent event) {
-        if (studentList.getSelectionModel().getSelectedItem() != null) {
-            move(studentList, true);
+    @FXML
+    private void onAddUserClick(ActionEvent event) {
+        if (this.studentList.getSelectionModel().getSelectedItem() != null) {
+            this.move(this.studentList, true);
         }
     }
 
-    public void move(ListView<Student> selectedListView, boolean type) {
+    private void move(ListView<Student> selectedListView, boolean moveToAdded) {
         Student selected = selectedListView.getSelectionModel().getSelectedItem();
-        if (type) {
-            addedStudentsList.getItems().add(selected);
-            allStudents.remove(selected);
+
+        if (moveToAdded) {
+            this.addedStudentsList.getItems().add(selected);
+            this.allStudents.remove(selected);
         } else {
-            addedStudentsList.getItems().remove(selected);
-            allStudents.add(selected);
+            this.addedStudentsList.getItems().remove(selected);
+            this.allStudents.add(selected);
         }
-        studentList.setItems(FXCollections.observableList(allStudents));
-        searchStudentBar.clear();
+        this.studentList.setItems(FXCollections.observableList(this.allStudents));
+        this.searchStudentBar.clear();
     }
 
-    public void onConfirmClick(ActionEvent event) {
-        if (generatedClassName.getText().isEmpty() && addedStudentsList.getItems().isEmpty()) {
-            // Warnings en errors zijn eigenlijk bedoeld voor harde systeemfouten, bij foutieve gebruikersinvoer
-            // zijn info messages voldoende. Dit komt een stuk vriendelijker over en wordt ook over het algemeen aangeraden
+    @FXML
+    private void onConfirmClick(ActionEvent event) {
+        if (this.generatedClassName.getText().isEmpty() && this.addedStudentsList.getItems().isEmpty()) {
             Utils.showAlert("Vul alle velden (correct) in!", Alert.AlertType.INFORMATION);
             return;
         }
-
         Class newClass = new Class(UUID.randomUUID(),
-                studyYearNumber.getValueFactory().getValue(),
-                Utils.getCharFromStringByIndex(classLetter.getText(), 0),
-                fieldOfStudy.getValue(),
-                Collections.unmodifiableList(addedStudentsList.getItems()));
+                this.studyYearNumber.getValueFactory().getValue(),
+                Utils.getCharFromStringByIndex(this.classLetter.getText(), 0),
+                this.fieldOfStudy.getValue(),
+                Collections.unmodifiableList(this.addedStudentsList.getItems()));
 
         if (Class.getAllClasses().contains(newClass)) {
             Utils.showAlert("Klas bestaat al!", Alert.AlertType.INFORMATION); // Zie comment hierboven
             return;
         }
-
         Class.addClass(newClass);
         Utils.showAlert("Klas toegevoegd.", Alert.AlertType.INFORMATION); // Zie comment hierboven
     }
 
-    public void onCancelClick(ActionEvent event) {
-        ((Stage) cancelButton.getScene().getWindow()).close();
+    @FXML
+    private void onCancelClick(ActionEvent event) {
+        ((Stage) this.cancelButton.getScene().getWindow()).close();
     }
 
-    public void onSearchStudentClick(KeyEvent event) {
-        String searched = searchStudentBar.getText();
+    @FXML
+    private void onSearchStudentClick(KeyEvent event) {
+        String searched = this.searchStudentBar.getText();
         ArrayList<Student> matchedStudents = new ArrayList<>();
 
-        for (Student student : allStudents) {
+        for (Student student : this.allStudents) {
             if (student.toString().toLowerCase().contains(searched.toLowerCase())) {
                 matchedStudents.add(student);
             }
         }
-        studentList.setItems(FXCollections.observableList(matchedStudents));
+        this.studentList.setItems(FXCollections.observableList(matchedStudents));
     }
 }
