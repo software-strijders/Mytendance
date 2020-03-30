@@ -13,9 +13,9 @@ import java.util.InputMismatchException;
 
 public class UserLoginController {
 
-    @FXML private Label userTypeLabel;
     @FXML private TextField emailField;
     @FXML private TextField passwordField;
+    @FXML private Label userTypeLabel;
     private String email;
     private String password;
     private UserType userType;
