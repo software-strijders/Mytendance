@@ -16,205 +16,157 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="424.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controllers.CreateClassWindowController">
+<VBox prefHeight="424.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateClassWindowController">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <SplitPane dividerPositions="0.5" layoutX="204.0" layoutY="97.0" maxWidth="1.7976931348623157E308"
-                           prefHeight="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <SplitPane dividerPositions="0.5" layoutX="204.0" layoutY="97.0" maxWidth="1.7976931348623157E308" prefHeight="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                             <children>
-                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0"
-                                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                      AnchorPane.topAnchor="0.0">
+                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <HBox prefHeight="250.0" prefWidth="200.0">
                                             <children>
                                                 <GridPane HBox.hgrow="ALWAYS">
                                                     <columnConstraints>
-                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0"
-                                                                           prefWidth="177.0"/>
-                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0"
-                                                                           prefWidth="153.0"/>
+                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="177.0" />
+                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="153.0" />
                                                     </columnConstraints>
                                                     <rowConstraints>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                        vgrow="SOMETIMES"/>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                        vgrow="SOMETIMES"/>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                        vgrow="SOMETIMES"/>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                        vgrow="SOMETIMES"/>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                        <Label text="Studie richting" GridPane.halignment="LEFT"
-                                                               GridPane.valignment="TOP">
+                                                        <Label text="Studie richting" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                                                             <padding>
-                                                                <Insets left="5.0"/>
+                                                                <Insets left="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <Label text="Studie jaar" GridPane.halignment="LEFT"
-                                                               GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                                        <Label text="Studie jaar" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                                             <padding>
-                                                                <Insets left="5.0"/>
+                                                                <Insets left="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <Label text="Klas letter" GridPane.halignment="LEFT"
-                                                               GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                                        <Label text="Klas letter" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                                             <padding>
-                                                                <Insets left="5.0"/>
+                                                                <Insets left="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <Label text="Naam" GridPane.halignment="LEFT"
-                                                               GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                                        <Label text="Naam" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                                             <padding>
-                                                                <Insets left="5.0"/>
+                                                                <Insets left="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <ComboBox fx:id="fieldOfStudy" prefWidth="250.0"
-                                                                  GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-                                                                  GridPane.hgrow="ALWAYS" GridPane.valignment="TOP">
+                                                        <ComboBox fx:id="fieldOfStudy" prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP">
                                                             <GridPane.margin>
-                                                                <Insets/>
+                                                                <Insets />
                                                             </GridPane.margin>
                                                         </ComboBox>
-                                                        <Spinner fx:id="studyYearNumber" prefWidth="250.0"
-                                                                 GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-                                                                 GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"
-                                                                 GridPane.valignment="TOP">
+                                                        <Spinner fx:id="studyYearNumber" prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                                             <GridPane.margin>
-                                                                <Insets/>
+                                                                <Insets />
                                                             </GridPane.margin>
                                                         </Spinner>
-                                                        <TextField fx:id="classLetter" maxWidth="250.0"
-                                                                   prefWidth="250.0" GridPane.columnIndex="1"
-                                                                   GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS"
-                                                                   GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                                        <TextField fx:id="classLetter" maxWidth="250.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                                             <GridPane.margin>
-                                                                <Insets/>
+                                                                <Insets />
                                                             </GridPane.margin>
                                                         </TextField>
-                                                        <Label fx:id="generatedClassName" GridPane.columnIndex="1"
-                                                               GridPane.halignment="CENTER" GridPane.rowIndex="3"
-                                                               GridPane.valignment="TOP"/>
+                                                        <Label fx:id="generatedClassName" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
                                                     </children>
                                                 </GridPane>
                                             </children>
                                         </HBox>
                                         <TitledPane animated="false" collapsible="false" text="Toegevoegde Leerlingen">
                                             <VBox.margin>
-                                                <Insets bottom="25.0" top="25.0"/>
+                                                <Insets bottom="25.0" top="25.0" />
                                             </VBox.margin>
                                             <content>
-                                                <ListView fx:id="addedStudentsList" prefHeight="200.0"
-                                                          prefWidth="200.0"/>
+                                                <ListView fx:id="addedStudentsList" prefHeight="200.0" prefWidth="200.0" />
                                             </content>
                                         </TitledPane>
                                         <GridPane>
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Button fx:id="moveStudentBackButton" mnemonicParsing="false"
-                                                        onAction="#onPutBackClick" text="Zet terug"
-                                                        GridPane.halignment="RIGHT"/>
+                                                <Button fx:id="moveStudentBackButton" mnemonicParsing="false" onAction="#onPutBackClick" text="Zet terug" GridPane.halignment="RIGHT" />
                                             </children>
                                         </GridPane>
                                     </children>
                                     <padding>
-                                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
+                                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                     </padding>
                                 </VBox>
                             </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="411.0" prefWidth="427.0">
                             <children>
-                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0"
-                                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                      AnchorPane.topAnchor="0.0">
+                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                             <children>
-                                                <TitledPane collapsible="false" prefWidth="304.0" text="Leerlingen"
-                                                            HBox.hgrow="ALWAYS">
+                                                <TitledPane collapsible="false" prefWidth="304.0" text="Leerlingen" HBox.hgrow="ALWAYS">
                                                     <content>
-                                                        <ListView fx:id="studentList" prefHeight="200.0"
-                                                                  prefWidth="200.0"/>
+                                                        <ListView fx:id="studentList" prefHeight="200.0" prefWidth="200.0" />
                                                     </content>
                                                 </TitledPane>
                                             </children>
                                             <VBox.margin>
-                                                <Insets/>
+                                                <Insets />
                                             </VBox.margin>
                                         </HBox>
                                         <GridPane>
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Button fx:id="addStudentButton" mnemonicParsing="false"
-                                                        onAction="#onAddUserClick" text="Voeg toe"
-                                                        GridPane.halignment="RIGHT"/>
+                                                <Button fx:id="addStudentButton" mnemonicParsing="false" onAction="#onAddUserClick" prefHeight="25.0" prefWidth="72.0" text="Voeg toe" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                    <TextField fx:id="searchStudentBar" maxWidth="307.0" onKeyTyped="#onSearchStudentClick" prefHeight="25.0" prefWidth="307.0" promptText="⌕ Leerling zoeken" />
                                             </children>
                                         </GridPane>
                                         <HBox prefHeight="100.0" prefWidth="200.0">
                                             <children>
                                                 <GridPane HBox.hgrow="ALWAYS">
                                                     <columnConstraints>
-                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0"
-                                                                           prefWidth="128.0"/>
-                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0"
-                                                                           prefWidth="226.0"/>
+                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="128.0" />
+                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="226.0" />
                                                     </columnConstraints>
                                                     <rowConstraints>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                        vgrow="SOMETIMES"/>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                        vgrow="SOMETIMES"/>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                        vgrow="SOMETIMES"/>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                                                        vgrow="SOMETIMES"/>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                        <GridPane GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-                                                                  GridPane.rowIndex="3">
+                                                        <GridPane GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                                                             <columnConstraints>
-                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-                                                                                   prefWidth="100.0"/>
-                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-                                                                                   prefWidth="100.0"/>
+                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                             </columnConstraints>
                                                             <rowConstraints>
-                                                                <RowConstraints maxHeight="25.0" minHeight="25.0"
-                                                                                prefHeight="25.0"/>
-                                                                <RowConstraints maxHeight="0.0" minHeight="0.0"
-                                                                                prefHeight="0.0"/>
+                                                                <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
+                                                                <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
                                                             </rowConstraints>
                                                             <children>
-                                                                <Button fx:id="confirmButton" mnemonicParsing="false"
-                                                                        onAction="#onConfirmClick" text="Bevestig"
-                                                                        GridPane.columnIndex="1"
-                                                                        GridPane.halignment="RIGHT">
+                                                                <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#onConfirmClick" text="Bevestig" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                                                     <GridPane.margin>
-                                                                        <Insets/>
+                                                                        <Insets />
                                                                     </GridPane.margin>
                                                                 </Button>
-                                                                <Button fx:id="cancelButton" mnemonicParsing="false"
-                                                                        onAction="#onCancelClick" text="Annuleer"
-                                                                        GridPane.halignment="RIGHT">
+                                                                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClick" text="Annuleer" GridPane.halignment="RIGHT">
                                                                     <GridPane.margin>
-                                                                        <Insets/>
+                                                                        <Insets />
                                                                     </GridPane.margin>
                                                                 </Button>
                                                             </children>
@@ -225,7 +177,7 @@
                                         </HBox>
                                     </children>
                                     <padding>
-                                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
+                                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                     </padding>
                                 </VBox>
                             </children>
