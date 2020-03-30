@@ -41,6 +41,10 @@ public abstract class User {
         registeredUsers.add(user);
     }
 
+    public static void clearUsers() {
+        registeredUsers.clear();
+    }
+
     public static User authenticateUser(String email, String password) {
         for (User user : registeredUsers)
             if (user.getEmail().equals(email) && user.getPassword().equals(password))
