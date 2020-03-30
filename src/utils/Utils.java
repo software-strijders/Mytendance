@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import models.user.User;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,6 +61,10 @@ public class Utils {
         }
 
         return string.charAt(index);
+    }
+
+    public static String formatTime(LocalDateTime time) {
+        return time.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     // Author: Jason Buberel

@@ -58,8 +58,8 @@ public class DoAttendanceController {
 
         ObservableList<Lecture> allLecturesFromSelectedDate = FXCollections.observableArrayList();
 
-        for (Lecture lecture : selectedClass.getAllLectures()) {
-            if (lecture.getStartDate().isEqual(selectedDate)) {
+        for (Lecture lecture : selectedClass.getLectures()) {
+            if (lecture.getStartDate().isEqual(selectedDate.atStartOfDay())) {
                 allLecturesFromSelectedDate.add(lecture);
             }
         }
@@ -73,7 +73,7 @@ public class DoAttendanceController {
             ObservableList<Attendance> presentStudents = FXCollections.observableArrayList();
             Lecture selectedLecture = lectureListView.getSelectionModel().getSelectedItem();
 
-            for (Attendance attendance : selectedLecture.getAllAttendances()) {
+            for (Attendance attendance : selectedLecture.getAttendances()) {
                 if (attendance.getAttendanceType().equals(AttendanceType.PRESENT))
                     presentStudents.add(attendance);
                 else if (attendance.getAttendanceType().equals(AttendanceType.ABSENT))
