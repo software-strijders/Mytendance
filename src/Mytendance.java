@@ -24,7 +24,7 @@ public class Mytendance extends Application {
         Student s4 = new Student("Xander", "Vedder", "xander.vedder@student.hu.nl", "sander");
         Student s5 = new Student("Ruben", "van den Brink", "ruben.brink@student.hu.nl", "rururuben");
         Student s6 = new Student("Joeri", "Kok", "joeri.j.kok@student.hu.nl", "c++");
-        Teacher t1 = new Teacher("Henk", "spermaTank", "Henk@hu.nl", "w8woord");
+        Teacher t1 = new Teacher("Henk", "Tank", "Henk@hu.nl", "w8woord");
 
         Administrator.addUser(s1);
         Administrator.addUser(s2);
