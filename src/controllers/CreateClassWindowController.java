@@ -5,16 +5,23 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import models.Class;
 import models.FieldOfStudy;
 import models.user.Student;
 import utils.Utils;
+
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 public class CreateClassWindowController {
 
+    private List<Student> allStudents;
+
+    @FXML private TextField searchStudentBar;
     @FXML private ComboBox<FieldOfStudy> fieldOfStudy;
     @FXML private Spinner<Integer> studyYearNumber;
     @FXML private TextField classLetter;
@@ -24,6 +31,8 @@ public class CreateClassWindowController {
     @FXML private Button cancelButton;
 
     public void initialize() {
+        allStudents = Student.getRegisteredStudents();
+
         ObservableList<FieldOfStudy> studyField = FXCollections.observableArrayList(FieldOfStudy.getFieldOfStudies());
         fieldOfStudy.setItems(studyField);
         fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, t1) -> showGeneratedName());
@@ -35,7 +44,7 @@ public class CreateClassWindowController {
         classLetter.setPromptText("1 karakter");
         classLetter.textProperty().addListener((observableValue, s, t1) -> showGeneratedName());
 
-        studentList.setItems(FXCollections.observableList(Student.getRegisteredStudents()));
+        studentList.setItems(FXCollections.observableList(allStudents));
         studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -57,19 +66,27 @@ public class CreateClassWindowController {
 
     public void onPutBackClick(ActionEvent event) {
         if (addedStudentsList.getSelectionModel().getSelectedItem() != null) {
-            move(studentList, addedStudentsList);
+            move(addedStudentsList, false);
         }
     }
 
     public void onAddUserClick(ActionEvent event) {
         if (studentList.getSelectionModel().getSelectedItem() != null) {
-            move(addedStudentsList, studentList);
+            move(studentList, true);
         }
     }
 
-    public void move(ListView<Student> left, ListView<Student> right) {
-        left.getItems().add(right.getSelectionModel().getSelectedItem());
-        right.getItems().remove(right.getSelectionModel().getSelectedItem());
+    public void move(ListView<Student> selectedListView, boolean type) {
+        Student selected = selectedListView.getSelectionModel().getSelectedItem();
+        if (type) {
+            addedStudentsList.getItems().add(selected);
+            allStudents.remove(selected);
+        } else {
+            addedStudentsList.getItems().remove(selected);
+            allStudents.add(selected);
+        }
+        studentList.setItems(FXCollections.observableList(allStudents));
+        searchStudentBar.clear();
     }
 
     public void onConfirmClick(ActionEvent event) {
@@ -96,6 +113,18 @@ public class CreateClassWindowController {
     }
 
     public void onCancelClick(ActionEvent event) {
-        ((Stage)cancelButton.getScene().getWindow()).close();
+        ((Stage) cancelButton.getScene().getWindow()).close();
+    }
+
+    public void onSearchStudentClick(KeyEvent event) {
+        String searched = searchStudentBar.getText();
+        ArrayList<Student> matchedStudents = new ArrayList<>();
+
+        for (Student student : allStudents) {
+            if (student.toString().toLowerCase().contains(searched.toLowerCase())) {
+                matchedStudents.add(student);
+            }
+        }
+        studentList.setItems(FXCollections.observableList(matchedStudents));
     }
 }
