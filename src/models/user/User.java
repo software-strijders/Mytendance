@@ -1,26 +1,76 @@
 package models.user;
 
+import enums.UserType;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public abstract class User {
 
-    private static ArrayList<User> registeredUsers = new ArrayList<>();
+    private static List<User> registeredUsers = new ArrayList<>();
+    private static User loggedInUser = null;
 
+    protected String firstName;
+    protected String lastName;
     protected String email;
     protected String password;
-    protected String firstname;
-    protected String surname;
     protected UUID userId;
 
-    public User(String email, String password, String firstname, String surname, UUID userId){
+    public User(String firstName, String lastName, String email, String password, UUID userId) {
 
         // NEED TO MAKE CHECKS FOR REGISTERING
-        setEmail(email);
-        setPassword(password);
-        setFirstname(firstname);
-        setSurname(surname);
-        setUserId(userId);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.userId = userId;
+    }
+
+    public static List<User> getRegisteredUsers() {
+        return Collections.unmodifiableList(registeredUsers);
+    }
+
+    public static List<User> getRegisteredUsers(UserType type) {
+        return registeredUsers.stream().filter(user ->
+                user.getClass() == type.typeClass()).collect(Collectors.toList());
+    }
+
+    public static void addUser(User user) {
+        registeredUsers.add(user);
+    }
+
+    public static User authenticateUser(String email, String password) {
+        for (User user : registeredUsers)
+            if (user.getEmail().equals(email) && user.getPassword().equals(password))
+                return user;
+
+        return null;
+    }
+
+    public static User authenticateUser(String email, String password, UserType type) {
+        for (User user : registeredUsers)
+            if (user.getClass() == type.typeClass()
+                    && user.getEmail().equals(email)
+                    && user.getPassword().equals(password))
+                return user;
+
+        return null;
+    }
+
+    public static void setLoggedInUser(User user) throws IllegalArgumentException {
+        if (user == null)
+            throw new IllegalArgumentException("The user specified is invalid :(");
+        else
+            loggedInUser = user;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return this == other
+                || other instanceof User
+                && this.email.equals(((User)other).email);
     }
 
     public String getEmail() {
@@ -39,20 +89,20 @@ public abstract class User {
         this.password = password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public UUID getUserId() {
@@ -61,17 +111,5 @@ public abstract class User {
 
     public void setUserId(UUID userId) {
         this.userId = userId;
-    }
-
-    public static ArrayList<User> getRegisteredUsers() {
-        return registeredUsers;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        User user = (User) object;
-        return email.equals(user.email);
     }
 }

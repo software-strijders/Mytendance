@@ -1,29 +1,30 @@
 package models.user;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Student extends User {
 
-    private ArrayList<Class> classes = new ArrayList<>();
+    private List<Class> classes;
 
-    public Student(String email, String password, String firstname, String surname, UUID userId) {
-        super(email, password, firstname, surname, userId);
+    public Student(String firstName, String lastName, String email, String password) {
+        this(firstName, lastName, email, password, UUID.randomUUID());
     }
 
-    public static ArrayList<Student> getRegisteredStudents() {
-        ArrayList<User> users = User.getRegisteredUsers();
-        ArrayList<Student> students = new ArrayList<>();
-        for (User user : users) {
-            if (user instanceof Student)
-                students.add((Student)user);
-        }
+    public Student(String firstName, String lastName, String email, String password, UUID userId) {
+        super(firstName, lastName, email, password, userId);
+        this.classes = new ArrayList<>();
+    }
 
-        return students;
+    // We can't avoid this type of construction due to unchecked cast warnings
+    public static List<Student> getRegisteredStudents() {
+        return User.getRegisteredUsers().stream().filter(user -> user.getClass() == Student.class)
+                .map(user -> (Student)user).collect(Collectors.toList());
     }
 
     public String toString() {
-        return String.format("%s %s", this.firstname, this.surname);
+        return String.format("%s %s", this.firstName, this.lastName);
     }
-
 }

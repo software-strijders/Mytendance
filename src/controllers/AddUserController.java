@@ -1,7 +1,6 @@
 package controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -17,20 +16,17 @@ public class AddUserController {
     @FXML private TextField surnameTextField;
     @FXML private TextField emailTextField;
     @FXML private PasswordField passwordTextfield;
-    @FXML private Button cancelButton;
-    @FXML private Button registrerButton;
 
     @FXML
     private void initialize() {
-        ObservableList<UserType> items = FXCollections.observableArrayList(UserType.values());
         userTypeComboBox.setValue(UserType.STUDENT);
-        userTypeComboBox.setItems(items);
+        userTypeComboBox.setItems(FXCollections.observableArrayList(UserType.values()));
 
         // Clear textfields after user creation
-        firstNameTextField.setText("");
-        surnameTextField.setText("");
-        emailTextField.setText("");
-        passwordTextfield.setText("");
+        firstNameTextField.clear();
+        surnameTextField.clear();
+        emailTextField.clear();
+        passwordTextfield.clear();
     }
 
     @FXML
@@ -44,10 +40,10 @@ public class AddUserController {
                 passwordTextfield.getText().isEmpty() ||
                 firstNameTextField.getText().isEmpty() ||
                 surnameTextField.getText().isEmpty()) {
-            Utils.makeAlert(Alert.AlertType.ERROR, "Gebruiker niet aangemaakt");
+            // Zie comment over de AlertType in CreateClassWindowController
+            Utils.showAlert("Gebruiker niet aangemaakt", Alert.AlertType.INFORMATION);
             return;
         }
-
         try {
             Administrator.addUser(
                     UserFactory.create(emailTextField.getText(),
@@ -55,13 +51,11 @@ public class AddUserController {
                             firstNameTextField.getText(),
                             surnameTextField.getText(),
                             userTypeComboBox.getValue()));
-        } catch (IllegalArgumentException e) {
-            Utils.makeAlert(Alert.AlertType.ERROR, e.getMessage());
-            return;
+            Utils.showAlert("Gebruiker aangemaakt", Alert.AlertType.INFORMATION);
+            initialize();
+        } catch (IllegalArgumentException exception) {
+            // Zie comment over de AlertType in CreateClassWindowController
+            Utils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
         }
-
-        Utils.makeAlert(Alert.AlertType.INFORMATION, "Gebruiker aangemaakt");
-
-        initialize();
     }
 }
