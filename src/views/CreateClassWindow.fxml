@@ -132,19 +132,7 @@
                                             </rowConstraints>
                                             <children>
                                                 <Button fx:id="addStudentButton" mnemonicParsing="false" onAction="#onAddUserClick" prefHeight="25.0" prefWidth="72.0" text="Voeg toe" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                    <HBox prefHeight="48.0" prefWidth="304.0" spacing="5.0">
-                                       <children>
-                                          <TextField fx:id="searchStudentBar" maxWidth="230.0" prefHeight="25.0" prefWidth="253.0" promptText="⌕ Leerling zoeken">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <Button fx:id="searchStudentButton" mnemonicParsing="false" onAction="#onSearchStudentClick" prefHeight="25.0" prefWidth="75.0" text="Zoek" />
-                                       </children>
-                                       <GridPane.margin>
-                                          <Insets top="2.0" />
-                                       </GridPane.margin>
-                                    </HBox>
+                                    <TextField fx:id="searchStudentBar" maxWidth="307.0" onKeyTyped="#onSearchStudentClick" prefHeight="25.0" prefWidth="307.0" promptText="⌕ Leerling zoeken" />
                                             </children>
                                         </GridPane>
                                         <HBox prefHeight="100.0" prefWidth="200.0">
