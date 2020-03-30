@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import models.user.Administrator;
 import models.user.UserFactory;
 import enums.UserType;
-import utils.Utils;
+import utils.FXUtils;
 
 public class AddUserController {
 
@@ -41,7 +41,7 @@ public class AddUserController {
                 firstNameTextField.getText().isEmpty() ||
                 surnameTextField.getText().isEmpty()) {
             // Zie comment over de AlertType in CreateClassWindowController
-            Utils.showAlert("Gebruiker niet aangemaakt", Alert.AlertType.INFORMATION);
+            FXUtils.showAlert("Gebruiker niet aangemaakt", Alert.AlertType.INFORMATION);
             return;
         }
         try {
@@ -51,11 +51,11 @@ public class AddUserController {
                             firstNameTextField.getText(),
                             surnameTextField.getText(),
                             userTypeComboBox.getValue()));
-            Utils.showAlert("Gebruiker aangemaakt", Alert.AlertType.INFORMATION);
+            FXUtils.showAlert("Gebruiker aangemaakt", Alert.AlertType.INFORMATION);
             initialize();
         } catch (IllegalArgumentException exception) {
             // Zie comment over de AlertType in CreateClassWindowController
-            Utils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
+            FXUtils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
         }
     }
 }

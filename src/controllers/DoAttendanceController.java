@@ -2,7 +2,6 @@ package controllers;
 
 import enums.AttendanceType;
 import enums.ReasonType;
-import enums.SubjectType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,12 +10,10 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Attendance;
 import models.Class;
-import models.FieldOfStudy;
 import models.Lecture;
-import models.user.Student;
 import models.user.Teacher;
 import models.user.User;
-import utils.Utils;
+import utils.FXUtils;
 
 import java.time.LocalDate;
 
@@ -82,7 +79,7 @@ public class DoAttendanceController {
             absentListView.setItems(absentStudents);
             presentListView.setItems(presentStudents);
         } catch (NullPointerException e) {
-            Utils.showAlert("Er is geen les geselecteerd!", Alert.AlertType.INFORMATION);
+            FXUtils.showAlert("Er is geen les geselecteerd!", Alert.AlertType.INFORMATION);
         }
     }
 
@@ -90,9 +87,9 @@ public class DoAttendanceController {
     public void onShowReasonClick(ActionEvent event) {
         try {
             Attendance selectedAbsent = absentListView.getSelectionModel().getSelectedItem();
-            Utils.showAlert("Reden van absentie",selectedAbsent.getReasonDescription(), Alert.AlertType.INFORMATION);
+            FXUtils.showAlert("Reden van absentie",selectedAbsent.getReasonDescription(), Alert.AlertType.INFORMATION);
         } catch (NullPointerException e) {
-            Utils.showAlert( "Er is geen leerling geselecteerd!", Alert.AlertType.INFORMATION);
+            FXUtils.showAlert( "Er is geen leerling geselecteerd!", Alert.AlertType.INFORMATION);
         }
     }
 
@@ -104,7 +101,7 @@ public class DoAttendanceController {
             selectedAttendance.setAttendanceType(attendanceType);
             onLectureListViewClick();
         } catch (NullPointerException e) {
-            Utils.showAlert("Er is geen leerling geselecteerd!", Alert.AlertType.INFORMATION);
+            FXUtils.showAlert("Er is geen leerling geselecteerd!", Alert.AlertType.INFORMATION);
         }
     }
 

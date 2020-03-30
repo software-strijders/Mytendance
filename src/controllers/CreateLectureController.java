@@ -12,7 +12,7 @@ import models.Lecture;
 import models.user.Student;
 import models.user.Teacher;
 import models.user.User;
-import utils.Utils;
+import utils.FXUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -128,7 +128,7 @@ public class CreateLectureController {
             this.obtainVariables();
             this.createLecture();
         } catch (InputMismatchException | IllegalArgumentException e) {
-            Utils.showAlert(e.getMessage(), Alert.AlertType.INFORMATION);
+            FXUtils.showAlert(e.getMessage(), Alert.AlertType.INFORMATION);
         }
     }
 
@@ -161,7 +161,7 @@ public class CreateLectureController {
 
         lectureListView.setItems(FXCollections.observableArrayList(
                 this.selectedClass.getLecturesByDateTime(this.selectedDate.atStartOfDay().withHour(0).withMinute(0))));
-        Utils.showAlert("Les aangemaakt!", Alert.AlertType.INFORMATION);
+        FXUtils.showAlert("Les aangemaakt!", Alert.AlertType.INFORMATION);
     }
 
     private List<Attendance> createAttendances() {

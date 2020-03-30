@@ -10,6 +10,7 @@ import models.Lecture;
 import models.user.Administrator;
 import models.user.Student;
 import models.user.Teacher;
+import utils.FXUtils;
 import utils.Utils;
 
 import java.time.LocalDate;
@@ -78,10 +79,10 @@ public class Mytendance extends Application {
     public void start(Stage stage) throws Exception {
         // Simply comment out the screens that you're not currently testing
         // Please do not remove this setup, we don't want to keep logging in for every test we run
-        Utils.loadStage("User role selection", "/views/RoleSelection.fxml", stage);
-        // Utils.loadStage("Add new user", "/views/AddUser.fxml", stage);
-        // Utils.loadStage("Main menu", "/views/Menu.fxml", stage);
-        // Utils.loadStage("Add new lecture", "/views/CreateLecture.fxml", stage);
+        FXUtils.loadStage("User role selection", "/views/RoleSelection.fxml", stage);
+        // FXUtils.loadStage("Add new user", "/views/AddUser.fxml", stage);
+        // FXUtils.loadStage("Main menu", "/views/Menu.fxml", stage);
+        // FXUtils.loadStage("Add new lecture", "/views/CreateLecture.fxml", stage);
         stage.show();
     }
 }
