@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utils.Utils;
@@ -18,5 +19,11 @@ public class MenuController {
         Stage stage = Utils.loadStage("Klas aanmaken",
                 "/views/CreateClassWindow.fxml", Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    @FXML
+    public void onDoAttendanceClick(ActionEvent actionEvent) throws IOException {
+        Stage newStage = Utils.loadStage("Presentie doen","/views/DoAttendance.fxml",  Modality.APPLICATION_MODAL);
+        newStage.showAndWait();
     }
 }

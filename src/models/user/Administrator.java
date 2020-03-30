@@ -1,11 +1,13 @@
 package models.user;
 
+import utils.Utils;
+
 import java.util.UUID;
 
 public class Administrator extends User {
 
     public Administrator(String firstName, String lastName, String email, String password) {
-        super(firstName, lastName, email, password, UUID.randomUUID());
+        super(firstName, lastName, email, password, Utils.idGenerator());
     }
 
     public Administrator(String firstName, String lastName, String email, String password, UUID userId) {

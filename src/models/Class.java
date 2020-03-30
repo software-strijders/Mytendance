@@ -14,7 +14,9 @@ public class Class {
     private UUID classId;
     private int yearOfStudy;
     private char group;
+
     private FieldOfStudy studyField;
+    private ArrayList<Lecture> allLectures = new ArrayList<>();
     private List<Student> students;
 
     public Class(UUID classId, int yearOfStudy, char group, FieldOfStudy studyField, List<Student> students) {
@@ -29,8 +31,12 @@ public class Class {
         return Utils.formatClassName(this.studyField.toString(), this.yearOfStudy, this.group);
     }
 
+    public ArrayList<Lecture> getAllLectures() {
+        return this.allLectures;
+    }
+
     public static List<Class> getAllClasses() {
-        return Collections.unmodifiableList(allClasses);
+        return allClasses;
     }
 
     public static void addClass(Class newClass) {
@@ -48,5 +54,10 @@ public class Class {
     @Override
     public int hashCode() {
         return 0;            // what's going on here?
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

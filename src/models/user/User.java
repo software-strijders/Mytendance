@@ -59,6 +59,10 @@ public abstract class User {
         return null;
     }
 
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
+
     public static void setLoggedInUser(User user) throws IllegalArgumentException {
         if (user == null)
             throw new IllegalArgumentException("The user specified is invalid :(");
