@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AttendanceTest {
+
     private Student student = new Student("firstname", "lastname", "email",
-            "password", Utils.idGenerator());
+            "password");
     Attendance a1 = new Attendance(ReasonType.ENTOMBMENT,
             "Ik word begraven", student, AttendanceType.ABSENT);
 
@@ -66,7 +67,6 @@ class AttendanceTest {
 
     @Test
     void testToString(){
-        assertEquals(a1.toString(), student + " - " + a1.getReason());
+        assertEquals(a1.toString(), "Firstname Lastname - ENTOMBMENT");
     }
-
 }
