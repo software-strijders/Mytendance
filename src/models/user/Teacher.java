@@ -4,6 +4,7 @@ import models.Class;
 import models.Lecture;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import utils.Utils;
 
@@ -12,8 +13,8 @@ import java.util.stream.Collectors;
 
 public class Teacher extends User {
 
-    private ArrayList<Class> classes =  new ArrayList<>();
-    private ArrayList<Lecture> lectures = new ArrayList<>();
+    private List<Class> classes =  new ArrayList<>();
+    private List<Lecture> lectures = new ArrayList<>();
 
     public Teacher(String firstName, String lastName, String email, String password) {
         this(firstName, lastName, email, password, Utils.idGenerator());
@@ -29,16 +30,16 @@ public class Teacher extends User {
                 .map(user -> (Teacher)user).collect(Collectors.toList());
     }
 
-    public ArrayList<Lecture> getLectures() {
-        return this.lectures;
+    public List<Lecture> getLectures() {
+        return Collections.unmodifiableList(this.lectures);
     }
 
     public void addLecture(Lecture lecture) {
         this.lectures.add(lecture);
     }
 
-    public ArrayList<Class> getAllClasses() {
-        return this.classes;
+    public List<Class> getAllClasses() {
+        return Collections.unmodifiableList(this.classes);
     }
 
     public void setClasses(ArrayList<Class> classes) {

@@ -153,7 +153,7 @@ public class CreateLectureController {
                 this.teacher, this.selectedClass, this.createAttendances());
 
         Lecture.addLecture(lecture); // If duplicate or within time range, this will throw the exception.
-        teacher.addLecture(lecture);
+        this.teacher.addLecture(lecture);
         this.selectedClass.addLecture(lecture);
 
         lectureListView.setItems(FXCollections.observableArrayList(

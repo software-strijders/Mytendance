@@ -40,15 +40,15 @@ public class Lecture {
     }
 
     public static void addLecture(Lecture lecture) throws IllegalArgumentException {
-        // Might have to move some things around
-        if (shouldAddLecture(lecture))
-            Lecture.lectures.add(lecture);
+        if (isNewLectureValid(lecture))
+            lectures.add(lecture);
     }
 
-    private static boolean shouldAddLecture(Lecture lectureToCompare) throws IllegalArgumentException {
+    private static boolean isNewLectureValid(Lecture lectureToCompare) throws IllegalArgumentException {
         for (Lecture lecture : lectures) {
             LocalDateTime max = lecture.startDate.plusMinutes(lecture.duration);
             LocalDateTime min = lecture.startDate;
+
             if (lecture.teacher.equals(lectureToCompare.teacher) &&
                     isWithinTimeRange(min, max, lectureToCompare.startDate)) {
                 String pattern = "H:mm";
