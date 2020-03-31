@@ -25,8 +25,4 @@ public class Student extends User {
         return User.getRegisteredUsers().stream().filter(user -> user.getClass() == Student.class)
                 .map(user -> (Student)user).collect(Collectors.toList());
     }
-
-    public String toString() {
-        return String.format("%s %s", Utils.capitalize(this.firstName), Utils.capitalize(this.lastName));
-    }
 }

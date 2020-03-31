@@ -19,7 +19,7 @@ public class AdministratorMenuController {
 
     @FXML
     private void onCreateUserClick(ActionEvent event) throws IOException {
-        FXUtils.loadComponent("Gebruiker aanmaken", "/views/AddUser.fxml", event);
+        FXUtils.loadStage("Gebruiker aanmaken", "/views/AddUser.fxml").show();
     }
 
     @FXML

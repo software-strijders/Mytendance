@@ -49,9 +49,4 @@ public class Teacher extends User {
     public void addClass(Class newClass) {
         this.classes.add(newClass);
     }
-
-    @Override
-    public String toString() {
-        return String.format("%s %s", firstName, lastName);
-    }
 }

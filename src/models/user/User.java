@@ -1,6 +1,8 @@
 package models.user;
 
 import enums.UserType;
+import utils.Utils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -119,5 +121,9 @@ public abstract class User {
 
     public void setUserId(UUID userId) {
         this.userId = userId;
+    }
+
+    public String toString() {
+        return String.format("%s %s", Utils.capitalize(this.firstName), Utils.capitalize(this.lastName));
     }
 }
