@@ -1,61 +1,119 @@
 package models;
 
-import enums.AttendanceType;
-import enums.ReasonType;
 import enums.SubjectType;
 import models.user.Student;
 import models.user.Teacher;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.Utils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LectureTest {
 
-    private LocalDateTime d1;
-    private Student s1;
-    private Attendance a1;
-    private Lecture l1;
-    private ArrayList<Attendance> emptyArrayList;
-    private FieldOfStudy f1 = new FieldOfStudy("XXX");
-    private Teacher t1 = new Teacher( "x", "y", "z", "x");
-    private Class c1 = new Class(Utils.idGenerator(),1, 'A', f1);
+    private LocalDateTime dateTime;
+    private Teacher teacher;
+    private Student student;
+    private FieldOfStudy study;
+    private Class theClass;
+    private Lecture lecture;
 
     @BeforeEach
-    void beforeEachTest() {
-        d1 = LocalDate.now().atStartOfDay();
-        s1 = new Student("firstname", "lastname", "email", "password");
-        a1 = new Attendance(ReasonType.ENTOMBMENT, "begraven", s1, AttendanceType.ABSENT);
-        l1 = new Lecture(d1, 60, SubjectType.OOP, t1, c1);
-        emptyArrayList = new ArrayList<>();
+    void initialize() {
+        this.dateTime = LocalDateTime.now().withHour(10).withMinute(30);
+        this.teacher = new Teacher("Henk", "Tank", "Henk@hu.nl", "w8woord");
+        this.student = new Student("Xander", "Vedder", "xander.vedder@student.hu.nl", "goeie");
+        this.study = new FieldOfStudy("TICT-SD");
+        this.theClass = new Class(Utils.idGenerator(), 1, 'A', this.study);
+        this.lecture = new Lecture(this.dateTime, 120, SubjectType.GP_SD, this.teacher, this.theClass);
+        Lecture.addLecture(this.lecture);
+    }
+
+    @AfterEach
+    void cleanUp() {
+        Lecture.clearAllLectures();
     }
 
     @Test
-    void testReturnValueOfGetStartDate() {
-        assertEquals(d1, l1.getStartDate());
+    void toStringShouldBeEqual() {
+        assertEquals("De les GP_SD begint om 10:30 en duurt 120 minuten", lecture.toString());
     }
 
     @Test
-    void getStartDateShouldReturnNullWhenNull() {
+    void toStringShouldNotBeEqual() {
+        assertNotEquals("De les GP_SD begint om 10:00 en duurt 120 minuten", lecture.toString());
+    }
+
+    @Test
+    void lectureShouldBeEqual() {
+        Lecture theSameLecture = new Lecture(this.dateTime, 120, SubjectType.GP_SD, this.teacher, this.theClass);
+        assertEquals(this.lecture, theSameLecture);
+    }
+
+    @Test
+    void lectureShouldNotBeEqual() {
+        Lecture differentLecture = new Lecture(this.dateTime.plusDays(1), 120, SubjectType.GP_SD, this.teacher, this.theClass);
+        assertNotEquals(this.lecture, differentLecture);
+    }
+
+    @Test
+    void attendancesShouldBeAnUnmodifiableList() {
+        assertThrows(UnsupportedOperationException.class, () ->
+                this.lecture.getAttendances().add(new Attendance(this.student)));
+    }
+
+    @Test
+    void shouldNotAddLectureWithinTimeRange() {
+        Lecture lectureToCompare = new Lecture(LocalDateTime.now().withHour(11).withMinute(30),
+                60, SubjectType.GP_SD, this.teacher, this.theClass);
+        assertThrows(IllegalArgumentException.class, () -> Lecture.addLecture(lectureToCompare));
+    }
+
+    @Test
+    void shouldNotAddLectureWithinTimeRangeLimit() {
+        Lecture lectureToCompare = new Lecture(LocalDateTime.now().withHour(12).withMinute(29),
+                60, SubjectType.GP_SD, this.teacher, this.theClass);
+        assertThrows(IllegalArgumentException.class, () -> Lecture.addLecture(lectureToCompare));
+    }
+
+    @Test
+    void shouldAddLectureOutsideTimeRange() {
+        Lecture lectureToCompare = new Lecture(LocalDateTime.now().withHour(12).withMinute(30),
+                60, SubjectType.GP_SD, this.teacher, this.theClass);
+        assertDoesNotThrow(() -> Lecture.addLecture(lectureToCompare));
+    }
+
+    @Test
+    void shouldAddLectureAtTheSameTimeWithADifferentTeacher() {
+        Teacher differentTeacher = new Teacher("Hank", "Bank", "Hank@hu.nl", "w9woord");
+        Lecture lectureWithDifferentTeacher = new Lecture(this.dateTime, 120, SubjectType.GP_SD, differentTeacher, this.theClass);
+        assertDoesNotThrow(() -> Lecture.addLecture(lectureWithDifferentTeacher));
+    }
+
+    @Test
+    void startDateShouldBeNullWhenInitializingNull() {
         Lecture l2 = new Lecture(null, 60, SubjectType.OOP, null, null);
         assertNull(l2.getStartDate());
     }
 
     @Test
-    void testReturnValueOfGetAllAttendances() {
-        l1.addAttendance(a1);
-        ArrayList<Attendance> list1 = new ArrayList<>();
-        list1.add(a1);
-        assertEquals(list1, l1.getAttendances());
+    void attendanceListSizeShouldBeZero() {
+        assertEquals(0, this.lecture.getAttendances().size());
     }
 
     @Test
-    void getAllAttendancesShouldReturnEmptyArrayListWhenEmpty() {
-        assertEquals(emptyArrayList, l1.getAttendances());
+    void attendanceListSizeShouldBeOne() {
+        this.lecture.addAttendance(new Attendance(this.student));
+        assertEquals(1, this.lecture.getAttendances().size());
+    }
+
+    @Test
+    void attendanceListSizeShouldBeTwo() {
+        this.lecture.addAttendance(new Attendance(this.student));
+        this.lecture.addAttendance(new Attendance(this.student));
+        assertEquals(2, this.lecture.getAttendances().size());
     }
 }
