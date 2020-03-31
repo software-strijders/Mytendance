@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import models.Class;
 import models.FieldOfStudy;
 import models.user.Student;
+import models.user.Teacher;
+import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
 
@@ -106,6 +108,11 @@ public class CreateClassWindowController {
             FXUtils.showAlert("Klas bestaat al!", Alert.AlertType.INFORMATION); // Zie comment hierboven
             return;
         }
+
+        if (User.getLoggedInUser() instanceof Teacher) {
+            ((Teacher) User.getLoggedInUser()).addClass(newClass);
+        }
+
         Class.addClass(newClass);
         FXUtils.showAlert("Klas toegevoegd.", Alert.AlertType.INFORMATION); // Zie comment hierboven
     }

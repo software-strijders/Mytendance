@@ -89,7 +89,7 @@ public class Attendance {
             return student.toString();
         }
         else {
-            return String.format("%s - %s", this.student, this.reason);
+            return String.format("%s - %s", this.student, this.reason.typeName());
         }
     }
 }
