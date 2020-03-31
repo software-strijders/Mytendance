@@ -35,10 +35,6 @@ public class Lecture {
         this.className = className;
     }
 
-    public static void setAllLectures(ArrayList<Lecture> lectures) {
-        allLectures = lectures;
-    }
-
     public static void clearAllLectures() {
         allLectures.clear();
     }
