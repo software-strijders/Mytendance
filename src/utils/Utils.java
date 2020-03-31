@@ -63,9 +63,14 @@ public class Utils {
         return loadStage("Mytendance", resource, stage, modality);
     }
 
+    public static Stage loadStage(String title, String resource, Modality modality) throws IOException {
+        return loadStage(title, resource, new Stage(), modality);
+    }
+
     public static Stage loadStage(String title, String resource, Stage stage, Modality modality) throws IOException {
         loadStage(title, resource, stage);
         stage.initModality(modality);
+
 
         return stage;
     }

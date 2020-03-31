@@ -9,12 +9,12 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TeacherTest {
+
     private Teacher test;
 
     @BeforeEach
     public void init() {
-        test = new Teacher("VoornaamTest", "AchternaamTest", "testDocent@hu.nl",
-                "test");
+        test = new Teacher("VoornaamTest", "AchternaamTest", "testDocent@hu.nl", "test");
         Administrator.addUser(test);
     }
 
@@ -29,50 +29,42 @@ class TeacherTest {
     }
 
     @Test
-    void shouldRejectIdenticalTeacherCredentials() {
-        Teacher identical = new Teacher("VoornaamTest", "AchternaamTest", "testDocent@hu.nl",
-                "test");
+    void shouldRejectIdenticalAddTeacherCredentials() {
+        Teacher identical = new Teacher("VoornaamTest", "AchternaamTest", "testDocent@hu.nl", "test");
         assertThrows(IllegalArgumentException.class, () -> Administrator.addUser(identical));
     }
 
     @Test
-    void shouldRejectIdenticalEmail() {
+    void shouldRejectAddTeacherIdenticalEmail() {
         Teacher sameEmail = new Teacher("joost", "mag", "testDocent@hu.nl", "weten");
         assertThrows(IllegalArgumentException.class, () -> Administrator.addUser(sameEmail));
     }
 
     @Test
-    void shouldAcceptIdenticalFirstName() {
-        Teacher sameFirstName = new Teacher("VoornaamTest", "twee", "joost@hu.nl",
-                "nieuwe");
+    void shouldAcceptAddTeacherIdenticalFirstName() {
+        Teacher sameFirstName = new Teacher("VoornaamTest", "twee", "joost@hu.nl", "nieuwe");
         Administrator.addUser(sameFirstName);
-        assertDoesNotThrow(sameFirstName::getFirstName);
+        assertDoesNotThrow(() -> User.addUser(sameFirstName));
     }
 
     @Test
-    void shouldAcceptIdenticalLastName() {
-        Teacher sameLastName = new Teacher("henk", "AchternaamTest", "henk@hu.nl",
-                "passw");
-        Administrator.addUser(sameLastName);
-        assertDoesNotThrow(sameLastName::getLastName);
+    void shouldAcceptAddTeacherIdenticalLastName() {
+        Teacher sameLastName = new Teacher("henk", "AchternaamTest", "henk@hu.nl", "passw");
+        assertDoesNotThrow(() -> User.addUser(sameLastName));
     }
 
     @Test
-    void shouldAcceptIdenticalPassword() {
+    void shouldAcceptAddTeacherIdenticalPassword() {
         Teacher samePassword = new Teacher("Milan", "Dol", "MilanD@hu.nl", "test");
         Administrator.addUser(samePassword);
-        assertDoesNotThrow(samePassword::getPassword);
+        assertDoesNotThrow(() -> User.addUser(samePassword));
     }
 
     @Test
-    void shouldRejectIdenticalUUID() {
+    void shouldRejectAddTeacherIdenticalUUID() {
         Teacher sameUUID = new Teacher("Nelleke", "Post", "nellie@hu.nl",
                 "mijnsterkewachtwoorod", Teacher.getRegisteredUsers().get(0).userId);
         Administrator.addUser(sameUUID);
-//        System.out.println(Teacher.getRegisteredTeachers().get(0).toString());
-//        System.out.println(Teacher.getRegisteredTeachers().get(0).userId);
-//        System.out.println(Teacher.getRegisteredTeachers().get(Teacher.getRegisteredTeachers().size()-1).toString());
-//        System.out.println(Teacher.getRegisteredTeachers().get(Teacher.getRegisteredTeachers().size()-1).userId);
         assertNotEquals(Teacher.getRegisteredTeachers().get(0).userId,
                 Teacher.getRegisteredTeachers().get(Teacher.getRegisteredTeachers().size() - 1).userId);
     }
