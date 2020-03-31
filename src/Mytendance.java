@@ -82,9 +82,9 @@ public class Mytendance extends Application {
     public void start(Stage stage) throws Exception {
         // Simply comment out the screens that you're not currently testing
         // Please do not remove this setup, we don't want to keep logging in for every test we run
-        FXUtils.loadStage("User role selection", "/views/RoleSelection.fxml", stage);
+        FXUtils.loadStage("Selecteer rol", "/views/RoleSelection.fxml", stage);
         // FXUtils.loadStage("Add new user", "/views/AddUser.fxml", stage);
-        // FXUtils.loadStage("Main menu", "/views/Menu.fxml", stage);
+        // FXUtils.loadStage("Main menu", "/views/DocentMenu.fxml", stage);
         // FXUtils.loadStage("Add new lecture", "/views/CreateLecture.fxml", stage);
         stage.show();
     }

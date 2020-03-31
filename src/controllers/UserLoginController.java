@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import models.user.Administrator;
+import models.user.Student;
+import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
@@ -23,11 +26,15 @@ public class UserLoginController {
 
     public void setUserType(String userType) {
         this.userTypeLabel.setText(userType);
-        this.userType = UserType.valueOf(userType.toUpperCase());
+        if(userType.equals("Docent")) {
+            this.userType = UserType.TEACHER;
+        } else {
+            this.userType = UserType.valueOf(userType.toUpperCase());
+        }
     }
 
     private void loadRoleSelection(ActionEvent event) throws IOException {
-        FXUtils.loadComponent("User role selection",
+        FXUtils.loadComponent("Selecteer rol",
                 "/views/RoleSelection.fxml", event);
     }
 
@@ -58,7 +65,13 @@ public class UserLoginController {
     }
 
     private void loadMainMenu(ActionEvent event) throws IOException {
-        FXUtils.loadComponent("Main menu", "/views/Menu.fxml", event);
+        if (User.getLoggedInUser() instanceof Teacher) {
+            FXUtils.loadComponent("Hoofd menu", "/views/DocentMenu.fxml", event);
+        } else if (User.getLoggedInUser() instanceof Student) {
+            FXUtils.loadComponent("Hoofd menu", "/views/StudentMenu.fxml", event);
+        } else if (User.getLoggedInUser() instanceof Administrator) {
+            FXUtils.loadComponent("Hoofd menu", "/views/AdministratorMenu.fxml", event);
+        }
     }
 
     @FXML

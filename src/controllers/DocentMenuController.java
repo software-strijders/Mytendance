@@ -2,12 +2,21 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.user.User;
 import utils.FXUtils;
 import java.io.IOException;
 
-public class MenuController {
+public class DocentMenuController {
+
+    @FXML private Label nameLabel;
+
+    @FXML
+    private void initialize() {
+        nameLabel.setText(String.format("%s %s", User.getLoggedInUser().getFirstName(), User.getLoggedInUser().getLastName()));
+    }
 
     @FXML
     public void onUserCreatePressed(ActionEvent event) throws IOException {
@@ -33,5 +42,10 @@ public class MenuController {
     public void onCreateLectureClick(ActionEvent event) throws IOException {
         Stage newStage = FXUtils.loadStage("Les aanmaken", "/views/CreateLecture.fxml", Modality.APPLICATION_MODAL);
         newStage.showAndWait();
+    }
+
+    @FXML
+    public void logoutButtonOnClick(ActionEvent event) throws IOException {
+        FXUtils.loadComponent("Log in", "/views/RoleSelection.fxml", event);
     }
 }

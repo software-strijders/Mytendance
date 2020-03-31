@@ -6,7 +6,7 @@ import models.user.Teacher;
 
 public enum UserType {
 
-    TEACHER("Teacher", Teacher.class),
+    TEACHER("Docent", Teacher.class),
     STUDENT("Student", Student.class),
     ADMIN("Administrator", Administrator.class);
 
