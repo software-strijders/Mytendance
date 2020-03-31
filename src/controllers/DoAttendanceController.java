@@ -56,7 +56,7 @@ public class DoAttendanceController {
         ObservableList<Lecture> allLecturesFromSelectedDate = FXCollections.observableArrayList();
 
         for (Lecture lecture : selectedClass.getLectures()) {
-            if (lecture.getStartDate().isEqual(selectedDate.atStartOfDay())) {
+            if (lecture.getStartDate().toLocalDate().isEqual(selectedDate)) {
                 allLecturesFromSelectedDate.add(lecture);
             }
         }

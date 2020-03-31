@@ -29,7 +29,7 @@
       <Label layoutX="16.0" layoutY="134.0" text="Les" textFill="WHITE" />
       <DatePicker fx:id="attendanceDatePicker" layoutX="14.0" layoutY="99.0" onAction="#onClassComboBoxClick" prefHeight="25.0" prefWidth="188.0" />
       <Label layoutX="16.0" layoutY="76.0" text="Datum" textFill="WHITE" />
-      <ListView fx:id="lectureListView" layoutX="14.0" layoutY="161.0" onMouseClicked="#onLectureListViewClick" prefHeight="154.0" prefWidth="188.0" />
+      <ListView fx:id="lectureListView" layoutX="14.0" layoutY="161.0" onMouseClicked="#onLectureListViewClick" prefHeight="150.0" prefWidth="188.0" />
       <Button fx:id="showReasonButton" layoutX="410.0" layoutY="286.0" mnemonicParsing="false" onAction="#onShowReasonClick" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: white;" text="Toon reden" />
       <Separator layoutX="395.0" layoutY="16.0" orientation="VERTICAL" prefHeight="349.0" prefWidth="22.0" />
       <Label fx:id="loggedTeacherLabel" layoutX="12.0" layoutY="378.0" text="logged_teacher" textFill="#ffffff66" />
