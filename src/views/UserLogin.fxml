@@ -37,14 +37,14 @@
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
-               <Label fx:id="userTypeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="75.0" GridPane.halignment="CENTER">
+               <Label fx:id="userTypeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="75.0" textFill="WHITE" GridPane.halignment="CENTER">
                   <font>
                      <Font size="14.0" />
                   </font></Label>
                <TextField fx:id="emailField" prefHeight="25.0" prefWidth="180.0" promptText="E-mail" GridPane.rowIndex="2" />
-               <PasswordField fx:id="passwordField" promptText="Wachtwoord" onAction="#handleLogin" GridPane.rowIndex="3" />
-               <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" text="Log in" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-               <Button fx:id="switchButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleSwitchRole" text="Switch role" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+               <PasswordField fx:id="passwordField" onAction="#handleLogin" promptText="Wachtwoord" GridPane.rowIndex="3" />
+               <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" style="-fx-background-color: white;" text="Log in" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+               <Button fx:id="switchButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleSwitchRole" style="-fx-background-color: white;" text="Switch role" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
             </GridPane>
          </center>
          <padding>

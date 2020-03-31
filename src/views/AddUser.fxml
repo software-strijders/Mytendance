@@ -27,12 +27,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="userTypeLabel" text="Type gebruiker:" />
-            <Label fx:id="firstNameLabel" text="Voornaam:" GridPane.rowIndex="1" />
-            <Label fx:id="surnameLabel" text="Achternaam:" GridPane.rowIndex="2" />
-            <Label fx:id="emailLabel" text="Email:" GridPane.rowIndex="3" />
-            <Label fx:id="passwordLabel" text="Wachtwoord:" GridPane.rowIndex="4" />
-            <ComboBox fx:id="userTypeComboBox" maxHeight="25.0" maxWidth="232.0" prefHeight="25.0" prefWidth="232.0" promptText="Student" GridPane.columnIndex="1" />
+            <Label fx:id="userTypeLabel" text="Type gebruiker:" textFill="WHITE" />
+            <Label fx:id="firstNameLabel" text="Voornaam:" textFill="WHITE" GridPane.rowIndex="1" />
+            <Label fx:id="surnameLabel" text="Achternaam:" textFill="WHITE" GridPane.rowIndex="2" />
+            <Label fx:id="emailLabel" text="Email:" textFill="WHITE" GridPane.rowIndex="3" />
+            <Label fx:id="passwordLabel" text="Wachtwoord:" textFill="WHITE" GridPane.rowIndex="4" />
+            <ComboBox fx:id="userTypeComboBox" maxHeight="25.0" maxWidth="232.0" prefHeight="25.0" prefWidth="232.0" promptText="Student" style="-fx-background-color: white;" GridPane.columnIndex="1" />
             <TextField fx:id="firstNameTextField" maxHeight="25.0" maxWidth="232.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="surnameTextField" maxHeight="25.0" maxWidth="232.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="emailTextField" maxHeight="25.0" maxWidth="232.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -49,8 +49,8 @@
    <bottom>
       <HBox alignment="BOTTOM_RIGHT" maxHeight="25.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
-            <Button fx:id="registrerButton" mnemonicParsing="false" onAction="#onRegisterButtonClick" text="Registreer" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" style="-fx-background-color: white;" text="Cancel" />
+            <Button fx:id="registrerButton" mnemonicParsing="false" onAction="#onRegisterButtonClick" style="-fx-background-color: white;" text="Registreer" />
          </children>
          <BorderPane.margin>
             <Insets bottom="50.0" right="50.0" />

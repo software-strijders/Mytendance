@@ -39,9 +39,9 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Label text="Klas:" />
-                                          <Label text="Vak:" GridPane.rowIndex="1" />
-                                          <Label text="Startdatum:" GridPane.rowIndex="2" />
+                                          <Label text="Klas:" textFill="WHITE" />
+                                          <Label text="Vak:" textFill="WHITE" GridPane.rowIndex="1" />
+                                          <Label text="Startdatum:" textFill="WHITE" GridPane.rowIndex="2" />
                                           <DatePicker fx:id="startDatePicker" maxWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                                           <ComboBox fx:id="classComboBox" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                                           <ComboBox fx:id="subjectComboBox" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
@@ -65,8 +65,8 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Label text="StartTijd:" />
-                                          <Label text="Duur:" GridPane.rowIndex="1" />
+                                          <Label text="StartTijd:" textFill="WHITE" />
+                                          <Label text="Duur:" textFill="WHITE" GridPane.rowIndex="1" />
                                           <GridPane maxWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="ALWAYS" />
@@ -137,8 +137,8 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#onLectureAddClick" text="Voeg Toe" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-                                                <Button mnemonicParsing="false" onAction="#onCancelClick" text="Annuleer" GridPane.halignment="RIGHT" />
+                                                <Button mnemonicParsing="false" onAction="#onLectureAddClick" style="-fx-background-color: white;" text="Voeg Toe" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                                                <Button mnemonicParsing="false" onAction="#onCancelClick" style="-fx-background-color: white;" text="Annuleer" GridPane.halignment="RIGHT" />
                                              </children>
                                           </GridPane>
                                        </children>
