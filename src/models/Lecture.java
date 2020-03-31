@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class Lecture {
 
-    private static List<Lecture> lectures = new ArrayList<>();
+    private static List<Lecture> allLectures = new ArrayList<>();
 
     private LocalDateTime startDate;
     private int duration; // Duration in minutes
@@ -35,17 +35,17 @@ public class Lecture {
         this.className = className;
     }
 
-    public static void setLectures(ArrayList<Lecture> lectures) {
-        Lecture.lectures = lectures;
+    public static void setAllLectures(ArrayList<Lecture> allLectures) {
+        Lecture.allLectures = allLectures;
     }
 
     public static void addLecture(Lecture lecture) throws IllegalArgumentException {
         if (isNewLectureValid(lecture))
-            lectures.add(lecture);
+            allLectures.add(lecture);
     }
 
     private static boolean isNewLectureValid(Lecture lectureToCompare) throws IllegalArgumentException {
-        for (Lecture lecture : lectures) {
+        for (Lecture lecture : allLectures) {
             LocalDateTime max = lecture.startDate.plusMinutes(lecture.duration);
             LocalDateTime min = lecture.startDate;
 
@@ -67,8 +67,8 @@ public class Lecture {
         return (toCompare.isAfter(min) && toCompare.isBefore(max)) || toCompare.isEqual(min);
     }
 
-    public static List<Lecture> getLectures() {
-        return Collections.unmodifiableList(lectures);
+    public static List<Lecture> getAllLectures() {
+        return Collections.unmodifiableList(allLectures);
     }
 
     public LocalDateTime getStartDate() {
