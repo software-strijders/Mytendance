@@ -25,6 +25,7 @@ public class Mytendance extends Application {
         Student s5 = new Student("Ruben", "van den Brink", "ruben.brink@student.hu.nl", "rururuben");
         Student s6 = new Student("Joeri", "Kok", "joeri.j.kok@student.hu.nl", "c++");
         Teacher t1 = new Teacher("Henk", "Tank", "Henk@hu.nl", "w8woord");
+        Administrator ad1 = new Administrator("Jort", "Willemsen", "jort@admin.nl", "1234");
 
         Administrator.addUser(s1);
         Administrator.addUser(s2);
@@ -33,6 +34,7 @@ public class Mytendance extends Application {
         Administrator.addUser(s5);
         Administrator.addUser(s6);
         Administrator.addUser(t1);
+        Administrator.addUser(ad1);
 
         FieldOfStudy f1 = new FieldOfStudy("TICT-SD");
         FieldOfStudy f2 = new FieldOfStudy("TICT-TI");

@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="generalBg" stylesheets="@style/GeneralBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddUserController">
    <center>
-      <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+      <GridPane hgap="5.0" prefHeight="179.0" prefWidth="897.0" vgap="5.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,10 +33,10 @@
             <Label fx:id="emailLabel" text="Email:" textFill="WHITE" GridPane.rowIndex="3" />
             <Label fx:id="passwordLabel" text="Wachtwoord:" textFill="WHITE" GridPane.rowIndex="4" />
             <ComboBox fx:id="userTypeComboBox" maxHeight="25.0" maxWidth="232.0" prefHeight="25.0" prefWidth="232.0" promptText="Student" style="-fx-background-color: white;" GridPane.columnIndex="1" />
-            <TextField fx:id="firstNameTextField" maxHeight="25.0" maxWidth="232.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="surnameTextField" maxHeight="25.0" maxWidth="232.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="emailTextField" maxHeight="25.0" maxWidth="232.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <PasswordField fx:id="passwordTextfield" maxHeight="25.0" maxWidth="232.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="firstNameTextField" maxHeight="25.0" maxWidth="232.0" promptText="Voornaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="surnameTextField" maxHeight="25.0" maxWidth="232.0" promptText="Achternaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="emailTextField" maxHeight="25.0" maxWidth="232.0" promptText="E-mail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <PasswordField fx:id="passwordTextfield" maxHeight="25.0" maxWidth="232.0" promptText="Wachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
          <BorderPane.margin>
             <Insets bottom="75.0" left="75.0" right="75.0" top="75.0" />
@@ -47,9 +47,9 @@
       </GridPane>
    </center>
    <bottom>
-      <HBox alignment="BOTTOM_RIGHT" maxHeight="25.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <HBox alignment="BOTTOM_RIGHT" maxHeight="25.0" prefHeight="25.0" prefWidth="0.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" style="-fx-background-color: white;" text="Cancel" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" style="-fx-background-color: white;" text="Annuleer" />
             <Button fx:id="registrerButton" mnemonicParsing="false" onAction="#onRegisterButtonClick" style="-fx-background-color: white;" text="Registreer" />
          </children>
          <BorderPane.margin>
