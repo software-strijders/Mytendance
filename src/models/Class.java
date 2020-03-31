@@ -85,11 +85,9 @@ public class Class {
         return Collections.unmodifiableList(this.lectures);
     }
 
-    public List<Lecture> getLecturesByDateTime(LocalDateTime dateTime) {
+    public List<Lecture> getLecturesByDateTime(LocalDate dateTime) {
         return this.lectures.stream().filter(lecture ->
-                dateTime.isBefore(lecture.getStartDate()) &&
-                        dateTime.withDayOfMonth(1).isAfter(lecture.getStartDate())
-        ).collect(Collectors.toList());
+                dateTime.isEqual(lecture.getStartDate().toLocalDate())).collect(Collectors.toList());
     }
 
     public void setLectures(ArrayList<Lecture> lectures) {

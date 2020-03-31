@@ -43,8 +43,11 @@ public class Mytendance extends Application {
         Class c1 = new Class(Utils.idGenerator(), 2, 'h', f1, Student.getRegisteredStudents());
         Class c2 = new Class(Utils.idGenerator(), 3, 'e', f1, Student.getRegisteredStudents());
 
-        Lecture l1 = new Lecture(LocalDate.now().atStartOfDay(), 120, SubjectType.OOAD, t1, c2);
-        Lecture l2 = new Lecture(LocalDate.now().atStartOfDay().plusDays(1), 180, SubjectType.OOAD, t1, c2);
+        Lecture l1 = new Lecture(LocalDate.now().atStartOfDay().withHour(10), 120, SubjectType.OOAD, t1, c2);
+        Lecture l2 = new Lecture(LocalDate.now().atStartOfDay().withHour(12), 180, SubjectType.OOAD, t1, c2);
+
+        Lecture.addLecture(l1);
+        Lecture.addLecture(l2);
 
         Attendance a1 = new Attendance(ReasonType.DENTIST, "Mijn kies doet kapot veel pijn ouwe", s5, AttendanceType.ABSENT);
         Attendance a2 = new Attendance(ReasonType.ENTOMBMENT, "Ik word binnenkort begraven", s2, AttendanceType.ABSENT);

@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import models.user.User;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -52,8 +53,11 @@ public class Utils {
         return string.charAt(index);
     }
 
-    public static String formatTime(LocalDateTime time) {
-        return time.format(DateTimeFormatter.ofPattern("HH:mm"));
+    public static String capitalize(String string) {
+        if (string == null || string.isEmpty())
+            return ""; // Nothing to capitalize here
+
+        return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }
 
     // Author: Jason Buberel
@@ -63,5 +67,9 @@ public class Utils {
     public static boolean isEmailValid(String email) {
         Matcher matcher = EMAIL_ADDR_REGEX.matcher(email);
         return matcher.find();
+    }
+
+    public static String formatDateTime(LocalDateTime date, String pattern) {
+        return date.format(DateTimeFormatter.ofPattern(pattern));
     }
 }

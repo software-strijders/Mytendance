@@ -1,6 +1,8 @@
 package controllers;
 
 import enums.SubjectType;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +15,7 @@ import models.user.Student;
 import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
+import utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -88,15 +91,11 @@ public class CreateLectureController {
     }
 
     private void setUpListeners() {
-        // These listeners are here to change the titlePane's title
-        this.startDatePicker.valueProperty().addListener((observableValue, localDate, t1) -> updateLectureTitlePane());
-        this.startDatePicker.editorProperty().addListener((observableValue, textField, t1) -> updateLectureTitlePane());
-        this.hourSpinner.valueProperty().addListener((observableValue, integer, t1) -> updateLectureTitlePane());
-        this.hourSpinner.editorProperty().addListener((observableValue, textField, t1) -> updateLectureTitlePane());
-        this.minuteSpinner.valueProperty().addListener((observableValue, integer, t1) -> updateLectureTitlePane());
-        this.minuteSpinner.editorProperty().addListener((observableValue, textField, t1) -> updateLectureTitlePane());
-
-        this.startDatePicker.valueProperty().addListener((observableValue, localDate, t1) -> updateLectureListView());
+        this.classComboBox.valueProperty().addListener((observableValue, aClass, t1) -> updateLectureListView());
+        this.startDatePicker.valueProperty().addListener((observableValue, localDate, t1) -> {
+            updateLectureListView();
+            updateLectureTitlePane();
+        });
     }
 
     private void updateLectureTitlePane() {
@@ -106,20 +105,18 @@ public class CreateLectureController {
 
         LocalDateTime dateTime = date.atStartOfDay().withHour(this.hourSpinner.getValue())
                 .withMinute(this.minuteSpinner.getValue());
-        String dateFormatted = dateTime.format(DateTimeFormatter.ofPattern("d-M-y"));
-        this.lectureTitlePane.setText(String.format("%s | %d:%d", dateFormatted, dateTime.getHour(), dateTime.getMinute()));
+        this.lectureTitlePane.setText(Utils.formatDateTime(dateTime, "d-M-y"));
     }
 
     private void updateLectureListView() {
         this.selectedClass = this.classComboBox.getValue();
         this.selectedDate = this.startDatePicker.getValue();
 
-        if (this.selectedClass == null || this.startDatePicker == null)
+        if (this.selectedClass == null || this.selectedDate == null)
             return; // We don't want to update the list when the user hasn't selected anything yet.
 
         this.lectureListView.setItems(FXCollections.observableArrayList(
-                // This isn't working the way I want to yet, unfortunately.
-                this.selectedClass.getLecturesByDateTime(this.selectedDate.atStartOfDay().withHour(0).withMinute(0))));
+                this.selectedClass.getLecturesByDateTime(this.selectedDate)));
     }
 
     @FXML
@@ -155,12 +152,12 @@ public class CreateLectureController {
         Lecture lecture = new Lecture(date, duration, this.selectedSubjectType,
                 this.teacher, this.selectedClass, this.createAttendances());
 
-        Lecture.addLecture(lecture);
+        Lecture.addLecture(lecture); // If duplicate or within time range, this will throw the exception.
         teacher.addLecture(lecture);
         this.selectedClass.addLecture(lecture);
 
         lectureListView.setItems(FXCollections.observableArrayList(
-                this.selectedClass.getLecturesByDateTime(this.selectedDate.atStartOfDay().withHour(0).withMinute(0))));
+                this.selectedClass.getLecturesByDateTime(this.selectedDate)));
         FXUtils.showAlert("Les aangemaakt!", Alert.AlertType.INFORMATION);
     }
 

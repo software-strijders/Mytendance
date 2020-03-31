@@ -2,10 +2,9 @@ package models;
 
 import enums.SubjectType;
 import models.user.Teacher;
+import utils.Utils;
 
-import javax.swing.text.DateFormatter;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -50,12 +49,13 @@ public class Lecture {
         for (Lecture lecture : lectures) {
             LocalDateTime max = lecture.startDate.plusMinutes(lecture.duration);
             LocalDateTime min = lecture.startDate;
-            if (lecture.getTeacher().equals(lectureToCompare.getTeacher()) &&
+            if (lecture.teacher.equals(lectureToCompare.teacher) &&
                     isWithinTimeRange(min, max, lectureToCompare.startDate)) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
+                String pattern = "H:mm";
                 throw new IllegalArgumentException(
                         String.format("Deze les kan niet tussen de tijd %s en %s gegeven worden",
-                                min.format(formatter), max.format(formatter)));
+                                Utils.formatDateTime(min, pattern),
+                                Utils.formatDateTime(max, pattern)));
             }
         }
 
@@ -63,7 +63,7 @@ public class Lecture {
     }
 
     private static boolean isWithinTimeRange(LocalDateTime min, LocalDateTime max, LocalDateTime toCompare) {
-        // We want to check if the given time is between to values. If it is, it will return true.
+        // We want to check if the given time is between two values. If it is, it will return true.
         return (toCompare.isAfter(min) && toCompare.isBefore(max)) || toCompare.isEqual(min);
     }
 
@@ -130,8 +130,8 @@ public class Lecture {
 
     @Override
     public String toString() {
-        // TODO: Put formatter in Utils method
-        return String.format("De les %s begin om %s en duurt %d minuten", this.subjectType, this.startDate.format(DateTimeFormatter.ofPattern("H:mm")), this.duration);
+        return String.format("De les %s begint om %s en duurt %d minuten",
+                this.subjectType, Utils.formatDateTime(this.startDate, "H:mm"), this.duration);
     }
 
     @Override
