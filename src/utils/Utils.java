@@ -90,6 +90,10 @@ public class Utils {
         return stage;
     }
 
+    public static Stage loadStage(String title, String resource, Modality modality) throws IOException {
+        return loadStage(title, resource, new Stage(), modality);
+    }
+
     public static Stage loadStage(String resource) throws IOException {
         return loadStage("Mytendance", resource);
     }
