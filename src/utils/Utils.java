@@ -86,6 +86,7 @@ public class Utils {
         loadStage(title, resource, stage);
         stage.initModality(modality);
 
+
         return stage;
     }
 
