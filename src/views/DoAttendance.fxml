@@ -7,14 +7,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="610.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoAttendanceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="teacherBg" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoAttendanceController">
    <children>
-      <Circle fill="DODGERBLUE" layoutX="228.0" layoutY="44.0" radius="134.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#e6302b" layoutX="3.0" layoutY="15.0" radius="150.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="-21.0" layoutY="228.0" radius="94.0" stroke="BLACK" strokeType="INSIDE" />
       <ListView fx:id="absentListView" layoutX="410.0" layoutY="44.0" prefHeight="234.0" prefWidth="188.0" />
       <ListView fx:id="presentListView" layoutX="212.0" layoutY="44.0" prefHeight="267.0" prefWidth="188.0" />
       <Label layoutX="486.0" layoutY="22.0" text="Absent" textFill="WHITE">
