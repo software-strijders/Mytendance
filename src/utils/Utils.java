@@ -8,6 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.user.User;
+
 import java.io.IOException;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -16,7 +18,20 @@ import java.util.regex.Pattern;
 public class Utils {
 
     public static UUID idGenerator() {
-        return UUID.randomUUID();
+        UUID id = UUID.randomUUID();
+        if(checkDuplicateId(id)) {
+            idGenerator();
+        }
+        return id;
+    }
+
+    static boolean checkDuplicateId(UUID id) {
+        for (User user : User.getRegisteredUsers()) {
+            if(user.getUserId() == id){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void showAlert(String message, Alert.AlertType alertType) {
@@ -61,6 +76,10 @@ public class Utils {
 
     public static Stage loadStage(String resource, Stage stage, Modality modality) throws IOException {
         return loadStage("Mytendance", resource, stage, modality);
+    }
+
+    public static Stage loadStage(String title, String resource, Modality modality) throws IOException {
+        return loadStage(title, resource, new Stage(), modality);
     }
 
     public static Stage loadStage(String title, String resource, Stage stage, Modality modality) throws IOException {
