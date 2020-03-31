@@ -15,11 +15,11 @@
                     <children>
                         <Label fx:id="loginAsLabel" alignment="CENTER" layoutX="38.0" layoutY="26.0" prefHeight="41.0" prefWidth="102.0" text="Log in als" textFill="WHITE" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="26.0">
                             <font>
-                                <Font size="14.0" />
+                                <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
                         <Button fx:id="studentButton" layoutX="38.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleSelection" prefHeight="29.0" prefWidth="145.0" style="-fx-background-color: white;" text="Student" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="87.0" />
-                        <Button fx:id="teacherButton" layoutX="38.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleSelection" prefHeight="27.0" prefWidth="145.0" style="-fx-background-color: white;" text="Teacher" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="125.0" />
+                        <Button fx:id="teacherButton" layoutX="38.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleSelection" prefHeight="27.0" prefWidth="145.0" style="-fx-background-color: white;" text="Docent" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="125.0" />
                     </children>
                 </AnchorPane>
             </center>
@@ -32,9 +32,13 @@
             <right>
                 <Region prefHeight="202.0" prefWidth="212.0" BorderPane.alignment="CENTER" />
             </right>
-            <bottom>
-                <Region prefHeight="90.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
-            </bottom>
+         <bottom>
+            <AnchorPane prefHeight="67.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="adminButton" layoutX="256.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSelection" style="-fx-background-color: WHITE;" text="Administrator" />
+               </children>
+            </AnchorPane>
+         </bottom>
         </BorderPane>
     </children>
 </AnchorPane>
