@@ -11,7 +11,7 @@
     <children>
         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="202.0" prefWidth="220.0" style="-fx-background-color: grey; -fx-border-radius: 10; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="175.0" style="-fx-background-color: grey; -fx-border-radius: 10; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
                     <children>
                         <Label fx:id="loginAsLabel" alignment="CENTER" layoutX="38.0" layoutY="26.0" prefHeight="41.0" prefWidth="102.0" text="Log in als" textFill="WHITE" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="26.0">
                             <font>
@@ -24,7 +24,7 @@
                 </AnchorPane>
             </center>
             <top>
-                <Region prefHeight="131.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+                <Region minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="600.0" />
             </top>
             <left>
                 <Region prefHeight="202.0" prefWidth="212.0" BorderPane.alignment="CENTER" />
@@ -33,9 +33,9 @@
                 <Region prefHeight="202.0" prefWidth="212.0" BorderPane.alignment="CENTER" />
             </right>
          <bottom>
-            <AnchorPane prefHeight="67.0" prefWidth="600.0">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="adminButton" layoutX="256.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleSelection" style="-fx-background-color: WHITE;" text="Administrator" />
+                  <Button fx:id="adminButton" layoutX="256.0" layoutY="21.0" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleSelection" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: WHITE;" text="Administrator" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
                </children>
             </AnchorPane>
          </bottom>
