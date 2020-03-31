@@ -4,7 +4,12 @@ import enums.AttendanceType;
 import enums.ReasonType;
 import models.user.Student;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Attendance {
+
+    private static List<Attendance> attendances;
 
     private ReasonType reason;
     private String reasonDescription;
@@ -12,7 +17,15 @@ public class Attendance {
     private AttendanceType attendanceType;
 
     /**
-     * constructor for any AttendanceType
+     * constructor for AttendanceType.PRESENT
+     */
+    public Attendance(Student student) {
+        this(null, null, student, AttendanceType.PRESENT);
+    }
+
+    /**
+     * constructor for any AttendanceType:
+     * Any other attendance type needs a reason with it.
      */
     public Attendance(ReasonType reason, String reasonDescription, Student student, AttendanceType attendanceType) {
         this.reason = reason;
@@ -21,12 +34,29 @@ public class Attendance {
         this.attendanceType = attendanceType;
     }
 
-    /**
-     * constructor for AttendanceType.PRESENT
-     */
-    public Attendance(Student student) {
+
+    public static List<Attendance> getAttendances() {
+        return Collections.unmodifiableList(attendances);
+    }
+
+    public static void addAttendance(Attendance attendance) {
+        attendances.add(attendance);
+    }
+
+    public static void clearAttendance() {
+        attendances.clear();
+    }
+
+    public static void setAttendances(List<Attendance> attendances) {
+        Attendance.attendances = attendances;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
         this.student = student;
-        this.attendanceType = AttendanceType.PRESENT;
     }
 
     public AttendanceType getAttendanceType() {

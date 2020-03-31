@@ -1,18 +1,20 @@
 package models.user;
 
-import java.util.List;
 import models.Class;
 import models.Lecture;
-import utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import utils.Utils;
+
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class Teacher extends User {
 
-    private ArrayList<Class> classes =  new ArrayList<Class>();
-    private ArrayList<Lecture> lectures = new ArrayList<Lecture>();
+    private List<Class> classes =  new ArrayList<>();
+    private List<Lecture> lectures = new ArrayList<>();
 
     public Teacher(String firstName, String lastName, String email, String password) {
         this(firstName, lastName, email, password, Utils.idGenerator());
@@ -28,12 +30,24 @@ public class Teacher extends User {
                 .map(user -> (Teacher)user).collect(Collectors.toList());
     }
 
-    public ArrayList<Lecture> getLectures() {
-        return this.lectures;
+    public List<Lecture> getLectures() {
+        return Collections.unmodifiableList(this.lectures);
     }
 
-    public ArrayList<Class> getAllClasses() {
-        return this.classes;
+    public void addLecture(Lecture lecture) {
+        this.lectures.add(lecture);
+    }
+
+    public List<Class> getAllClasses() {
+        return Collections.unmodifiableList(this.classes);
+    }
+
+    public void setClasses(ArrayList<Class> classes) {
+        this.classes = classes;
+    }
+
+    public void addClass(Class newClass) {
+        this.classes.add(newClass);
     }
 
     @Override

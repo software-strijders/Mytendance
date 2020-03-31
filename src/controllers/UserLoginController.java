@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.user.User;
+import utils.FXUtils;
 import utils.Utils;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -26,7 +27,7 @@ public class UserLoginController {
     }
 
     private void loadRoleSelection(ActionEvent event) throws IOException {
-        Utils.loadComponent("User role selection",
+        FXUtils.loadComponent("User role selection",
                 "/views/RoleSelection.fxml", event);
     }
 
@@ -57,7 +58,7 @@ public class UserLoginController {
     }
 
     private void loadMainMenu(ActionEvent event) throws IOException {
-        Utils.loadComponent("Main menu", "/views/Menu.fxml", event);
+        FXUtils.loadComponent("Main menu", "/views/Menu.fxml", event);
     }
 
     @FXML
@@ -68,10 +69,10 @@ public class UserLoginController {
             this.clearPassword();
             this.loadMainMenu(event);            // Currently loads the same component regardless of the role specified
         } catch (InputMismatchException exception) {
-            Utils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
+            FXUtils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
         } catch (IllegalArgumentException exception) {
             this.clearPassword();
-            Utils.showAlert("Het e-mailadres of wachtwoord is incorrect :(",
+            FXUtils.showAlert("Het e-mailadres of wachtwoord is incorrect :(",
                     Alert.AlertType.INFORMATION);
         }
     }

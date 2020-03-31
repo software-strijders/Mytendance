@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import models.Class;
 import models.FieldOfStudy;
 import models.user.Student;
+import utils.FXUtils;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -89,11 +90,11 @@ public class CreateClassWindowController {
         this.searchStudentBar.clear();
     }
 
-    @FXML
-    private void onConfirmClick(ActionEvent event) {
-        if (this.generatedClassName.getText().isEmpty() && this.addedStudentsList.getItems().isEmpty()) {
-            Utils.showAlert("Vul alle velden (correct) in!", Alert.AlertType.INFORMATION);
-            return;
+    public void onConfirmClick(ActionEvent event) {
+        if (generatedClassName.getText().isEmpty() && addedStudentsList.getItems().isEmpty()) {
+            // Warnings en errors zijn eigenlijk bedoeld voor harde systeemfouten, bij foutieve gebruikersinvoer
+            // zijn info messages voldoende. Dit komt een stuk vriendelijker over en wordt ook over het algemeen aangeraden
+            FXUtils.showAlert("Vul alle velden (correct) in!", Alert.AlertType.INFORMATION);
         }
         Class newClass = new Class(UUID.randomUUID(),
                 this.studyYearNumber.getValueFactory().getValue(),
@@ -102,11 +103,11 @@ public class CreateClassWindowController {
                 Collections.unmodifiableList(this.addedStudentsList.getItems()));
 
         if (Class.getAllClasses().contains(newClass)) {
-            Utils.showAlert("Klas bestaat al!", Alert.AlertType.INFORMATION); // Zie comment hierboven
+            FXUtils.showAlert("Klas bestaat al!", Alert.AlertType.INFORMATION); // Zie comment hierboven
             return;
         }
         Class.addClass(newClass);
-        Utils.showAlert("Klas toegevoegd.", Alert.AlertType.INFORMATION); // Zie comment hierboven
+        FXUtils.showAlert("Klas toegevoegd.", Alert.AlertType.INFORMATION); // Zie comment hierboven
     }
 
     @FXML

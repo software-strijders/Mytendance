@@ -1,11 +1,16 @@
 package models;
 
+import enums.SubjectType;
 import models.user.Student;
 import utils.Utils;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Class {
 
@@ -16,8 +21,12 @@ public class Class {
     private char group;
 
     private FieldOfStudy studyField;
-    private ArrayList<Lecture> allLectures = new ArrayList<>();
+    private ArrayList<Lecture> lectures = new ArrayList<>();
     private List<Student> students;
+
+    public Class(UUID classId, int yearOfStudy, char group, FieldOfStudy studyField) {
+        this(classId, yearOfStudy, group, studyField, new ArrayList<>());
+    }
 
     public Class(UUID classId, int yearOfStudy, char group, FieldOfStudy studyField, List<Student> students) {
         this.classId = classId;
@@ -67,24 +76,42 @@ public class Class {
         this.studyField = studyField;
     }
 
+
+    public static List<Class> getAllClasses() {
+        return Collections.unmodifiableList(allClasses);
+    }
+
+    public static void addClass(Class newClass) {
+        allClasses.add(newClass);
+    }
+
+    public List<Lecture> getLectures() {
+        return Collections.unmodifiableList(this.lectures);
+    }
+
+    public List<Lecture> getLecturesByDateTime(LocalDate dateTime) {
+        return this.lectures.stream().filter(lecture ->
+                dateTime.isEqual(lecture.getStartDate().toLocalDate())).collect(Collectors.toList());
+    }
+
+    public void setLectures(ArrayList<Lecture> lectures) {
+        this.lectures = lectures;
+    }
+
+    public void addLecture(Lecture lecture) {
+        this.lectures.add(lecture);
+    }
+
     public List<Student> getStudents() {
-        return students;
+        return Collections.unmodifiableList(students);
     }
 
     public void setStudents(List<Student> students) {
         this.students = students;
     }
 
-    public ArrayList<Lecture> getAllLectures() {
-        return this.allLectures;
-    }
-
-    public static List<Class> getAllClasses() {
-        return allClasses;
-    }
-
-    public static void addClass(Class newClass) {
-        allClasses.add(newClass);
+    public void addStudent(Student student) {
+        this.students.add(student);
     }
 
     @Override

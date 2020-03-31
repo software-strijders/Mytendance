@@ -5,12 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import java.io.IOException;
-import utils.Utils;
+
+import utils.FXUtils;
 
 public class RoleSelectionController {
 
     private FXMLLoader loadUserLogin(ActionEvent event) throws IOException {
-        return Utils.loadComponent("User login", "/views/UserLogin.fxml", event);
+        return FXUtils.loadComponent("User login", "/views/UserLogin.fxml", event);
     }
 
     @FXML

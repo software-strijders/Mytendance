@@ -10,78 +10,82 @@ import models.Lecture;
 import models.user.Administrator;
 import models.user.Student;
 import models.user.Teacher;
+import utils.FXUtils;
 import utils.Utils;
 
 import java.time.LocalDate;
 
-
 public class Mytendance extends Application {
 
-        public static void main(String[] args) {
-                Student s1 = new Student( "Arjen", "Norbart", "arjen.norbart@student.hu.nl", "password");
-                Student s2 = new Student( "Jort", "Willemsen", "jort.willemsen@student.hu.nl", "p@ssword");
-                Student s3 = new Student( "Milan", "Dol", "milan.dol@student.hu.nl", "m1lan");
-                Student s4 = new Student( "Xander", "Vedder", "xander.vedder@student.hu.nl", "sander");
-                Student s5 = new Student( "Ruben", "van den Brink", "ruben.brink@student.hu.nl", "rururuben");
-                Student s6 = new Student( "Joeri", "Kok", "joeri.j.kok@student.hu.nl", "c++");
-                Teacher t1 = new Teacher( "Henk", "spermaTank", "Henk@hu.nl", "w8woord");
+    public static void main(String[] args) {
+        Student s1 = new Student("Arjen", "Norbart", "arjen.norbart@student.hu.nl", "password");
+        Student s2 = new Student("Jort", "Willemsen", "jort.willemsen@student.hu.nl", "p@ssword");
+        Student s3 = new Student("Milan", "Dol", "milan.dol@student.hu.nl", "m1lan");
+        Student s4 = new Student("Xander", "Vedder", "xander.vedder@student.hu.nl", "sander");
+        Student s5 = new Student("Ruben", "van den Brink", "ruben.brink@student.hu.nl", "rururuben");
+        Student s6 = new Student("Joeri", "Kok", "joeri.j.kok@student.hu.nl", "c++");
+        Teacher t1 = new Teacher("Henk", "Tank", "Henk@hu.nl", "w8woord");
 
-                Administrator.addUser(s1);
-                Administrator.addUser(s2);
-                Administrator.addUser(s3);
-                Administrator.addUser(s4);
-                Administrator.addUser(s5);
-                Administrator.addUser(s6);
-                Administrator.addUser(t1);
+        Administrator.addUser(s1);
+        Administrator.addUser(s2);
+        Administrator.addUser(s3);
+        Administrator.addUser(s4);
+        Administrator.addUser(s5);
+        Administrator.addUser(s6);
+        Administrator.addUser(t1);
 
-                FieldOfStudy f1 = new FieldOfStudy("TICT-SD");
-                FieldOfStudy f2 = new FieldOfStudy("TICT-TI");
-                FieldOfStudy f3 = new FieldOfStudy("TICT-AI");
-                FieldOfStudy f4 = new FieldOfStudy("TICT-CSC");
-                FieldOfStudy f5 = new FieldOfStudy("TICT-BIM");
+        FieldOfStudy f1 = new FieldOfStudy("TICT-SD");
+        FieldOfStudy f2 = new FieldOfStudy("TICT-TI");
+        FieldOfStudy f3 = new FieldOfStudy("TICT-AI");
+        FieldOfStudy f4 = new FieldOfStudy("TICT-CSC");
+        FieldOfStudy f5 = new FieldOfStudy("TICT-BIM");
 
-                Class c1 = new Class(Utils.idGenerator(),2,'h',f1,Student.getRegisteredStudents());
-                Class c2 = new Class(Utils.idGenerator(),3,'e',f1,Student.getRegisteredStudents());
+        Class c1 = new Class(Utils.idGenerator(), 2, 'h', f1, Student.getRegisteredStudents());
+        Class c2 = new Class(Utils.idGenerator(), 3, 'e', f1, Student.getRegisteredStudents());
 
-                Lecture l1 = new Lecture(LocalDate.now(), 180, SubjectType.OOP);
-                Lecture l2 = new Lecture(LocalDate.now().plusDays(1), 120, SubjectType.OOAD);
+        Lecture l1 = new Lecture(LocalDate.now().atStartOfDay().withHour(10), 120, SubjectType.OOAD, t1, c2);
+        Lecture l2 = new Lecture(LocalDate.now().atStartOfDay().withHour(12), 180, SubjectType.OOAD, t1, c2);
 
-                Attendance a1 = new Attendance(ReasonType.DENTIST, "Mijn kies doet kapot veel pijn ouwe", s5, AttendanceType.ABSENT);
-                Attendance a2 = new Attendance(ReasonType.ENTOMBMENT, "Ik word binnenkort begraven", s2, AttendanceType.ABSENT);
-                Attendance a4 = new Attendance(s1);
-                Attendance a5 = new Attendance(s3);
-                Attendance a6 = new Attendance(s4);
-                Attendance a7 = new Attendance(s6);
+        Lecture.addLecture(l1);
+        Lecture.addLecture(l2);
 
-                l1.getAllAttendances().add(a1);
-                l1.getAllAttendances().add(a2);
-                l1.getAllAttendances().add(a4);
-                l1.getAllAttendances().add(a5);
-                l1.getAllAttendances().add(a6);
-                l1.getAllAttendances().add(a7);
+        Attendance a1 = new Attendance(ReasonType.DENTIST, "Mijn kies doet kapot veel pijn ouwe", s5, AttendanceType.ABSENT);
+        Attendance a2 = new Attendance(ReasonType.ENTOMBMENT, "Ik word binnenkort begraven", s2, AttendanceType.ABSENT);
+        Attendance a4 = new Attendance(s1);
+        Attendance a5 = new Attendance(s3);
+        Attendance a6 = new Attendance(s4);
+        Attendance a7 = new Attendance(s6);
 
-                c1.getAllLectures().add(l1);
-                c1.getAllLectures().add(l2);
+        l1.addAttendance(a1);
+        l1.addAttendance(a2);
+        l1.addAttendance(a4);
+        l1.addAttendance(a5);
+        l1.addAttendance(a6);
+        l1.addAttendance(a7);
 
-                t1.getAllClasses().add(c1);
-                t1.getAllClasses().add(c2);
+        c1.addLecture(l1);
+        c1.addLecture(l2);
 
-                FieldOfStudy.addStudyField(f1);
-                FieldOfStudy.addStudyField(f2);
-                FieldOfStudy.addStudyField(f3);
-                FieldOfStudy.addStudyField(f4);
-                FieldOfStudy.addStudyField(f5);
+        t1.addClass(c1);
+        t1.addClass(c2);
 
-                launch(args);
-        }
+        FieldOfStudy.addStudyField(f1);
+        FieldOfStudy.addStudyField(f2);
+        FieldOfStudy.addStudyField(f3);
+        FieldOfStudy.addStudyField(f4);
+        FieldOfStudy.addStudyField(f5);
+
+        launch(args);
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
         // Simply comment out the screens that you're not currently testing
         // Please do not remove this setup, we don't want to keep logging in for every test we run
-        Utils.loadStage("User role selection", "/views/RoleSelection.fxml", stage);
-        // Utils.loadStage("Add new user", "/views/AddUser.fxml", stage);
-        // Utils.loadStage("Main menu", "/views/Menu.fxml", stage);
+        FXUtils.loadStage("User role selection", "/views/RoleSelection.fxml", stage);
+        // FXUtils.loadStage("Add new user", "/views/AddUser.fxml", stage);
+        // FXUtils.loadStage("Main menu", "/views/Menu.fxml", stage);
+        // FXUtils.loadStage("Add new lecture", "/views/CreateLecture.fxml", stage);
         stage.show();
     }
 }
