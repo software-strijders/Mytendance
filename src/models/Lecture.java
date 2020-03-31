@@ -35,8 +35,12 @@ public class Lecture {
         this.className = className;
     }
 
-    public static void setAllLectures(ArrayList<Lecture> allLectures) {
-        Lecture.allLectures = allLectures;
+    public static void setAllLectures(ArrayList<Lecture> lectures) {
+        allLectures = lectures;
+    }
+
+    public static void clearAllLectures() {
+        allLectures.clear();
     }
 
     public static void addLecture(Lecture lecture) throws IllegalArgumentException {
