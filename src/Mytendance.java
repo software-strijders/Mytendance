@@ -42,8 +42,8 @@ public class Mytendance extends Application {
         FieldOfStudy f4 = new FieldOfStudy("TICT-CSC");
         FieldOfStudy f5 = new FieldOfStudy("TICT-BIM");
 
-        Class c1 = new Class(Utils.idGenerator(), 2, 'h', f1, Student.getRegisteredStudents());
-        Class c2 = new Class(Utils.idGenerator(), 3, 'e', f1, Student.getRegisteredStudents());
+        Class c1 = new Class(Utils.idGenerator(), 2, 'H', f1, Student.getRegisteredStudents());
+        Class c2 = new Class(Utils.idGenerator(), 3, 'E', f1, Student.getRegisteredStudents());
 
         Lecture l1 = new Lecture(LocalDate.now().atStartOfDay().withHour(10), 120, SubjectType.OOAD, t1, c2);
         Lecture l2 = new Lecture(LocalDate.now().atStartOfDay().withHour(12), 180, SubjectType.OOAD, t1, c2);
