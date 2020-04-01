@@ -89,8 +89,7 @@ public class CreateClassController {
             FXUtils.showInfo("Niet alle velden zijn ingevuld :(");
             return;
         }
-        Class newClass = new Class(UUID.randomUUID(),
-                this.studyYearNumber.getValueFactory().getValue(),
+        Class newClass = new Class(this.studyYearNumber.getValueFactory().getValue(),
                 Utils.getCharFromStringByIndex(this.classLetter.getText(), 0),
                 this.fieldOfStudy.getValue(),
                 new ArrayList<>(this.addedStudentsList.getItems()));

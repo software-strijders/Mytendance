@@ -13,7 +13,7 @@ public class Utils {
         return idAlreadyExists(id) ? idGenerator() : id;
     }
 
-    static boolean idAlreadyExists(UUID id) {
+    private static boolean idAlreadyExists(UUID id) {
         for (User user : User.getRegisteredUsers()) {
             if (user.getUserId() == id) {
                 return true;
