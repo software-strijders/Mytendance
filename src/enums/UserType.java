@@ -22,7 +22,8 @@ public enum UserType {
         return this.typeClass;
     }
 
-    public String typeName() {
+    @Override
+    public String toString() {
         return this.typeName;
     }
 }

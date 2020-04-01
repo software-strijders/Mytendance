@@ -53,7 +53,7 @@ public class Lecture {
                     isWithinTimeRange(min, max, lectureToCompare.startDate)) {
                 String pattern = "H:mm";
                 throw new IllegalArgumentException(
-                        String.format("Deze les kan niet tussen de tijd %s en %s gegeven worden",
+                        String.format("Deze les kan niet tussen %s en %s uur gegeven worden",
                                 Utils.formatDateTime(min, pattern),
                                 Utils.formatDateTime(max, pattern)));
             }

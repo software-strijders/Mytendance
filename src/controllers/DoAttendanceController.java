@@ -30,13 +30,13 @@ public class DoAttendanceController {
     @FXML private Button doneButton;
 
     @FXML
-    private void initialize() throws Exception {
+    private void initialize() throws IllegalAccessException {
         User tempUser = User.getLoggedInUser();
         if (tempUser instanceof Teacher) {
             t1 = (Teacher)tempUser;
             loggedTeacherLabel.setText(t1.toString());
         } else {
-            throw new Exception("Dit is de docentenkamer, je hebt geen toestemming om hier te zijn.");
+            throw new IllegalAccessException("Dit is de docentenkamer, je hebt geen toestemming om hier te zijn.");
         }
         
         fillClassComboBox();

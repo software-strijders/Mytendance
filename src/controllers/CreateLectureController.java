@@ -56,7 +56,7 @@ public class CreateLectureController {
         if (tempUser instanceof Teacher)
             this.teacher = (Teacher)tempUser;
         else
-            throw new Exception("Dit scherm is alleen toegankelijk voor Docenten!");
+            throw new Exception("Dit scherm is alleen toegankelijk voor docenten!");
     }
 
     private void setUpSpinners() {
@@ -138,7 +138,7 @@ public class CreateLectureController {
         else if (this.selectedDate == null)
             throw new InputMismatchException("Er is geen datum geselecteerd :(");
         else if (LocalDate.now().isAfter(this.selectedDate))
-            throw new InputMismatchException("Les kan niet in het verleden worden aangemaakt :(");
+            throw new InputMismatchException("Een les kan niet in het verleden worden aangemaakt :(");
     }
 
     private void createLecture() throws IllegalArgumentException {

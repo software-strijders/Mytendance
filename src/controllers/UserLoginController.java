@@ -7,7 +7,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.user.Administrator;
-import models.user.Student;
 import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
@@ -23,14 +22,11 @@ public class UserLoginController {
     private String email;
     private String password;
     private UserType userType;
+    private User loggedInUser;
 
-    public void setUserType(String userType) {
-        this.userTypeLabel.setText(userType);
-        if(userType.equals("Docent")) {
-            this.userType = UserType.TEACHER;
-        } else {
-            this.userType = UserType.valueOf(userType.toUpperCase());
-        }
+    public void setUserType(UserType type) {
+        this.userTypeLabel.setText(type.toString());
+        this.userType = type;
     }
 
     private void loadRoleSelection(ActionEvent event) throws IOException {
@@ -39,13 +35,19 @@ public class UserLoginController {
     }
 
     @FXML
-    public void handleSwitchRole(ActionEvent event) throws IOException {
-        this.loadRoleSelection(event);
+    public void handleSwitchRole(ActionEvent event) {
+        try {
+            this.loadRoleSelection(event);
+        } catch (IOException exception) {
+            FXUtils.showWarning("Het rol selectie menu kan niet geladen worden :(", exception);
+        } catch (Exception exception) {
+            FXUtils.showError("Er is iets goed misgegaan x(", exception);
+        }
     }
 
     private void obtainCredentials() throws InputMismatchException {
-        this.email = emailField.getText().trim();
-        this.password = passwordField.getText();
+        this.email = this.emailField.getText().trim();
+        this.password = this.passwordField.getText();
 
         if (this.email.isEmpty())
             throw new InputMismatchException("Het e-mailadres ontbreekt :(");
@@ -55,38 +57,47 @@ public class UserLoginController {
             throw new InputMismatchException("Het wachtwoord ontbreekt :(");
     }
 
-    private void logonUser() throws IllegalArgumentException {
-        User.setLoggedInUser(User.authenticateUser(this.email, this.password, this.userType));
+    private void logInUser() throws IllegalArgumentException {
+        this.loggedInUser = User.authenticateUser(this.email, this.password, this.userType);
+        User.setLoggedInUser(this.loggedInUser);
     }
 
     private void clearPassword() {
-        passwordField.clear();
+        this.passwordField.clear();
         this.password = null;
     }
 
     private void loadMainMenu(ActionEvent event) throws IOException {
-        if (User.getLoggedInUser() instanceof Teacher) {
-            FXUtils.loadComponent("Hoofd menu", "/views/DocentMenu.fxml", event);
-        } else if (User.getLoggedInUser() instanceof Student) {
-            FXUtils.loadComponent("Hoofd menu", "/views/StudentMenu.fxml", event);
-        } else if (User.getLoggedInUser() instanceof Administrator) {
-            FXUtils.loadComponent("Hoofd menu", "/views/AdministratorMenu.fxml", event);
-        }
+        String resource;
+
+        if (this.loggedInUser instanceof Teacher)
+            resource = "/views/DocentMenu.fxml";
+        else if (this.loggedInUser instanceof Administrator)
+            resource = "/views/AdministratorMenu.fxml";
+        else
+            // Load student menu by default
+            resource = "/views/StudentMenu.fxml";
+
+        FXUtils.loadComponent("Hoofdmenu", resource, event);
     }
 
     @FXML
-    public void handleLogin(ActionEvent event) throws IOException {
+    public void handleLogin(ActionEvent event) {
         try {
             this.obtainCredentials();
-            this.logonUser();
+            this.logInUser();
             this.clearPassword();
-            this.loadMainMenu(event);            // Currently loads the same component regardless of the role specified
+            this.loadMainMenu(event);
         } catch (InputMismatchException exception) {
-            FXUtils.showAlert(exception.getMessage(), Alert.AlertType.INFORMATION);
+            FXUtils.showInfo(exception.getMessage());
         } catch (IllegalArgumentException exception) {
             this.clearPassword();
-            FXUtils.showAlert("Het e-mailadres of wachtwoord is incorrect :(",
-                    Alert.AlertType.INFORMATION);
+            FXUtils.showInfo("Het e-mailadres of wachtwoord is incorrect :(");
+        } catch (IOException exception) {
+            this.clearPassword();
+            FXUtils.showWarning("Het hoofdmenu kan niet geladen worden :(", exception);
+        } catch (Exception exception) {
+            FXUtils.showError("Er is iets goed misgegaan x(", exception);
         }
     }
 }
