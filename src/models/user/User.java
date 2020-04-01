@@ -49,7 +49,8 @@ public abstract class User {
 
     public static User authenticateUser(String email, String password) {
         for (User user : registeredUsers)
-            if (user.getEmail().equalsIgnoreCase(email) && user.getPassword().equals(password))
+            if (user.getEmail().equalsIgnoreCase(email)
+                    && user.getPassword().equals(password))
                 return user;
 
         return null;
@@ -71,7 +72,7 @@ public abstract class User {
 
     public static void setLoggedInUser(User user) throws IllegalArgumentException {
         if (user == null)
-            throw new IllegalArgumentException("The user specified is invalid :(");
+            throw new IllegalArgumentException("De opgegeven gebruiker bestaat niet :(");
         else
             loggedInUser = user;
     }
@@ -80,11 +81,16 @@ public abstract class User {
     public boolean equals(Object other) {
         return this == other
                 || other instanceof User
-                && this.email.equals(((User)other).email);
+                && this.email.equalsIgnoreCase(((User)other).email);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", Utils.capitalize(this.firstName), Utils.capitalize(this.lastName));
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -92,7 +98,7 @@ public abstract class User {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -100,7 +106,7 @@ public abstract class User {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -108,7 +114,7 @@ public abstract class User {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -116,14 +122,10 @@ public abstract class User {
     }
 
     public UUID getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(UUID userId) {
         this.userId = userId;
-    }
-
-    public String toString() {
-        return String.format("%s %s", Utils.capitalize(this.firstName), Utils.capitalize(this.lastName));
     }
 }

@@ -1,7 +1,6 @@
 package models.user;
 
 import utils.Utils;
-
 import java.util.UUID;
 
 public class Administrator extends User {
@@ -16,7 +15,7 @@ public class Administrator extends User {
 
     public static void addUser(User newUser) throws IllegalArgumentException {
         if (User.getRegisteredUsers().contains(newUser))
-            throw new IllegalArgumentException("User bestaat al");
+            throw new IllegalArgumentException("De gebruiker bestaat al");
         else
             User.addUser(newUser);
     }

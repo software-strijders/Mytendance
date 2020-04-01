@@ -15,6 +15,7 @@ public class DocentMenuController {
 
     @FXML
     private void initialize() {
+        // Could cause a null pointer exception if the logged in user is not explicitly set
         nameLabel.setText(String.format("%s %s", User.getLoggedInUser().getFirstName(), User.getLoggedInUser().getLastName()));
     }
 
