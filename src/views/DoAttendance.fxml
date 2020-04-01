@@ -1,37 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="teacherBg" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoAttendanceController">
    <children>
-      <ListView fx:id="absentListView" layoutX="410.0" layoutY="44.0" prefHeight="234.0" prefWidth="188.0" />
-      <ListView fx:id="presentListView" layoutX="212.0" layoutY="44.0" prefHeight="267.0" prefWidth="188.0" />
-      <Label layoutX="486.0" layoutY="22.0" text="Absent" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="12.0" />
-         </font></Label>
-      <Label layoutX="286.0" layoutY="22.0" text="Present" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="12.0" />
-         </font></Label>
-      <Button fx:id="makeAbsentButton" layoutX="212.0" layoutY="318.0" mnemonicParsing="false" onAction="#onMakeAbsentClick" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: white;" text="Maak absent" />
-      <Button fx:id="makePresentButton" layoutX="410.0" layoutY="318.0" mnemonicParsing="false" onAction="#onMakePresentClick" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: white;" text="Maak present" />
-      <Button fx:id="doneButton" layoutX="528.0" layoutY="361.0" mnemonicParsing="false" onAction="#onDoneClick" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: white;" text="Klaar" />
-      <ComboBox fx:id="classComboBox" layoutX="14.0" layoutY="44.0" onAction="#onClassComboBoxClick" prefHeight="25.0" prefWidth="188.0" />
-      <Label layoutX="16.0" layoutY="22.0" prefHeight="17.0" prefWidth="29.0" text="Klas" textFill="WHITE" />
-      <Label layoutX="16.0" layoutY="134.0" text="Les" textFill="WHITE" />
-      <DatePicker fx:id="attendanceDatePicker" layoutX="14.0" layoutY="99.0" onAction="#onClassComboBoxClick" prefHeight="25.0" prefWidth="188.0" />
-      <Label layoutX="16.0" layoutY="76.0" text="Datum" textFill="WHITE" />
-      <ListView fx:id="lectureListView" layoutX="14.0" layoutY="161.0" onMouseClicked="#onLectureListViewClick" prefHeight="150.0" prefWidth="188.0" />
-      <Button fx:id="showReasonButton" layoutX="410.0" layoutY="286.0" mnemonicParsing="false" onAction="#onShowReasonClick" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: white;" text="Toon reden" />
-      <Separator layoutX="395.0" layoutY="16.0" orientation="VERTICAL" prefHeight="349.0" prefWidth="22.0" />
-      <Label fx:id="loggedTeacherLabel" layoutX="12.0" layoutY="378.0" text="logged_teacher" textFill="#ffffff66" />
+      <HBox prefHeight="349.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <VBox prefHeight="300.0" prefWidth="195.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="51.0" prefWidth="208.0" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <ComboBox fx:id="classComboBox" layoutY="38.0" onAction="#onClassComboBoxClick" prefHeight="25.0" prefWidth="208.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                        <Label layoutX="6.0" layoutY="6.0" prefHeight="17.0" prefWidth="29.0" text="Klas" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="51.0" prefWidth="208.0" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <DatePicker fx:id="attendanceDatePicker" onAction="#onClassComboBoxClick" prefHeight="25.0" prefWidth="188.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                        <Label text="Datum" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <TitledPane alignment="CENTER" collapsible="false" prefHeight="5000.0" prefWidth="5000.0" text="Les">
+                     <content>
+                        <ListView fx:id="lectureListView" onMouseClicked="#onLectureListViewClick" prefHeight="223.0" prefWidth="188.0" />
+                     </content>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TitledPane>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="350.0" prefWidth="185.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <TitledPane alignment="CENTER" collapsible="false" prefHeight="5000.0" prefWidth="178.0" text="Present" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                     <content>
+                        <ListView fx:id="presentListView" prefHeight="5000.0" prefWidth="185.0" />
+                     </content>
+                  </TitledPane>
+                  <Button fx:id="makeAbsentButton" mnemonicParsing="false" onAction="#onMakeAbsentClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Maak absent" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="350.0" prefWidth="200.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <TitledPane alignment="CENTER" collapsible="false" prefHeight="5000.0" prefWidth="194.0" text="Absent" VBox.vgrow="ALWAYS">
+                     <content>
+                        <ListView fx:id="absentListView" prefHeight="5000.0" prefWidth="198.0" />
+                     </content>
+                  </TitledPane>
+                  <Button fx:id="makePresentButton" mnemonicParsing="false" onAction="#onMakePresentClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Maak present" />
+                  <Button fx:id="showReasonButton" mnemonicParsing="false" onAction="#onShowReasonClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Toon reden" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="doneButton" layoutX="528.0" layoutY="361.0" mnemonicParsing="false" onAction="#onDoneClick" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: white;" text="Klaar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Label fx:id="loggedTeacherLabel" layoutX="12.0" layoutY="378.0" text="logged_teacher" textFill="#ffffff66" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
    </children>
 </AnchorPane>

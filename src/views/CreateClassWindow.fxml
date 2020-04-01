@@ -6,185 +6,84 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="424.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateClassWindowController">
-    <children>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-            <children>
-                <SplitPane dividerPositions="0.5" layoutX="204.0" layoutY="97.0" maxWidth="1.7976931348623157E308" prefHeight="160.0" styleClass="teacherBg" stylesheets="@style/TeacherBG.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                            <children>
-                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <children>
-                                        <HBox prefHeight="250.0" prefWidth="200.0">
-                                            <children>
-                                                <GridPane HBox.hgrow="ALWAYS">
-                                                    <columnConstraints>
-                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="177.0" />
-                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="153.0" />
-                                                    </columnConstraints>
-                                                    <rowConstraints>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    </rowConstraints>
-                                                    <children>
-                                                        <Label text="Studie richting" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-                                                            <padding>
-                                                                <Insets left="5.0" />
-                                                            </padding>
-                                                        </Label>
-                                                        <Label text="Studie jaar" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                                            <padding>
-                                                                <Insets left="5.0" />
-                                                            </padding>
-                                                        </Label>
-                                                        <Label text="Klas letter" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                                            <padding>
-                                                                <Insets left="5.0" />
-                                                            </padding>
-                                                        </Label>
-                                                        <Label text="Naam" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                                                            <padding>
-                                                                <Insets left="5.0" />
-                                                            </padding>
-                                                        </Label>
-                                                        <ComboBox fx:id="fieldOfStudy" prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP">
-                                                            <GridPane.margin>
-                                                                <Insets />
-                                                            </GridPane.margin>
-                                                        </ComboBox>
-                                                        <Spinner fx:id="studyYearNumber" prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                                            <GridPane.margin>
-                                                                <Insets />
-                                                            </GridPane.margin>
-                                                        </Spinner>
-                                                        <TextField fx:id="classLetter" maxWidth="250.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                                            <GridPane.margin>
-                                                                <Insets />
-                                                            </GridPane.margin>
-                                                        </TextField>
-                                                        <Label fx:id="generatedClassName" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                                                    </children>
-                                                </GridPane>
-                                            </children>
-                                        </HBox>
-                                        <TitledPane animated="false" collapsible="false" text="Toegevoegde Leerlingen">
-                                            <VBox.margin>
-                                                <Insets bottom="25.0" top="25.0" />
-                                            </VBox.margin>
-                                            <content>
-                                                <ListView fx:id="addedStudentsList" prefHeight="200.0" prefWidth="200.0" />
-                                            </content>
-                                        </TitledPane>
-                                        <GridPane>
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Button fx:id="moveStudentBackButton" mnemonicParsing="false" onAction="#onPutBackClick" style="-fx-background-color: white;" text="Zet terug" GridPane.halignment="RIGHT" />
-                                            </children>
-                                        </GridPane>
-                                    </children>
-                                    <padding>
-                                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                                    </padding>
-                                </VBox>
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="411.0" prefWidth="427.0">
-                            <children>
-                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <children>
-                                        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                            <children>
-                                                <TitledPane collapsible="false" prefWidth="304.0" text="Leerlingen" HBox.hgrow="ALWAYS">
-                                                    <content>
-                                                        <ListView fx:id="studentList" prefHeight="200.0" prefWidth="200.0" />
-                                                    </content>
-                                                </TitledPane>
-                                            </children>
-                                            <VBox.margin>
-                                                <Insets />
-                                            </VBox.margin>
-                                        </HBox>
-                                        <GridPane>
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Button fx:id="addStudentButton" mnemonicParsing="false" onAction="#onAddUserClick" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: white;" text="Voeg toe" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                    <TextField fx:id="searchStudentBar" maxWidth="307.0" onKeyTyped="#onSearchStudentClick" prefHeight="25.0" prefWidth="307.0" promptText="⌕ Leerling zoeken" />
-                                            </children>
-                                        </GridPane>
-                                        <HBox prefHeight="100.0" prefWidth="200.0">
-                                            <children>
-                                                <GridPane HBox.hgrow="ALWAYS">
-                                                    <columnConstraints>
-                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="128.0" />
-                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="226.0" />
-                                                    </columnConstraints>
-                                                    <rowConstraints>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    </rowConstraints>
-                                                    <children>
-                                                        <GridPane GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-                                                            <columnConstraints>
-                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            </columnConstraints>
-                                                            <rowConstraints>
-                                                                <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                                                <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-                                                            </rowConstraints>
-                                                            <children>
-                                                                <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#onConfirmClick" style="-fx-background-color: white;" text="Bevestig" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-                                                                    <GridPane.margin>
-                                                                        <Insets />
-                                                                    </GridPane.margin>
-                                                                </Button>
-                                                                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClick" style="-fx-background-color: white;" text="Annuleer" GridPane.halignment="RIGHT">
-                                                                    <GridPane.margin>
-                                                                        <Insets />
-                                                                    </GridPane.margin>
-                                                                </Button>
-                                                            </children>
-                                                        </GridPane>
-                                                    </children>
-                                                </GridPane>
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                    <padding>
-                                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                                    </padding>
-                                </VBox>
-                            </children>
-                        </AnchorPane>
-                    </items>
-                </SplitPane>
-            </children>
-        </AnchorPane>
-    </children>
-</VBox>
+<AnchorPane prefHeight="427.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" styleClass="teacherBg" stylesheets="@style/TeacherBG.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateClassWindowController">
+   <children>
+      <HBox prefHeight="427.0" prefWidth="716.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <VBox prefHeight="427.0" prefWidth="5000.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="25.0" prefWidth="5000.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Studie richting" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <ComboBox fx:id="fieldOfStudy" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="5000.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Studie jaar" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Spinner fx:id="studyYearNumber" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="35.0" prefHeight="25.0" prefWidth="5000.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Klas letter" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="classLetter" maxWidth="250.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="60.0" prefHeight="25.0" prefWidth="5000.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Label text="Naam" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="generatedClassName" alignment="CENTER_RIGHT" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <TitledPane animated="false" collapsible="false" prefHeight="5000.0" prefWidth="358.0" text="Toegevoegde Leerlingen" VBox.vgrow="ALWAYS">
+                     <content>
+                        <ListView fx:id="addedStudentsList" prefHeight="328.0" prefWidth="326.0" />
+                     </content>
+                  </TitledPane>
+                  <Button fx:id="moveStudentBackButton" mnemonicParsing="false" onAction="#onPutBackClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Zet terug" VBox.vgrow="NEVER" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="427.0" prefWidth="5000.0" spacing="10.0">
+               <children>
+                  <TitledPane collapsible="false" prefHeight="5000.0" prefWidth="358.0" text="Leerlingen" VBox.vgrow="ALWAYS">
+                     <content>
+                        <ListView fx:id="studentList" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </TitledPane>
+                  <TextField fx:id="searchStudentBar" onKeyTyped="#onSearchStudentClick" prefHeight="25.0" prefWidth="5000.0" promptText="⌕ Leerling zoeken" VBox.vgrow="NEVER" />
+                  <Button fx:id="addStudentButton" mnemonicParsing="false" onAction="#onAddUserClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Voeg toe" VBox.vgrow="NEVER" />
+                  <HBox prefHeight="25.0" prefWidth="358.0" spacing="5.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Annuleer" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#onConfirmClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Bevestig" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
