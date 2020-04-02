@@ -6,7 +6,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-public class Utils {
+public final class Utils {
+
+    /**
+     * We should not be able to make an instance of this class
+     */
+    private Utils() {}
 
     public static UUID idGenerator() {
         UUID id = UUID.randomUUID();

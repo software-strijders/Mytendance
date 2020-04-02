@@ -11,7 +11,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class FXUtils {
+public final class FXUtils {
+
+    /**
+     * We should not be able to make an instance of this class
+     */
+    private FXUtils() {}
 
     private static final String appTitle = "Mytendance";
 
