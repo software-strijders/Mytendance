@@ -9,7 +9,9 @@ Mytendance is een Presentie InformatieSysteem (PrIS). Dit systeem automatiseert 
   - [Staging area](#staging-area)
   - [Commits](#commits)
   - [Pushen](#pushen)
+  - [Git rebase](#git-rebase)
   - [Merge conflicts](#merge-conflicts)
+  - [Git Stash](#git-stash)
   - [Commando cheatsheet](#commando-cheatsheet)
   - [Help](#help)
 - [GitHub gerelateerd](#github-gerelateerd)
@@ -161,25 +163,71 @@ De volgende keren hoef je dus alleen maar `git push` te doen!
 
 Nadat je gepushed heb kan je een [Pull request](#pull-requests) maken.
 
+### Git rebase
+Om te zorgen dat je de laatste veranderingen van `master` in jouw branch krijgt, moet je het volgende doen:
+
+Het is altijd best practice om de laatste changes even van `master` te halen. Eventueel is het ook handig om `git status` te doen, sinds er veranderingen kunnen zien die je wilt opslaan. Dit kan je doen door een tijdelijke commit te maken of door te [stashen.](#git-stash)
+```
+$ git checkout master
+...
+$ git pull
+```
+
+Hierna moet je weer terug naar de branch waar je oorspronkelijk in zat, doormiddel van een [checkout.](#branches)
+
+Nadat je weer in je eigen branch zit, is het tijd om de changes van master in de desbetreffende branch te zetten. Dit kunnen we doen door het volgende:
+```
+$ git rebase master
+```
+
+Als je al commits had gemaakt zal je zien dat de rebase daarover heen gaat. Als alles goed ging, zal je niet al te veel zien. Meestal, als het fout gaat, krijg je een lap tekst te zien. Als je die lap tekst ziet, kan je er van uit gaan dat er een merge conflict is.
+
 ### Merge conflicts
-Als je probeert te pushen of je pulled iets en je krijgt merge conflicts, probeer het (voor nu) dan niet op te lossen. Vaak wordt het probleem alleen maar erger. Als je @xandervedder om hulp vraagt zal hij laten zien hoe je het kan oplossen.
+Voor hulp vraag @xandervedder maar, het kan alsnog handig zijn om te weten hoe je de merge conflict kan bekijken.
+
+Om te zien waar Git precies op faalt, kan je Intellij gebruiken. Als je een merge conflict heb moet je linksonderin in Intellij op de `9: Version Control` knop drukken. Hierna wordt er een kleine scherm geopend waarin `Resolve` in het blauw staat. Dit opent een kleine menu met de bestanden die een merge conflict hebben.
+
+ Als je op één van deze bestanden dubbelklikt, opent Intellij de zogenaamde Diff view:
+
+ ![Image](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.tilcode.com%2Fwp-content%2Fuploads%2F2015%2F09%2Fintellij_merge_conflict_tool.png&f=1&nofb=1)
+
+ In het midden kan je het uiteindelijke resultaat zien, aan de linker kant zijn jouw veranderingen en aan de rechterkan zijn(meestal) de veranderingen van `master`
+
+### Git stash
+Als je je veranderingen nog niet wil committen, kan het handig zijn om je veranderingen tijdelijk in een "zak" te stoppen. In Git kan dat door het volgende te gebruiken:
+```
+$ git stash
+```
+Deze commando slaat het volgende op:
+ - Nieuwe bestanden.
+ - Added changes.
+ - Gemodificeerde bestande.
+
+Het slaat alleen geen `untracked` bestanden op, daar is wel een flag voor:
+```
+$  git stash -u
+```
+
+`-u` zorgt ervoor dat de untracked veranderingen/toevoegingen ook in de "zak" worden opgeslagen.
 
 ### Commando cheatsheet
-| Commando                                       | Beschrijving                                                                     |
-| -----------------------------------------------|----------------------------------------------------------------------------------| 
-| git pull                                       | Haalt de nieuwste verandering van remote (GitHub)                                | 
-| git branch                                     | Toont alle branches (lokaal)                                                     |  
-| git branch branch_naam                         | Maakt een nieuwe branch met naam                                                 |  
-| git checkout branch_naam                       | gaat in de branch                                                                | 
-| git checkout -b nieuwe_branch_naam             | Korte manier om een nieuwe branch aan te maken en gaat er gelijk in              | 
-| git status                                     | Toont de status: modified, deleted en added changes                              | 
-| git add naam_van_bestand                       | Voegt bestand toe aan staging                                                    | 
-| git add naam_van_directory/                    | Voegt gehele directory aan staging (recursief, alle bestanden in directory)      | 
-| git commit                                     | Opent een editor (`nano` of `vim`) om een commit message in te voeren            | 
-| git commit -m "message"                        | Korte manier om een commit aan te maken met message                              | 
-| git push                                       | Pushed gemaakte commits naar remote (GitHub). Check of je niet in master zit!    | 
-| git push --set-upstream origin naam_van_branch | Hierdoor weet Git waarnaartoe die moet pushen                                    | 
-| tig                                            | Toont een tekstuele representatie van de geschiedenis van commits                | 
+| Commando                                       | Beschrijving                                                                      |
+| -----------------------------------------------|-----------------------------------------------------------------------------------| 
+| git pull                                       | Haalt de nieuwste verandering van remote (GitHub).                                | 
+| git branch                                     | Toont alle branches (lokaal).                                                     |  
+| git branch branch_naam                         | Maakt een nieuwe branch met naam.                                                 |  
+| git checkout branch_naam                       | gaat in de branch.                                                                | 
+| git checkout -b nieuwe_branch_naam             | Korte manier om een nieuwe branch aan te maken en gaat er gelijk in.              | 
+| git status                                     | Toont de status: modified, deleted en added changes.                              | 
+| git add naam_van_bestand                       | Voegt bestand toe aan staging.                                                    | 
+| git add naam_van_directory/                    | Voegt gehele directory aan staging (recursief, alle bestanden in directory).      | 
+| git commit                                     | Opent een editor (`nano` of `vim`) om een commit message in te voeren.            | 
+| git commit -m "message"                        | Korte manier om een commit aan te maken met message.                              | 
+| git push                                       | Pushed gemaakte commits naar remote (GitHub). Check of je niet in master zit!     | 
+| git push --set-upstream origin naam_van_branch | Hierdoor weet Git waarnaartoe die moet pushen.                                    | 
+| git stash                                      | Sla (bijna) alles tijdelijk op in een "zak".                                      | 
+| git rebase branch_naam                         | Baseer de huidige branch op een andere branch.                                    | 
+| tig                                            | Toont een tekstuele representatie van de geschiedenis van commits.                | 
 
 ### Ik kom er niet uit
 Het kan gebeuren dat je niet meer weet wat je moet doen of je hebt iets gesloopt. Als je problemen heb met Git, vraag @xandervedder om hulp!
