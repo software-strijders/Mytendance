@@ -2,7 +2,6 @@ package models.user;
 
 import enums.UserType;
 import utils.Utils;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

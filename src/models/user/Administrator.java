@@ -15,7 +15,7 @@ public class Administrator extends User {
 
     public static void addUser(User newUser) throws IllegalArgumentException {
         if (User.getRegisteredUsers().contains(newUser))
-            throw new IllegalArgumentException("De gebruiker bestaat al");
+            throw new IllegalArgumentException("De gebruiker bestaat al :(");
         else
             User.addUser(newUser);
     }

@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 import models.Class;
 import models.FieldOfStudy;
 import models.user.Student;
@@ -14,13 +13,11 @@ import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-public class CreateClassWindowController {
+public class CreateClassController {
 
     private List<Student> allStudents;
 
@@ -31,37 +28,31 @@ public class CreateClassWindowController {
     @FXML private Label generatedClassName;
     @FXML private ListView<Student> addedStudentsList;
     @FXML private ListView<Student> studentList;
-    @FXML private Button cancelButton;
 
     public void initialize() {
         this.allStudents = Student.getRegisteredStudents();
 
-        ObservableList<FieldOfStudy> studyField = FXCollections.observableArrayList(FieldOfStudy.getFieldOfStudies());
-        this.fieldOfStudy.setItems(studyField);
-        this.fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, t1) -> this.showGeneratedName());
+        this.fieldOfStudy.setItems(FXCollections.observableList(FieldOfStudy.getFieldOfStudies()));
+        this.fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, teacher) -> this.showGeneratedName());
 
-        SpinnerValueFactory<Integer> yearOfStudy = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 4, 1);
-        this.studyYearNumber.setValueFactory(yearOfStudy);
-        this.studyYearNumber.getEditor().textProperty().addListener((observableValue, s, t1) -> this.showGeneratedName());
+        this.studyYearNumber.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 4, 1));
+        this.studyYearNumber.getEditor().textProperty().addListener((observableValue, student, teacher) -> this.showGeneratedName());
 
-        this.classLetter.setPromptText("1 karakter");
-        this.classLetter.textProperty().addListener((observableValue, s, t1) -> this.showGeneratedName());
+        this.classLetter.textProperty().addListener((observableValue, student, teacher) -> this.showGeneratedName());
 
         this.studentList.setItems(FXCollections.observableList(this.allStudents));
         this.studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     private void showGeneratedName() {
-        if (this.fieldOfStudy.getValue() == null ||
-                this.studyYearNumber.getValue() == null ||
-                this.classLetter.getText() == null ||
-                this.classLetter.getText().length() != 1 ||
-                Utils.isNumeric(this.classLetter.getText())) {
-            return;
-        }
-        this.generatedClassName.setText(Utils.formatClassName(this.fieldOfStudy.getValue().toString(),
-                this.studyYearNumber.getValue(),
-                Utils.getCharFromStringByIndex(this.classLetter.getText(), 0)));
+        if (this.fieldOfStudy.getValue() != null
+                && this.studyYearNumber.getValue() != null
+                && this.classLetter.getText() != null
+                && this.classLetter.getText().length() == 1
+                && !Utils.isNumeric(this.classLetter.getText()))
+            this.generatedClassName.setText(Utils.formatClassName(
+                    this.fieldOfStudy.getValue().toString(), this.studyYearNumber.getValue(),
+                    Utils.getCharFromStringByIndex(this.classLetter.getText(), 0)));
     }
 
     @FXML
@@ -93,45 +84,43 @@ public class CreateClassWindowController {
     }
 
     public void onConfirmClick(ActionEvent event) {
-        if (generatedClassName.getText().isEmpty() && addedStudentsList.getItems().isEmpty()) {
-            // Warnings en errors zijn eigenlijk bedoeld voor harde systeemfouten, bij foutieve gebruikersinvoer
-            // zijn info messages voldoende. Dit komt een stuk vriendelijker over en wordt ook over het algemeen aangeraden
-            FXUtils.showAlert("Vul alle velden (correct) in!", Alert.AlertType.INFORMATION);
+        if (generatedClassName.getText().isEmpty()
+                || addedStudentsList.getItems().isEmpty()) {
+            FXUtils.showInfo("Niet alle velden zijn ingevuld :(");
+            return;
         }
         Class newClass = new Class(UUID.randomUUID(),
                 this.studyYearNumber.getValueFactory().getValue(),
                 Utils.getCharFromStringByIndex(this.classLetter.getText(), 0),
                 this.fieldOfStudy.getValue(),
-                Collections.unmodifiableList(this.addedStudentsList.getItems()));
+                new ArrayList<>(this.addedStudentsList.getItems()));
 
         if (Class.getAllClasses().contains(newClass)) {
-            FXUtils.showAlert("Klas bestaat al!", Alert.AlertType.INFORMATION); // Zie comment hierboven
+            FXUtils.showInfo("De klas bestaat al :(");
             return;
         }
-
         if (User.getLoggedInUser() instanceof Teacher) {
-            ((Teacher) User.getLoggedInUser()).addClass(newClass);
+            ((Teacher)User.getLoggedInUser()).addClass(newClass);
         }
-
         Class.addClass(newClass);
-        FXUtils.showAlert("Klas toegevoegd.", Alert.AlertType.INFORMATION); // Zie comment hierboven
-    }
-
-    @FXML
-    private void onCancelClick(ActionEvent event) {
-        ((Stage) this.cancelButton.getScene().getWindow()).close();
+        FXUtils.showInfo("De nieuwe klas is toegevoegd :)");
     }
 
     @FXML
     private void onSearchStudentClick(KeyEvent event) {
-        String searched = this.searchStudentBar.getText();
-        ArrayList<Student> matchedStudents = new ArrayList<>();
+        String searchQuery = this.searchStudentBar.getText();
+        List<Student> matchedStudents = new ArrayList<>();
 
         for (Student student : this.allStudents) {
-            if (student.toString().toLowerCase().contains(searched.toLowerCase())) {
+            if (student.toString().toLowerCase().contains(searchQuery.toLowerCase())) {
                 matchedStudents.add(student);
             }
         }
         this.studentList.setItems(FXCollections.observableList(matchedStudents));
+    }
+
+    @FXML
+    private void onCancelClick(ActionEvent event) {
+        FXUtils.closeStage(event);
     }
 }

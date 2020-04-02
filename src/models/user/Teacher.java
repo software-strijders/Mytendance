@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Teacher extends User {
 
-    private List<Class> classes =  new ArrayList<>();
+    private List<Class> classes = new ArrayList<>();
     private List<Lecture> lectures = new ArrayList<>();
 
     public Teacher(String firstName, String lastName, String email, String password) {

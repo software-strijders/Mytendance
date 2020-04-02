@@ -43,7 +43,7 @@ public class Class {
     }
 
     public UUID getClassId() {
-        return classId;
+        return this.classId;
     }
 
     public void setClassId(UUID classId) {
@@ -51,7 +51,7 @@ public class Class {
     }
 
     public int getYearOfStudy() {
-        return yearOfStudy;
+        return this.yearOfStudy;
     }
 
     public void setYearOfStudy(int yearOfStudy) {
@@ -59,7 +59,7 @@ public class Class {
     }
 
     public char getGroup() {
-        return group;
+        return this.group;
     }
 
     public void setGroup(char group) {
@@ -67,7 +67,7 @@ public class Class {
     }
 
     public FieldOfStudy getStudyField() {
-        return studyField;
+        return this.studyField;
     }
 
     public void setStudyField(FieldOfStudy studyField) {
@@ -101,7 +101,7 @@ public class Class {
     }
 
     public List<Student> getStudents() {
-        return Collections.unmodifiableList(students);
+        return Collections.unmodifiableList(this.students);
     }
 
     public void setStudents(List<Student> students) {

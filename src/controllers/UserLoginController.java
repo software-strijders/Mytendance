@@ -3,7 +3,6 @@ package controllers;
 import enums.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.user.Administrator;
@@ -19,6 +18,7 @@ public class UserLoginController {
     @FXML private TextField emailField;
     @FXML private TextField passwordField;
     @FXML private Label userTypeLabel;
+
     private String email;
     private String password;
     private UserType userType;
@@ -29,20 +29,9 @@ public class UserLoginController {
         this.userType = type;
     }
 
-    private void loadRoleSelection(ActionEvent event) throws IOException {
-        FXUtils.loadComponent("Selecteer rol",
-                "/views/RoleSelection.fxml", event);
-    }
-
     @FXML
     public void handleSwitchRole(ActionEvent event) {
-        try {
-            this.loadRoleSelection(event);
-        } catch (IOException exception) {
-            FXUtils.showWarning("Het rol selectie menu kan niet geladen worden :(", exception);
-        } catch (Exception exception) {
-            FXUtils.showError("Er is iets goed misgegaan x(", exception);
-        }
+        FXUtils.loadView("Selecteer rol", "/views/RoleSelection.fxml", event);
     }
 
     private void obtainCredentials() throws InputMismatchException {
@@ -71,9 +60,9 @@ public class UserLoginController {
         String resource;
 
         if (this.loggedInUser instanceof Teacher)
-            resource = "/views/DocentMenu.fxml";
+            resource = "/views/TeacherMenu.fxml";
         else if (this.loggedInUser instanceof Administrator)
-            resource = "/views/AdministratorMenu.fxml";
+            resource = "/views/AdminMenu.fxml";
         else
             // Load student menu by default
             resource = "/views/StudentMenu.fxml";
@@ -95,9 +84,9 @@ public class UserLoginController {
             FXUtils.showInfo("Het e-mailadres of wachtwoord is incorrect :(");
         } catch (IOException exception) {
             this.clearPassword();
-            FXUtils.showWarning("Het hoofdmenu kan niet geladen worden :(", exception);
+            FXUtils.showWarning(exception, "Hoofdmenu");
         } catch (Exception exception) {
-            FXUtils.showError("Er is iets goed misgegaan x(", exception);
+            FXUtils.showError(exception);
         }
     }
 }

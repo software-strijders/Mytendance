@@ -1,36 +1,21 @@
 package utils;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import models.user.User;
-
-import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
 
     public static UUID idGenerator() {
         UUID id = UUID.randomUUID();
-        if(checkDuplicateId(id)) {
-            idGenerator();
-        }
-        return id;
+        return idAlreadyExists(id) ? idGenerator() : id;
     }
 
-    static boolean checkDuplicateId(UUID id) {
+    static boolean idAlreadyExists(UUID id) {
         for (User user : User.getRegisteredUsers()) {
-            if(user.getUserId() == id){
+            if (user.getUserId() == id) {
                 return true;
             }
         }
@@ -46,11 +31,7 @@ public class Utils {
     }
 
     public static char getCharFromStringByIndex(String string, int index) {
-        if (string.isEmpty()) {
-            return '0'; // Unsure what to return here
-        }
-
-        return string.charAt(index);
+        return string.isEmpty() ? '0' : string.charAt(index);
     }
 
     public static String capitalize(String string) {
@@ -65,8 +46,7 @@ public class Utils {
             "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     public static boolean isEmailValid(String email) {
-        Matcher matcher = EMAIL_ADDR_REGEX.matcher(email);
-        return matcher.find();
+        return EMAIL_ADDR_REGEX.matcher(email).find();
     }
 
     public static String formatDateTime(LocalDateTime date, String pattern) {

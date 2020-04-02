@@ -72,7 +72,7 @@ public class Lecture {
     }
 
     public LocalDateTime getStartDate() {
-        return startDate;
+        return this.startDate;
     }
 
     public void setStartDate(LocalDateTime startDate) {
@@ -80,7 +80,7 @@ public class Lecture {
     }
 
     public int getDuration() {
-        return duration;
+        return this.duration;
     }
 
     public void setDuration(int duration) {
@@ -88,7 +88,7 @@ public class Lecture {
     }
 
     public SubjectType getSubjectType() {
-        return subjectType;
+        return this.subjectType;
     }
 
     public void setSubjectType(SubjectType subjectType) {
@@ -96,7 +96,7 @@ public class Lecture {
     }
 
     public Teacher getTeacher() {
-        return teacher;
+        return this.teacher;
     }
 
     public void setTeacher(Teacher teacher) {
@@ -105,7 +105,7 @@ public class Lecture {
 
 
     public Class getClassName() {
-        return className;
+        return this.className;
     }
 
     public void setClassName(Class className) {
@@ -113,7 +113,7 @@ public class Lecture {
     }
 
     public List<Attendance> getAttendances() {
-        return Collections.unmodifiableList(attendances);
+        return Collections.unmodifiableList(this.attendances);
     }
 
     public void addAttendance(Attendance attendance) {
