@@ -52,7 +52,7 @@ public class Attendance {
     }
 
     public Student getStudent() {
-        return student;
+        return this.student;
     }
 
     public void setStudent(Student student) {
@@ -89,7 +89,7 @@ public class Attendance {
             return student.toString();
         }
         else {
-            return String.format("%s - %s", this.student, this.reason.typeName());
+            return String.format("%s - %s", this.student, this.reason);
         }
     }
 }

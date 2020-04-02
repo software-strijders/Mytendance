@@ -15,7 +15,8 @@ public enum ReasonType {
         this.typeName = typeName;
     }
 
-    public String typeName() {
+    @Override
+    public String toString() {
         return this.typeName;
     }
 }

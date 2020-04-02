@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import models.Attendance;
 import models.Class;
 import models.Lecture;
@@ -38,32 +37,34 @@ public class CreateLectureController {
     private LocalDate selectedDate;
 
     @FXML
-    private void initialize() throws Exception {
-        setUpUser();
-        setUpSpinners();
-        setUpFactory();
-        setUpListeners();
+    private void initialize() throws IllegalAccessException {
+        this.setUpUser();
+        this.setUpSpinners();
+        this.setUpFactory();
+        this.setUpListeners();
 
-        lectureTitlePane.setText("Geen datum geselecteerd");
-        classComboBox.setPromptText("Klas");
-        classComboBox.setItems(FXCollections.observableArrayList(this.teacher.getAllClasses()));
-        subjectComboBox.setPromptText("Vak");
-        subjectComboBox.setItems(FXCollections.observableArrayList(SubjectType.values()));
+        this.lectureTitlePane.setText("Geen datum geselecteerd");
+        this.classComboBox.setPromptText("Klas");
+        this.classComboBox.setItems(FXCollections.observableArrayList(this.teacher.getAllClasses()));
+        this.subjectComboBox.setPromptText("Vak");
+        this.subjectComboBox.setItems(FXCollections.observableArrayList(SubjectType.values()));
     }
 
-    private void setUpUser() throws Exception {
-        User tempUser = User.getLoggedInUser();
-        if (tempUser instanceof Teacher)
-            this.teacher = (Teacher)tempUser;
+    private void setUpUser() throws IllegalAccessException {
+        if (User.getLoggedInUser() instanceof Teacher)
+            this.teacher = (Teacher)User.getLoggedInUser();
         else
-            throw new Exception("Dit scherm is alleen toegankelijk voor docenten!");
+            throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten!");
     }
 
     private void setUpSpinners() {
         LocalDateTime now = LocalDateTime.now();
-        SpinnerValueFactory<Integer> hourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 24, now.getHour());
-        SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, now.getMinute());
-        SpinnerValueFactory<Integer> durationFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(60, 240, 60);
+        SpinnerValueFactory<Integer> hourFactory = new SpinnerValueFactory
+                .IntegerSpinnerValueFactory(1, 24, now.getHour());
+        SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory
+                .IntegerSpinnerValueFactory(0, 59, now.getMinute());
+        SpinnerValueFactory<Integer> durationFactory = new SpinnerValueFactory
+                .IntegerSpinnerValueFactory(60, 240, 60);
 
         this.minuteSpinner.setEditable(true);
         this.hourSpinner.setEditable(true);
@@ -81,15 +82,14 @@ public class CreateLectureController {
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
                 LocalDate today = LocalDate.now();
-
                 setDisable(empty || item.compareTo(today) < 0);
             }
         });
     }
 
     private void setUpListeners() {
-        this.classComboBox.valueProperty().addListener((observableValue, aClass, t1) -> updateLectureListView());
-        this.startDatePicker.valueProperty().addListener((observableValue, localDate, t1) -> {
+        this.classComboBox.valueProperty().addListener((observableValue, aClass, teacher) -> updateLectureListView());
+        this.startDatePicker.valueProperty().addListener((observableValue, localDate, teacher) -> {
             updateLectureListView();
             updateLectureTitlePane();
         });
@@ -121,8 +121,8 @@ public class CreateLectureController {
         try {
             this.obtainVariables();
             this.createLecture();
-        } catch (InputMismatchException | IllegalArgumentException e) {
-            FXUtils.showAlert(e.getMessage(), Alert.AlertType.INFORMATION);
+        } catch (InputMismatchException | IllegalArgumentException exception) {
+            FXUtils.showWarning(exception.getMessage());
         }
     }
 
@@ -153,24 +153,23 @@ public class CreateLectureController {
         this.teacher.addLecture(lecture);
         this.selectedClass.addLecture(lecture);
 
-        lectureListView.setItems(FXCollections.observableArrayList(
+        this.lectureListView.setItems(FXCollections.observableArrayList(
                 this.selectedClass.getLecturesByDateTime(this.selectedDate)));
-        FXUtils.showAlert("Les aangemaakt!", Alert.AlertType.INFORMATION);
+        FXUtils.showInfo("Les aangemaakt!");
     }
 
     private List<Attendance> createAttendances() {
         // TODO: in the future, when a student can toggle their absence, we should check if it's toggled here:
         List<Attendance> attendances = new ArrayList<>();
+
         for (Student student : this.classComboBox.getValue().getStudents()) {
             attendances.add(new Attendance(student));
         }
-
         return attendances;
     }
 
     @FXML
     private void onCancelClick(ActionEvent event) {
-        Stage stage = (Stage) lectureTitlePane.getScene().getWindow();
-        stage.close();
+        FXUtils.closeStage(event);
     }
 }
