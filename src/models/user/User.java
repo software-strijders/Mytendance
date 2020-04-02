@@ -85,6 +85,7 @@ public abstract class User {
 
     @Override
     public String toString() {
+        // In some cases this doesn't really work, we should take another look at the capitalize method
         return String.format("%s %s", Utils.capitalize(this.firstName), Utils.capitalize(this.lastName));
     }
 
