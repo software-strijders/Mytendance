@@ -23,6 +23,7 @@ public class TeacherShowLecturesController {
         final DatePickerSkin skin = new DatePickerSkin(teacherDatePicker);
         root.getChildren().add(skin.getPopupContent());
         datePickerAnchorPane.getChildren().add(root);
+        
     }
 
     public void onCancelPressed(ActionEvent actionEvent) {
