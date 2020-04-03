@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="Electron" modified="2020-04-03T01:22:08.965Z" agent="Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/12.9.3 Chrome/80.0.3987.158 Electron/8.2.0 Safari/537.36" etag="2x213JO8p1uDu3gmbxBP" version="12.9.3" type="device">
+<mxfile host="Electron" modified="2020-04-03T11:39:55.478Z" agent="Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/12.9.3 Chrome/80.0.3987.158 Electron/8.2.0 Safari/537.36" etag="yz3zsn5zyK9zGp5bfAiB" version="12.9.3" type="device">
   <diagram id="s01FKdqWbhipdYAItNWq" name="Page-1">
-    <mxGraphModel dx="972" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="779" dy="466" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -41,14 +41,14 @@
         <mxCell id="Ym1vVd_rzVX-ak5kraUK-89" value="&lt;font style=&quot;font-size: 18px&quot;&gt;Anders&lt;/font&gt;" style="shape=ellipse;fillColor=#FF8000;strokeColor=#FF8000;html=1;align=left;spacingLeft=4;fontSize=17;labelPosition=right;shadow=0;" vertex="1" parent="Ym1vVd_rzVX-ak5kraUK-76">
           <mxGeometry x="20" y="165" width="15" height="15" as="geometry" />
         </mxCell>
-        <mxCell id="Ym1vVd_rzVX-ak5kraUK-93" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="120" y="320" width="290" height="120" as="geometry" />
+        <mxCell id="Ym1vVd_rzVX-ak5kraUK-66" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Vak&lt;/th&gt;&lt;th&gt;Begin&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;OOAD&lt;/td&gt;&lt;td style=&quot;text-align: right&quot;&gt;10:00&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;OOP&lt;/td&gt;&lt;td style=&quot;text-align: right&quot;&gt;12:00&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="1">
+          <mxGeometry x="120" y="320" width="110" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="Ym1vVd_rzVX-ak5kraUK-67" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Eind&lt;/th&gt;&lt;th&gt;Leerlingen&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align: right&quot;&gt;12:00&lt;/td&gt;&lt;td style=&quot;text-align: right&quot;&gt;21&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align: right&quot;&gt;14:00&lt;/td&gt;&lt;td style=&quot;text-align: right&quot;&gt;25&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="Ym1vVd_rzVX-ak5kraUK-93">
-          <mxGeometry x="150" width="140" height="120" as="geometry" />
+        <mxCell id="Ym1vVd_rzVX-ak5kraUK-94" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;&lt;br&gt;&lt;/th&gt;&lt;th&gt;Leerlingen&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align: right&quot;&gt;&lt;br&gt;&lt;/td&gt;&lt;td style=&quot;text-align: right&quot;&gt;21&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align: right&quot;&gt;&lt;br&gt;&lt;/td&gt;&lt;td style=&quot;text-align: right&quot;&gt;25&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="1">
+          <mxGeometry x="350" y="320" width="80" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="Ym1vVd_rzVX-ak5kraUK-66" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Vak&lt;/th&gt;&lt;th&gt;Begin&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;OOAD&lt;/td&gt;&lt;td style=&quot;text-align: right&quot;&gt;10:00&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;OOP&lt;/td&gt;&lt;td style=&quot;text-align: right&quot;&gt;12:00&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="Ym1vVd_rzVX-ak5kraUK-93">
-          <mxGeometry width="150" height="120" as="geometry" />
+        <mxCell id="Ym1vVd_rzVX-ak5kraUK-67" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size: 1em ; width: 100% ; height: 100%&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Eind&lt;/th&gt;&lt;th&gt;Klas&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align: right&quot;&gt;12:00&lt;/td&gt;&lt;td&gt;TICT-SD-V1E&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align: right&quot;&gt;14:00&lt;/td&gt;&lt;td&gt;TICT-TI-V1A&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="1">
+          <mxGeometry x="230" y="320" width="130" height="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
