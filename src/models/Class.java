@@ -22,12 +22,12 @@ public class Class {
     private ArrayList<Lecture> lectures = new ArrayList<>();
     private List<Student> students;
 
-    public Class(UUID classId, int yearOfStudy, char group, FieldOfStudy studyField) {
-        this(classId, yearOfStudy, group, studyField, new ArrayList<>());
+    public Class(int yearOfStudy, char group, FieldOfStudy studyField) {
+        this(yearOfStudy, group, studyField, new ArrayList<>());
     }
 
-    public Class(UUID classId, int yearOfStudy, char group, FieldOfStudy studyField, List<Student> students) {
-        this.classId = classId;
+    public Class(int yearOfStudy, char group, FieldOfStudy studyField, List<Student> students) {
+        this.classId = Utils.idGenerator();
         this.yearOfStudy = yearOfStudy;
         this.group = group;
         this.studyField = studyField;

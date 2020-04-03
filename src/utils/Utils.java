@@ -6,14 +6,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-public class Utils {
+public final class Utils {
+
+    /**
+     * We should not be able to make an instance of this class
+     */
+    private Utils() {}
 
     public static UUID idGenerator() {
         UUID id = UUID.randomUUID();
         return idAlreadyExists(id) ? idGenerator() : id;
     }
 
-    static boolean idAlreadyExists(UUID id) {
+    private static boolean idAlreadyExists(UUID id) {
         for (User user : User.getRegisteredUsers()) {
             if (user.getUserId() == id) {
                 return true;

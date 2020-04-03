@@ -8,6 +8,7 @@ import utils.Utils;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AdministratorTest {
+
     private User s1;
     private User s2;
     private User s3;

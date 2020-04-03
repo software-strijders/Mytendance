@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClassTest {
 
-    private UUID id = Utils.idGenerator();
     private ArrayList<Student> students;
     private FieldOfStudy study;
     private Class newClass1;
@@ -30,7 +29,7 @@ class ClassTest {
         students.add(student3);
 
         study = new FieldOfStudy("TICT-SD");
-        newClass1 = new Class(id, 1, 'E', study, students);
+        newClass1 = new Class(1, 'E', study, students);
     }
 
     @Test
@@ -40,43 +39,43 @@ class ClassTest {
 
     @Test
     void classesShouldBeEqual() {
-        Class newClass2 = new Class(id, 1, 'E', study, students);
+        Class newClass2 = new Class(1, 'E', study, students);
         assertEquals(newClass1, newClass2);
     }
 
     @Test
     void classesShouldNotBeEqual() {
-        Class newClass2 = new Class(Utils.idGenerator(), 1, 'A', study, students);
+        Class newClass2 = new Class(1, 'A', study, students);
         assertNotEquals(newClass1, newClass2);
     }
 
     @Test
     void yearOfStudyShouldbeZero() {
-        Class newClass2 = new Class(Utils.idGenerator(), 0, 'A', study, students);
+        Class newClass2 = new Class(0, 'A', study, students);
         assertEquals(0, newClass2.getYearOfStudy());
     }
 
     @Test
     void yearOfStudyShouldbeOne() {
-        Class newClass2 = new Class(Utils.idGenerator(), 1, 'A', study, students);
+        Class newClass2 = new Class(1, 'A', study, students);
         assertEquals(1, newClass2.getYearOfStudy());
     }
 
     @Test
     void groupShouldBeEqual() {
-        Class newClass2 = new Class(Utils.idGenerator(), 1, 'A', study, students);
+        Class newClass2 = new Class(1, 'A', study, students);
         assertEquals('A', newClass2.getGroup());
     }
 
     @Test
     void studyFieldShouldBeNull() {
-        Class newClass2 = new Class(Utils.idGenerator(), 1, 'A', null, students);
+        Class newClass2 = new Class(1, 'A', null, students);
         assertNull(newClass2.getStudyField());
     }
 
     @Test
     void studyFieldShouldNotBeNull() {
-        Class newClass2 = new Class(Utils.idGenerator(), 1, 'A', study, students);
+        Class newClass2 = new Class(1, 'A', study, students);
         assertNotNull(newClass2.getStudyField());
     }
 }

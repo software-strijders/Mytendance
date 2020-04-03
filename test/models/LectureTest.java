@@ -27,7 +27,7 @@ class LectureTest {
         this.teacher = new Teacher("Henk", "Tank", "Henk@hu.nl", "w8woord");
         this.student = new Student("Xander", "Vedder", "xander.vedder@student.hu.nl", "goeie");
         this.study = new FieldOfStudy("TICT-SD");
-        this.theClass = new Class(Utils.idGenerator(), 1, 'A', this.study);
+        this.theClass = new Class(1, 'A', this.study);
         this.lecture = new Lecture(this.dateTime, 120, SubjectType.GP_SD, this.teacher, this.theClass);
         Lecture.addLecture(this.lecture);
     }

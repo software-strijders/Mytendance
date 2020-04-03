@@ -4,12 +4,13 @@ import enums.AttendanceType;
 import enums.ReasonType;
 import models.user.Student;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Attendance {
 
-    private static List<Attendance> attendances;
+    private static List<Attendance> attendances = new ArrayList<>();
 
     private ReasonType reason;
     private String reasonDescription;

@@ -60,7 +60,7 @@ public class CreateLectureController {
     private void setUpSpinners() {
         LocalDateTime now = LocalDateTime.now();
         SpinnerValueFactory<Integer> hourFactory = new SpinnerValueFactory
-                .IntegerSpinnerValueFactory(1, 24, now.getHour());
+                .IntegerSpinnerValueFactory(0, 23, now.getHour());
         SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory
                 .IntegerSpinnerValueFactory(0, 59, now.getMinute());
         SpinnerValueFactory<Integer> durationFactory = new SpinnerValueFactory
