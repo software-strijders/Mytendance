@@ -210,6 +210,13 @@ $  git stash -u
 
 `-u` zorgt ervoor dat de untracked veranderingen/toevoegingen ook in de "zak" worden opgeslagen.
 
+Om de veranderingen weer terug te krijgen kan je het volgende doen:
+```
+$ git stash pop 
+```
+
+Hiermee kan je de veranderingen weer terugkrijgen.
+
 ### Commando cheatsheet
 | Commando                                       | Beschrijving                                                                      |
 | -----------------------------------------------|-----------------------------------------------------------------------------------| 
