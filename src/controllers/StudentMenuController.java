@@ -28,4 +28,9 @@ public class StudentMenuController {
     public void showLecturesStudent(ActionEvent event) {
         FXUtils.loadView("Lessen overzicht","/views/StudentLectureOverview.fxml" , event);
     }
+
+    @FXML
+    public void onMakeAbsenceClick(ActionEvent event) {
+        FXUtils.loadView("Nieuwe absentiemelding", "/views/AddAbsence.fxml", event);
+    }
 }

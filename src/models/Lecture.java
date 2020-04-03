@@ -137,6 +137,8 @@ public class Lecture {
         this.attendances.add(attendance);
     }
 
+    public void removeAttendance(Attendance attendance) {this.attendances.remove(attendance); }
+
     public void clearAttendances() {
         this.attendances.clear();
     }
