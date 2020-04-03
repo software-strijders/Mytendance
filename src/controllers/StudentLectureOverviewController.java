@@ -28,12 +28,10 @@ public class StudentLectureOverviewController {
 
     @FXML
     void onCancelPressed(ActionEvent event) {
-
     }
 
     @FXML
     void onShowInfoButtonPressed(ActionEvent event) {
-
     }
 
 }
