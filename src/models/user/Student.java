@@ -1,7 +1,9 @@
 package models.user;
 
+import models.Class;
 import utils.Utils;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -23,5 +25,13 @@ public class Student extends User {
     public static List<Student> getRegisteredStudents() {
         return User.getRegisteredUsers().stream().filter(Student.class::isInstance)
                 .map(Student.class::cast).collect(Collectors.toList());
+    }
+
+    public List<Class> getClasses() {
+        return Collections.unmodifiableList(classes);
+    }
+
+    public void addClass(Class newClass) {
+        this.classes.add(newClass);
     }
 }

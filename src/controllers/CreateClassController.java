@@ -122,8 +122,15 @@ public class CreateClassController {
 
         this.clearFields();
         this.teacher.addClass(newClass);
+        this.addClassToSelectedStudents(newClass);
         Class.addClass(newClass);
         FXUtils.showInfo("De nieuwe klas is toegevoegd :)");
+    }
+
+    private void addClassToSelectedStudents(Class newClass) {
+        for (Student student : this.addedStudentsList.getItems()) {
+            student.addClass(newClass);
+        }
     }
 
     private void clearFields() {
