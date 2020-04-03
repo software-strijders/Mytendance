@@ -38,6 +38,11 @@ public class TeacherMenuController {
     }
 
     @FXML
+    public void onShowLecturesViewPressed(ActionEvent actionEvent) {
+        FXUtils.loadView("Overzicht Lessen", "/views/TeacherShowLectures.fxml", true);
+    }
+
+    @FXML
     public void logoutButtonOnClick(ActionEvent event) {
         FXUtils.loadView("Log in", "/views/RoleSelection.fxml", event);
     }
