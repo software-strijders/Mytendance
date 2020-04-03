@@ -22,10 +22,10 @@ public class StudentMenuController {
 
     @FXML
     public void onLogOutClick(ActionEvent event) {
-        FXUtils.loadView("Selecteer rol", "/views/showLecturesStudent", event);
+        FXUtils.loadView("Log in", "/views/RoleSelection.fxml", event);
     }
 
-    public void showLectuesStudent(ActionEvent actionEvent) {
-        FXUtils.loadView("Lessen overzicht","/views/StudentLectureOverview.fxml" , actionEvent);
+    public void showLecturesStudent(ActionEvent event) {
+        FXUtils.loadView("Lessen overzicht","/views/StudentLectureOverview.fxml" , event);
     }
 }
