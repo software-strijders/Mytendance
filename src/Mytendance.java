@@ -89,8 +89,8 @@ public class Mytendance extends Application {
         // User.setLoggedInUser(User.getRegisteredUsers().get(0));
         // FXUtils.loadStage("Main menu", "/views/TeacherMenu.fxml", stage);
         // FXUtils.loadStage("Add new lecture", "/views/CreateLecture.fxml", stage);
-        // FXUtils.loadStage("Selecteer rol", "/views/RoleSelection.fxml", stage);
-        FXUtils.loadStage("Selecteer rol", "/views/Mytendance.fxml", stage);
+        FXUtils.loadStage("Selecteer rol", "/views/RoleSelection.fxml", stage);
+        // FXUtils.loadStage("Selecteer rol", "/views/Mytendance.fxml", stage);
 
         stage.show();
     }
