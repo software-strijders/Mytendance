@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="427.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" styleClass="teacherBg" stylesheets="@style/TeacherBG.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateClassWindowController">
+<AnchorPane prefHeight="427.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" styleClass="teacherBg" stylesheets="@style/TeacherBG.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateClassController">
    <children>
       <HBox prefHeight="427.0" prefWidth="716.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
