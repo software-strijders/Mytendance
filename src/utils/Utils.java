@@ -28,15 +28,17 @@ public final class Utils {
     }
 
     public static boolean isNumeric(String text) {
-        return text.chars().allMatch(Character::isDigit);
+        return text.chars().anyMatch(Character::isDigit);
+    }
+
+    private static final Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+
+    public static boolean hasSpecial(String text) {
+        return pattern.matcher(text).find();
     }
 
     public static String formatClassName(String field, int studyYear, char group) {
         return String.format("%s-V%d%s", field, studyYear, group);
-    }
-
-    public static char getCharFromStringByIndex(String string, int index) {
-        return string.isEmpty() ? '0' : string.charAt(index);
     }
 
     public static String capitalize(String string) {
