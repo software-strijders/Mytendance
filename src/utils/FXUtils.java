@@ -95,12 +95,24 @@ public final class FXUtils {
         return stage;
     }
 
+    private static Node getNode(Event event) {
+        return (Node)event.getSource();
+    }
+
     private static Stage getStage(Event event) {
-        return (Stage)((Node)event.getSource()).getScene().getWindow();
+        return getStage(getNode(event));
+    }
+
+    private static Stage getStage(Node node) {
+        return (Stage)node.getScene().getWindow();
     }
 
     public static void closeStage(Event event) {
         getStage(event).close();
+    }
+
+    public static void closeStage(Node node) {
+        getStage(node).close();
     }
 
     public static void loadView(String title, String resource, boolean blockInput) {
