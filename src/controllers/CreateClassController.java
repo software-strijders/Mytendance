@@ -18,8 +18,6 @@ import java.util.UUID;
 
 public class CreateClassController {
 
-    private List<Student> allStudents;
-
     @FXML private TextField searchStudentBar;
     @FXML private ComboBox<FieldOfStudy> fieldOfStudy;
     @FXML private Spinner<Integer> studyYearNumber;
@@ -28,19 +26,43 @@ public class CreateClassController {
     @FXML private ListView<Student> addedStudentsList;
     @FXML private ListView<Student> studentList;
 
-    public void initialize() {
-        this.allStudents = Student.getRegisteredStudents();
+    private Teacher teacher;
+    private List<Student> allStudents;
 
+    public void initialize() throws IllegalAccessException {
+        setUpUser();
+        setUpItems();
+        setUpListeners();
+    }
+
+    private void setUpUser() throws IllegalAccessException {
+        // TODO: Util method?
+        if (User.getLoggedInUser() instanceof Teacher)
+            this.teacher = (Teacher)User.getLoggedInUser();
+        else
+            throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten!");
+    }
+
+    private void setUpItems() {
         this.fieldOfStudy.setItems(FXCollections.observableList(FieldOfStudy.getFieldOfStudies()));
-        this.fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, teacher) -> this.showGeneratedName());
-
         this.studyYearNumber.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 4, 1));
-        this.studyYearNumber.getEditor().textProperty().addListener((observableValue, student, teacher) -> this.showGeneratedName());
-
-        this.classLetter.textProperty().addListener((observableValue, student, teacher) -> this.showGeneratedName());
-
+        this.allStudents = Student.getRegisteredStudents();
         this.studentList.setItems(FXCollections.observableList(this.allStudents));
+
+        // Unsure whether or not we use this
         this.studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
+
+    private void setUpListeners() {
+        this.fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, teacher) -> this.showGeneratedName());
+        this.studyYearNumber.getEditor().textProperty().addListener((observableValue, oldText, newText) -> this.showGeneratedName());
+        this.classLetter.textProperty().addListener((observableValue, oldText, newText) -> {
+            if (newText.length() > 1 || Utils.hasSpecial(newText) || Utils.isNumeric(newText)) {
+                this.classLetter.setText(oldText);
+                return;
+            }
+            this.showGeneratedName();
+        });
     }
 
     private void showGeneratedName() {
@@ -51,7 +73,7 @@ public class CreateClassController {
                 && !Utils.isNumeric(this.classLetter.getText()))
             this.generatedClassName.setText(Utils.formatClassName(
                     this.fieldOfStudy.getValue().toString(), this.studyYearNumber.getValue(),
-                    Utils.getCharFromStringByIndex(this.classLetter.getText(), 0)));
+                    Utils.capitalize(this.classLetter.getText()).toCharArray()[0]));
     }
 
     @FXML
@@ -83,13 +105,13 @@ public class CreateClassController {
     }
 
     public void onConfirmClick(ActionEvent event) {
-        if (generatedClassName.getText().isEmpty()
-                || addedStudentsList.getItems().isEmpty()) {
+        if (this.generatedClassName.getText().isEmpty()
+                || this.addedStudentsList.getItems().isEmpty()) {
             FXUtils.showInfo("Niet alle velden zijn ingevuld :(");
             return;
         }
         Class newClass = new Class(this.studyYearNumber.getValueFactory().getValue(),
-                Utils.getCharFromStringByIndex(this.classLetter.getText(), 0),
+                Utils.capitalize(this.classLetter.getText()).toCharArray()[0],
                 this.fieldOfStudy.getValue(),
                 new ArrayList<>(this.addedStudentsList.getItems()));
 
@@ -97,11 +119,23 @@ public class CreateClassController {
             FXUtils.showInfo("De klas bestaat al :(");
             return;
         }
-        if (User.getLoggedInUser() instanceof Teacher) {
-            ((Teacher)User.getLoggedInUser()).addClass(newClass);
-        }
+
+        this.clearFields();
+        this.teacher.addClass(newClass);
         Class.addClass(newClass);
         FXUtils.showInfo("De nieuwe klas is toegevoegd :)");
+    }
+
+    private void clearFields() {
+        this.classLetter.clear();
+        this.searchStudentBar.clear();
+        this.generatedClassName.setText(""); // Can't clear this one, since it's a label
+        this.addedStudentsList.setItems(null);
+        this.studentList.setItems(FXCollections.observableArrayList(
+                Student.getRegisteredStudents()
+        ));
+        this.fieldOfStudy.getSelectionModel().clearSelection();
+        this.studyYearNumber.getValueFactory().valueProperty().setValue(1);
     }
 
     @FXML
