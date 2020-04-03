@@ -11,19 +11,15 @@ import javafx.scene.layout.StackPane;
 public class TeacherShowLecturesController {
 
     @FXML private AnchorPane datePickerAnchorPane;
-    @FXML private DatePicker teacherDatePicker;
+    @FXML private DatePicker datePicker;
     @FXML private ListView showLecturesListView;
 
     @FXML
     public void initialize() {
-        StackPane root=new StackPane(teacherDatePicker);
-        teacherDatePicker.setVisible( false );
-        teacherDatePicker.setManaged( false );
-
-        final DatePickerSkin skin = new DatePickerSkin(teacherDatePicker);
-        root.getChildren().add(skin.getPopupContent());
-        datePickerAnchorPane.getChildren().add(root);
-        
+        datePicker.setVisible(false);
+        datePicker.setManaged(false);
+        DatePickerSkin skin = new DatePickerSkin(datePicker);
+        datePickerAnchorPane.getChildren().add(skin.getPopupContent());
     }
 
     public void onCancelPressed(ActionEvent actionEvent) {
