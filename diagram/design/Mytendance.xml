@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2020-04-03T14:29:25.268Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/12.6.5 Chrome/80.0.3987.86 Electron/8.0.0 Safari/537.36" etag="h1fqro2ZkCNTo05M-i4k" version="12.6.5" type="device">
+  <diagram id="PNRvFYQ1bF7cPdeMvMJM" name="Page-1">
+    <mxGraphModel dx="2235" dy="808" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="yZoPbb-oceYOQRidegqC-1" value="Mytendance" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.window;align=left;verticalAlign=top;spacingLeft=8;strokeColor2=#008cff;strokeColor3=#c4c4c4;fontColor=#666666;mainText=;fontSize=17;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-150" width="1090" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="yZoPbb-oceYOQRidegqC-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-150" y="30" width="1090" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="yZoPbb-oceYOQRidegqC-8" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="-50" y="130" width="880" height="520" as="geometry"/>
+        </mxCell>
+        <mxCell id="yZoPbb-oceYOQRidegqC-3" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.rrect;rSize=10;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-145" y="35" width="500" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="yZoPbb-oceYOQRidegqC-4" value="..." style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.rrect;rSize=0;fontSize=17;fontColor=#666666;fontStyle=1;resizeHeight=1;" vertex="1" parent="yZoPbb-oceYOQRidegqC-3">
+          <mxGeometry width="125" height="50" relative="1" as="geometry">
+            <mxPoint x="125" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yZoPbb-oceYOQRidegqC-5" value="..." style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.rrect;rSize=0;fontSize=17;fontColor=#666666;fontStyle=1;resizeHeight=1;" vertex="1" parent="yZoPbb-oceYOQRidegqC-3">
+          <mxGeometry width="125" height="50" relative="1" as="geometry">
+            <mxPoint x="250" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yZoPbb-oceYOQRidegqC-6" value="..." style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.rightButton;rSize=10;fontSize=17;fontColor=#666666;fontStyle=1;resizeHeight=1;" vertex="1" parent="yZoPbb-oceYOQRidegqC-3">
+          <mxGeometry x="1" width="125" height="50" relative="1" as="geometry">
+            <mxPoint x="-125" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yZoPbb-oceYOQRidegqC-7" value="Overzicht" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.leftButton;rSize=10;fontSize=17;fontColor=#ffffff;fontStyle=1;fillColor=#008cff;strokeColor=#008cff;resizeHeight=1;" vertex="1" parent="yZoPbb-oceYOQRidegqC-3">
+          <mxGeometry width="125" height="50" relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="yZoPbb-oceYOQRidegqC-9" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;strokeWidth=1;shape=mxgraph.mockup.graphics.simpleIcon;strokeColor=#999999;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="150" width="720" height="480" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
