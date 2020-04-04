@@ -2,12 +2,15 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.user.User;
 import utils.FXUtils;
 
 public class StudentMenuController {
 
+    public Button lecturesStudentButton;
+    public Button logOutButton;
     @FXML private Label nameLabel;
 
     @FXML
@@ -19,6 +22,10 @@ public class StudentMenuController {
 
     @FXML
     public void onLogOutClick(ActionEvent event) {
-        FXUtils.loadView("Selecteer rol", "/views/RoleSelection.fxml", event);
+        FXUtils.loadView("Log in", "/views/RoleSelection.fxml", event);
+    }
+
+    public void showLecturesStudent(ActionEvent event) {
+        FXUtils.loadView("Lessen overzicht","/views/StudentLectureOverview.fxml" , event);
     }
 }
