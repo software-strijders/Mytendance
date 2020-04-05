@@ -75,6 +75,6 @@
          </children>
       </HBox>
       <Button fx:id="doneButton" layoutX="528.0" layoutY="361.0" mnemonicParsing="false" onAction="#onDoneClick" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: white;" text="Klaar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Label fx:id="loggedTeacherLabel" layoutX="12.0" layoutY="378.0" text="logged_teacher" textFill="#ffffff66" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+      <Label fx:id="teacherLabel" layoutX="12.0" layoutY="378.0" text="FirstName LastName" textFill="#ffffff66" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
    </children>
 </AnchorPane>

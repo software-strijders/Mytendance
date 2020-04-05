@@ -1,9 +1,7 @@
 package models;
 
 import enums.AttendanceType;
-import enums.ReasonType;
 import models.user.Student;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,29 +10,19 @@ public class Attendance {
 
     private static List<Attendance> attendances = new ArrayList<>();
 
-    private ReasonType reason;
-    private String reasonDescription;
+    private AttendanceType type;
+    private String description;
     private Student student;
-    private AttendanceType attendanceType;
 
-    /**
-     * constructor for AttendanceType.PRESENT
-     */
     public Attendance(Student student) {
-        this(null, null, student, AttendanceType.PRESENT);
+        this(student, AttendanceType.PRESENT, "");
     }
 
-    /**
-     * constructor for any AttendanceType:
-     * Any other attendance type needs a reason with it.
-     */
-    public Attendance(ReasonType reason, String reasonDescription, Student student, AttendanceType attendanceType) {
-        this.reason = reason;
-        this.reasonDescription = reasonDescription;
+    public Attendance(Student student, AttendanceType type, String description) {
         this.student = student;
-        this.attendanceType = attendanceType;
+        this.type = type;
+        this.description = description;
     }
-
 
     public static List<Attendance> getAttendances() {
         return Collections.unmodifiableList(attendances);
@@ -60,37 +48,27 @@ public class Attendance {
         this.student = student;
     }
 
-    public AttendanceType getAttendanceType() {
-        return this.attendanceType;
+    public AttendanceType getType() {
+        return this.type;
     }
 
-    public ReasonType getReason() {
-        return this.reason;
+    public void setType(AttendanceType type) {
+        this.type = type;
     }
 
-    public String getReasonDescription() {
-        return this.reasonDescription;
+    public String getDescription() {
+        return this.description;
     }
 
-    public void setReason(ReasonType reason) {
-        this.reason = reason;
-    }
-
-    public void setReasonDescription(String reasonDescription) {
-        this.reasonDescription = reasonDescription;
-    }
-
-    public void setAttendanceType(AttendanceType attendanceType) {
-        this.attendanceType = attendanceType;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public String toString() {
-        if (this.reason == null) {
+        if (this.type == AttendanceType.PRESENT)
             return student.toString();
-        }
-        else {
-            return String.format("%s - %s", this.student, this.reason);
-        }
+        else
+            return String.format("%s - %s", this.student, this.type);
     }
 }

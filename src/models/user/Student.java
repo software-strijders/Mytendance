@@ -21,7 +21,7 @@ public class Student extends User {
 
     // We can't avoid this type of construction due to unchecked cast warnings
     public static List<Student> getRegisteredStudents() {
-        return User.getRegisteredUsers().stream().filter(user -> user.getClass() == Student.class)
-                .map(user -> (Student)user).collect(Collectors.toList());
+        return User.getRegisteredUsers().stream().filter(Student.class::isInstance)
+                .map(Student.class::cast).collect(Collectors.toList());
     }
 }

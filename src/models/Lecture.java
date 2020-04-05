@@ -3,8 +3,8 @@ package models;
 import enums.SubjectType;
 import models.user.Teacher;
 import utils.Utils;
-
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,20 +16,20 @@ public class Lecture {
 
     private LocalDateTime startDate;
     private int duration; // Duration in minutes
-    private SubjectType subjectType;
+    private SubjectType subject;
     private Teacher teacher;
     private Class className;
     private List<Attendance> attendances;
 
-    public Lecture(LocalDateTime startDate, int duration, SubjectType subjectType, Teacher teacher, Class className) {
-        this(startDate, duration, subjectType, teacher, className, new ArrayList<>());
+    public Lecture(LocalDateTime startDate, int duration, SubjectType subject, Teacher teacher, Class className) {
+        this(startDate, duration, subject, teacher, className, new ArrayList<>());
     }
 
-    public Lecture(LocalDateTime startDate, int duration, SubjectType subjectType, Teacher teacher, Class className,
+    public Lecture(LocalDateTime startDate, int duration, SubjectType subject, Teacher teacher, Class className,
                    List<Attendance> attendances) {
         this.startDate = startDate;
         this.duration = duration;
-        this.subjectType = subjectType;
+        this.subject = subject;
         this.teacher = teacher;
         this.attendances = attendances;
         this.className = className;
@@ -75,6 +75,21 @@ public class Lecture {
         return this.startDate;
     }
 
+    // Required by the TableView from AttendanceOverviewController
+    public LocalTime getStartTime() {
+        return LocalTime.from(this.startDate);
+    }
+
+    // Required by the TableView from AttendanceOverviewController
+    public LocalTime getEndTime() {
+        return LocalTime.from(this.startDate.plusMinutes(this.duration));
+    }
+
+    // Required by the TableView from AttendanceOverviewController
+    public int getClassSize() {
+        return this.className.getSize();
+    }
+
     public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
@@ -87,12 +102,12 @@ public class Lecture {
         this.duration = duration;
     }
 
-    public SubjectType getSubjectType() {
-        return this.subjectType;
+    public SubjectType getSubject() {
+        return this.subject;
     }
 
-    public void setSubjectType(SubjectType subjectType) {
-        this.subjectType = subjectType;
+    public void setSubject(SubjectType subject) {
+        this.subject = subject;
     }
 
     public Teacher getTeacher() {
@@ -103,13 +118,16 @@ public class Lecture {
         this.teacher = teacher;
     }
 
-
     public Class getClassName() {
         return this.className;
     }
 
     public void setClassName(Class className) {
         this.className = className;
+    }
+
+    public int getAttendaceSize() {
+        return this.attendances.size();
     }
 
     public List<Attendance> getAttendances() {
@@ -131,7 +149,7 @@ public class Lecture {
     @Override
     public String toString() {
         return String.format("De les %s begint om %s en duurt %d minuten",
-                this.subjectType, Utils.formatDateTime(this.startDate, "H:mm"), this.duration);
+                this.subject, Utils.formatDateTime(this.startDate, "H:mm"), this.duration);
     }
 
     @Override
@@ -141,6 +159,6 @@ public class Lecture {
         Lecture lecture = (Lecture) o;
         return duration == lecture.duration &&
                 Objects.equals(startDate, lecture.startDate) &&
-                subjectType == lecture.subjectType;
+                subject == lecture.subject;
     }
 }

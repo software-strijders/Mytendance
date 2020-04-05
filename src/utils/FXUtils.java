@@ -57,7 +57,7 @@ public final class FXUtils {
     }
 
     public static void showAlert(String title, String message, Exception exception, Alert.AlertType alertType) {
-        showAlert(title, String.format("%s\n(%s)", message, exception.getMessage()), alertType);
+        showAlert(title, String.format("%s\n%s", message, exception.getMessage()), alertType);
     }
 
     public static void showAlert(String message, Alert.AlertType alertType) {

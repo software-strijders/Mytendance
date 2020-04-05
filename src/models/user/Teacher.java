@@ -2,12 +2,11 @@ package models.user;
 
 import models.Class;
 import models.Lecture;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import utils.Utils;
-
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -26,12 +25,17 @@ public class Teacher extends User {
 
     // We can't avoid this type of construction due to unchecked cast warnings
     public static List<Teacher> getRegisteredTeachers() {
-        return User.getRegisteredUsers().stream().filter(user -> user.getClass() == Teacher.class)
-                .map(user -> (Teacher)user).collect(Collectors.toList());
+        return User.getRegisteredUsers().stream().filter(Teacher.class::isInstance)
+                .map(Teacher.class::cast).collect(Collectors.toList());
     }
 
     public List<Lecture> getLectures() {
         return Collections.unmodifiableList(this.lectures);
+    }
+
+    public List<Lecture> getLecturesFromDate(LocalDate date) {
+        return this.lectures.stream().filter(lecture ->
+                LocalDate.from(lecture.getStartDate()).isEqual(date)).collect(Collectors.toList());
     }
 
     public void addLecture(Lecture lecture) {

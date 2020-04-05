@@ -9,8 +9,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="teacherBg" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TeacherMenuController">
    <children>
-      <Button mnemonicParsing="false" onAction="#logoutButtonOnClick" style="-fx-background-color: WHITE;" text="Afmelden" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-      <Label fx:id="nameLabel" layoutX="14.0" layoutY="314.0" text="Firstname Lastname" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+      <Button fx:id="logOffButton" mnemonicParsing="false" onAction="#onLogOffClick" style="-fx-background-color: WHITE;" text="Afmelden" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Label fx:id="nameLabel" layoutX="14.0" layoutY="314.0" text="FirstName LastName" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
       <Label alignment="CENTER" prefHeight="25.0" prefWidth="5000.0" text="Menu" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Arial Bold" size="28.0" />
@@ -19,17 +19,22 @@
       <VBox layoutX="201.0" layoutY="39.0" maxWidth="-Infinity" prefHeight="199.0" prefWidth="172.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="25.0">
          <children>
             <Region prefHeight="5000.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <Button fx:id="doAttendanceButton" mnemonicParsing="false" onAction="#onDoAttendanceClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Doe presentie" VBox.vgrow="NEVER">
+            <Button fx:id="takeAttendanceButton" mnemonicParsing="false" onAction="#onTakeAttendanceClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Presentie opnemen" VBox.vgrow="NEVER">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onCreateLectureClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Les aanmaken" VBox.vgrow="NEVER">
+            <Button fx:id="absenceOverviewButton" mnemonicParsing="false" onAction="#onAttendanceOverviewClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Aanwezigheid overzicht">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onClassCreateButtonPressed" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Klas aanmaken" VBox.vgrow="NEVER">
+            <Button fx:id="createLectureButton" mnemonicParsing="false" onAction="#onCreateLectureClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Les aanmaken" VBox.vgrow="NEVER">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="createClassButton" mnemonicParsing="false" onAction="#onCreateClassClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Klas aanmaken" VBox.vgrow="NEVER">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>

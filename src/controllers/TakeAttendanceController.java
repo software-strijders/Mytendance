@@ -1,7 +1,6 @@
 package controllers;
 
 import enums.AttendanceType;
-import enums.ReasonType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,31 +16,33 @@ import java.time.LocalDate;
 
 public class TakeAttendanceController {
 
-    @FXML private Label loggedTeacherLabel;
+    @FXML private Label teacherLabel;
     @FXML private ListView<Attendance> absentListView;
     @FXML private ListView<Attendance> presentListView;
     @FXML private ListView<Lecture> lectureListView;
     @FXML private ComboBox<Class> classComboBox;
     @FXML private DatePicker attendanceDatePicker;
 
-    private Teacher loggedInTeacher;
+    private Teacher teacher;
 
     @FXML
     private void initialize() throws IllegalAccessException {
-        if (User.getLoggedInUser() instanceof Teacher) {
-            this.loggedInTeacher = (Teacher)User.getLoggedInUser();
-            this.loggedTeacherLabel.setText(this.loggedInTeacher.toString());
-        } else {
-            throw new IllegalAccessException("Dit is de docentenkamer, je hebt geen toestemming om hier te zijn.");
-        }
-
+        this.setUpUser();
         this.fillClassComboBox();
         this.attendanceDatePicker.setValue(LocalDate.now());
     }
 
+    private void setUpUser() throws IllegalAccessException {
+        if (User.getLoggedInUser() instanceof Teacher) {
+            this.teacher = (Teacher) User.getLoggedInUser();
+            this.teacherLabel.setText(this.teacher.toString());
+        } else
+            throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten :(");
+    }
+
     @FXML
     private void fillClassComboBox() {
-        this.classComboBox.setItems(FXCollections.observableArrayList(this.loggedInTeacher.getAllClasses()));
+        this.classComboBox.setItems(FXCollections.observableArrayList(this.teacher.getAllClasses()));
     }
 
     @FXML
@@ -66,12 +67,12 @@ public class TakeAttendanceController {
             ObservableList<Attendance> presentStudents = FXCollections.observableArrayList();
             Lecture selectedLecture = this.lectureListView.getSelectionModel().getSelectedItem();
 
-            for (Attendance attendance : selectedLecture.getAttendances()) {
-                if (attendance.getAttendanceType().equals(AttendanceType.PRESENT))
+            for (Attendance attendance : selectedLecture.getAttendances())
+                if (attendance.getType().equals(AttendanceType.PRESENT))
                     presentStudents.add(attendance);
-                else if (attendance.getAttendanceType().equals(AttendanceType.ABSENT))
+                else
                     absentStudents.add(attendance);
-            }
+
             this.absentListView.setItems(absentStudents);
             this.presentListView.setItems(presentStudents);
         } catch (NullPointerException exception) {
@@ -83,18 +84,17 @@ public class TakeAttendanceController {
     public void onShowReasonClick(ActionEvent event) {
         try {
             Attendance selectedAbsent = this.absentListView.getSelectionModel().getSelectedItem();
-            FXUtils.showInfo("Reden van absentie", selectedAbsent.getReasonDescription());
-        } catch (NullPointerException e) {
+            FXUtils.showInfo("Reden van absentie", selectedAbsent.getDescription());
+        } catch (NullPointerException exception) {
             FXUtils.showInfo( "Er is geen leerling geselecteerd :(");
         }
     }
 
-    private void changeAttendance(ListView<Attendance> listView, ReasonType reason, String reasonDescription, AttendanceType attendanceType) {
+    private void changeAttendance(ListView<Attendance> listView, AttendanceType type, String description) {
         try {
             Attendance selectedAttendance = listView.getSelectionModel().getSelectedItem();
-            selectedAttendance.setReason(reason);
-            selectedAttendance.setReasonDescription(reasonDescription);
-            selectedAttendance.setAttendanceType(attendanceType);
+            selectedAttendance.setType(type);
+            selectedAttendance.setDescription(description);
             this.onLectureListViewClick();
         } catch (NullPointerException exception) {
             FXUtils.showInfo("Er is geen leerling geselecteerd :(");
@@ -103,13 +103,13 @@ public class TakeAttendanceController {
 
     @FXML
     public void onMakeAbsentClick(ActionEvent event) {
-        String reasonDescription = "Was niet aanwezig in de les, door de docent handmatig afgemeld.";
-        this.changeAttendance(this.presentListView, ReasonType.OTHER, reasonDescription, AttendanceType.ABSENT);
+        this.changeAttendance(this.presentListView, AttendanceType.Absent.OTHER,
+                "Was niet aanwezig in de les, door de docent handmatig afgemeld.");
     }
 
     @FXML
     public void onMakePresentClick(ActionEvent event) {
-        this.changeAttendance(this.absentListView, null, null, AttendanceType.PRESENT);
+        this.changeAttendance(this.absentListView, AttendanceType.PRESENT, "");
     }
 
     @FXML
