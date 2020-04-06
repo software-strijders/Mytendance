@@ -36,7 +36,7 @@ public class AddAbsenceController {
             if (User.getLoggedInUser() instanceof Student) {
                 this.loggedInStudent = (Student)User.getLoggedInUser();
             } else {
-                throw new IllegalAccessException("U heeft niet de bevoegde rol voor deze informatie.");
+                throw new IllegalAccessException("U heeft niet de bevoegde rol voor deze informatie :(");
             }
             datedatePicker.setValue(LocalDate.now());
             fillSubjectComboBox();
@@ -59,17 +59,34 @@ public class AddAbsenceController {
         }
 
         @FXML
-        private void onConfirmClick(ActionEvent event) throws IOException {
+        private void clearFields() {
+            datedatePicker.setValue(LocalDate.now());
+            subjectComboBox.setValue(SubjectType.OOP);
+            reasonComboBox.setValue(ReasonType.ILL);
+            descriptionBox.setText("");
+        }
+
+        @FXML
+        private void onConfirmClick(ActionEvent event) throws Exception {
             Lecture selectedLecture = lectureListView.getSelectionModel().getSelectedItem();
             ReasonType selectedReason = reasonComboBox.getValue();
             String reasonDescription = descriptionBox.getText();
 
-            for (Attendance attendance : selectedLecture.getAttendances()) {
-                if (attendance.getStudent().equals(loggedInStudent)) {
-                    attendance.setAttendanceType(AttendanceType.ABSENT);
-                    attendance.setReasonDescription(reasonDescription);
-                    attendance.setReason(selectedReason);
+            try {
+                if (reasonDescription.isEmpty()) {
+                    throw new Exception();
                 }
+                for (Attendance attendance : selectedLecture.getAttendances()) {
+                    if (attendance.getStudent().equals(loggedInStudent)) {
+                            attendance.setAttendanceType(AttendanceType.ABSENT);
+                            attendance.setReasonDescription(reasonDescription);
+                            attendance.setReason(selectedReason);
+                            FXUtils.showInfo("De absentiemelding is aangemaakt :)");
+                            clearFields();
+                    }
+                }
+            } catch (Exception e) {
+                FXUtils.showWarning("Fout!","Vul alle velden in :/");
             }
         }
 
