@@ -21,8 +21,8 @@
                <children>
                   <AnchorPane prefHeight="51.0" prefWidth="188.0" VBox.vgrow="SOMETIMES">
                      <children>
-                        <ComboBox fx:id="classComboBox" layoutY="38.0" maxHeight="-Infinity" onAction="#onSelectionClick" prefHeight="25.0" prefWidth="208.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                         <Label layoutX="6.0" layoutY="6.0" prefHeight="17.0" prefWidth="29.0" text="Klas" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ComboBox fx:id="classComboBox" maxHeight="-Infinity" onAction="#onSelectionClick" prefHeight="25.0" prefWidth="208.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -30,13 +30,13 @@
                   </AnchorPane>
                   <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="32.0" prefWidth="194.0" VBox.vgrow="SOMETIMES">
                      <children>
-                        <DatePicker fx:id="datePicker" maxHeight="-Infinity" onAction="#onSelectionClick" prefHeight="25.0" prefWidth="194.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                         <Label text="Datum" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <DatePicker fx:id="datePicker" maxHeight="-Infinity" onAction="#onSelectionClick" prefHeight="25.0" prefWidth="194.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="204.0" prefWidth="194.0">
+                  <AnchorPane prefHeight="204.0" prefWidth="194.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="lectureTable" prefHeight="233.0" prefWidth="194.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="lectureTable" prefHeight="233.0" prefWidth="194.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                           <placeholder>
                              <Label text="Er zijn geen lessen gevonden" />
                           </placeholder>
@@ -44,8 +44,11 @@
                             <TableColumn fx:id="subjectColumn" editable="false" prefWidth="48.0" text="Vak" />
                             <TableColumn fx:id="startTimeColumn" editable="false" prefWidth="40.0" style="-fx-alignment: CENTER_RIGHT;" text="Begin" />
                               <TableColumn fx:id="endTimeColumn" editable="false" prefWidth="43.0" style="-fx-alignment: CENTER_RIGHT;" text="Eind" />
-                              <TableColumn fx:id="classSizeColumn" editable="false" prefWidth="62.0" style="-fx-alignment: CENTER_RIGHT;" text="Studenten" />
+                              <TableColumn fx:id="classSizeColumn" editable="false" prefWidth="50.0" style="-fx-alignment: CENTER_RIGHT;" text="Studenten" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>
