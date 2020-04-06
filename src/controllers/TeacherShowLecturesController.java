@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.DatePickerSkin;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import models.Lecture;
 import models.user.Teacher;
@@ -39,7 +38,6 @@ public class TeacherShowLecturesController {
         datePicker.setManaged(false);
         DatePickerSkin skin = new DatePickerSkin(datePicker);
         vbox.getChildren().add(skin.getPopupContent());
-        VBox.setVgrow(datePicker, Priority.ALWAYS);
         datePicker.setOnAction(this::handleDatePick);
 
         try {
