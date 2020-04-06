@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="600.0" style="-fx-background-color: #333;" styleClass="studentBg" stylesheets="@style/StudentBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.addAbsenceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="600.0" style="-fx-background-color: #333;" styleClass="studentBg" stylesheets="@style/StudentBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddAbsenceController">
    <children>
       <HBox prefHeight="270.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -23,14 +23,14 @@
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="reasonBox" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="5000.0" promptText="Reden" VBox.vgrow="NEVER" />
+                  <ComboBox fx:id="reasonComboBox" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="5000.0" promptText="Reden" VBox.vgrow="NEVER" />
                   <TextArea fx:id="descriptionBox" prefHeight="5000.0" prefWidth="5000.0" promptText="Vul hier je omschrijving in..." VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
             <VBox prefHeight="5000.0" prefWidth="5000.0" spacing="10.0">
                <children>
-                  <ComboBox fx:id="fieldOfStudyBox" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="5000.0" promptText="Vak" VBox.vgrow="NEVER" />
-                  <DatePicker fx:id="datedatePicker" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="5000.0" VBox.vgrow="NEVER" />
+                  <ComboBox fx:id="subjectComboBox" maxHeight="-Infinity" minHeight="-Infinity" onAction="#onSubjectComboBoxClick" prefHeight="25.0" prefWidth="5000.0" promptText="Vak" VBox.vgrow="NEVER" />
+                  <DatePicker fx:id="datedatePicker" maxHeight="-Infinity" minHeight="-Infinity" onAction="#onSubjectComboBoxClick" prefHeight="25.0" prefWidth="5000.0" VBox.vgrow="NEVER" />
                   <TitledPane collapsible="false" prefHeight="5000.0" prefWidth="5000.0" text="Les" VBox.vgrow="ALWAYS">
                      <content>
                         <ListView fx:id="lectureListView" prefHeight="184.0" prefWidth="219.0" />

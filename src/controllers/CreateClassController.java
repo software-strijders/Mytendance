@@ -12,6 +12,7 @@ import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -120,11 +121,11 @@ public class CreateClassController {
             return;
         }
 
-        this.clearFields();
         this.teacher.addClass(newClass);
         this.addClassToSelectedStudents(newClass);
         Class.addClass(newClass);
         FXUtils.showInfo("De nieuwe klas is toegevoegd :)");
+        this.clearFields();
     }
 
     private void addClassToSelectedStudents(Class newClass) {
