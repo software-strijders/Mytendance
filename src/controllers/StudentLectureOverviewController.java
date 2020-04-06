@@ -1,5 +1,6 @@
 package controllers;
 
+import enums.SubjectType;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +17,9 @@ import models.user.Student;
 import models.user.User;
 import models.Class;
 import utils.FXUtils;
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,28 +27,17 @@ public class StudentLectureOverviewController {
     private Student student;
     private LocalDate selectedDate;
 
-    @FXML
-    private DatePicker datePicker;
-    @FXML
-    private AnchorPane datePickerAnchorPane;
-    @FXML
-    private TableView<Lecture> lectureTable;
-    @FXML
-    private TableColumn<?, ?> subjectColumn;
-    @FXML
-    private TableColumn<?, ?> startTimeColumn;
-    @FXML
-    private TableColumn<?, ?> endTimeColumn;
-    @FXML
-    private Button doneButton;
-    @FXML
-    private Label studentLabel;
+    @FXML private DatePicker datePicker;
+    @FXML private AnchorPane datePickerAnchorPane;
+    @FXML private TableView<Lecture> lectureTable;
+    @FXML private TableColumn<Lecture, String> subjectColumn;
+    @FXML private TableColumn<LocalDateTime, LocalTime> startTimeColumn;
+    @FXML private TableColumn<LocalDateTime, LocalTime> endTimeColumn;
+    @FXML private Button doneButton;
+    @FXML private Label studentLabel;
 
     @FXML
     private void initialize() {
-        datePicker.setManaged(false);
-        DatePickerSkin skin = new DatePickerSkin(datePicker);
-        datePickerAnchorPane.getChildren().add(skin.getPopupContent());
         try {
             this.setUpUser();
             this.setUpDatePicker();
@@ -64,10 +55,13 @@ public class StudentLectureOverviewController {
             this.student = (Student) User.getLoggedInUser();
             this.studentLabel.setText(this.student.toString());
         } else
-            throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten :(");
+            throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor studenten :(");
     }
 
     private void setUpDatePicker() {
+        datePicker.setManaged(false);
+        DatePickerSkin skin = new DatePickerSkin(datePicker);
+        datePickerAnchorPane.getChildren().add(skin.getPopupContent());
         this.selectedDate = LocalDate.now();
         this.datePicker.setValue(this.selectedDate);
     }
@@ -82,7 +76,7 @@ public class StudentLectureOverviewController {
     private void updateLectureTable() {
         List<Lecture> lectures = new ArrayList<Lecture>();
         for (Class theClass : this.student.getClasses()) {
-            lectures.addAll(theClass.getLecturesByDate(this.datePicker.getValue()));
+            lectures.addAll(theClass.getLecturesByDate(this.selectedDate));
         }
         this.lectureTable.setItems(FXCollections.observableList(lectures));
     }
@@ -101,5 +95,4 @@ public class StudentLectureOverviewController {
     void handleDone(ActionEvent event) {
         FXUtils.loadView("Hoofdmenu", "/views/StudentMenu.fxml", event);
     }
-
 }
