@@ -1,7 +1,6 @@
 package controllers;
 
 import enums.AttendanceType;
-import enums.ReasonType;
 import enums.SubjectType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,13 +17,12 @@ import models.user.Student;
 import models.user.User;
 import utils.FXUtils;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 
 public class AddAbsenceController {
 
-        @FXML private ComboBox<ReasonType> reasonComboBox;
+        @FXML private ComboBox<AttendanceType> reasonComboBox;
         @FXML private TextArea descriptionBox;
         @FXML private ComboBox<SubjectType> subjectComboBox;
         @FXML private DatePicker datedatePicker;
@@ -50,7 +48,7 @@ public class AddAbsenceController {
 
         @FXML
         private void fillReasonComboBox() {
-            this.reasonComboBox.setItems(FXCollections.observableArrayList(Arrays.asList(ReasonType.values())));
+            this.reasonComboBox.setItems(FXCollections.observableArrayList(Arrays.asList(AttendanceType.Absent.values())));
         }
 
         @FXML
@@ -62,14 +60,14 @@ public class AddAbsenceController {
         private void clearFields() {
             datedatePicker.setValue(LocalDate.now());
             subjectComboBox.setValue(SubjectType.OOP);
-            reasonComboBox.setValue(ReasonType.ILL);
+            reasonComboBox.setValue(AttendanceType.Absent.ILL);
             descriptionBox.setText("");
         }
 
         @FXML
-        private void onConfirmClick(ActionEvent event) throws Exception {
+        private void onConfirmClick(ActionEvent event) {
             Lecture selectedLecture = lectureListView.getSelectionModel().getSelectedItem();
-            ReasonType selectedReason = reasonComboBox.getValue();
+            AttendanceType selectedReason = reasonComboBox.getValue();
             String reasonDescription = descriptionBox.getText();
 
             try {
@@ -78,9 +76,8 @@ public class AddAbsenceController {
                 }
                 for (Attendance attendance : selectedLecture.getAttendances()) {
                     if (attendance.getStudent().equals(loggedInStudent)) {
-                            attendance.setAttendanceType(AttendanceType.ABSENT);
-                            attendance.setReasonDescription(reasonDescription);
-                            attendance.setReason(selectedReason);
+                            attendance.setType(selectedReason);
+                            attendance.setDescription(reasonDescription);
                             FXUtils.showInfo("De absentiemelding is aangemaakt :)");
                             clearFields();
                     }
@@ -97,9 +94,8 @@ public class AddAbsenceController {
             ObservableList<Lecture> allLectures = FXCollections.observableArrayList();
 
             for (Class class_ : loggedInStudent.getClasses()) {
-                for (Lecture lecture : class_.getLectures()) {
-                    if (lecture.getSubjectType().equals(selectedSubject)
-                            && lecture.getStartDate().toLocalDate().isEqual(selectedDate)) {
+                for (Lecture lecture : class_.getLecturesByDate(selectedDate)) {
+                    if (lecture.getSubject().equals(selectedSubject)) {
                         allLectures.add(lecture);
                     }
                 }
