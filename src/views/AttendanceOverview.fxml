@@ -28,7 +28,7 @@
                      <children>
                         <TableView fx:id="lectureTable" layoutY="20.0" prefHeight="276.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                           <placeholder>
-                             <Label text="Er zijn geen lessen gevonden op deze dag"/>
+                             <Label text="Er zijn geen lessen gevonden"/>
                           </placeholder>
                           <columns>
                             <TableColumn fx:id="subjectColumn" editable="false" prefWidth="40.0" text="Vak" />

@@ -56,8 +56,12 @@ public class Attendance {
         this.type = type;
     }
 
+    public boolean isPresent() {
+        return this.type.equals(AttendanceType.PRESENT);
+    }
+
     public String getDescription() {
-        return this.description;
+        return this.description.isEmpty() ? "Er is geen reden opgegeven." : this.description;
     }
 
     public void setDescription(String description) {

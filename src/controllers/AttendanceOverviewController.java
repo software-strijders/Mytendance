@@ -81,7 +81,7 @@ public class AttendanceOverviewController {
 
     private void updateLectureTable() {
         this.lectureTable.setItems(FXCollections.observableList(
-                this.teacher.getLecturesFromDate(this.selectedDate)));
+                this.teacher.getLecturesByDate(this.selectedDate)));
         // Indirectly triggers a call to this.updatePieChart()
         this.lectureTable.getSelectionModel().selectFirst();
     }
@@ -97,12 +97,12 @@ public class AttendanceOverviewController {
         if (lecture == null)
             this.pieChart.getData().clear();
         else
-            // Get the lecture of the currently selected row, get all attendances of the selected lecture,
+            // Get all attendances of the lecture object which was obtained from the currently selected row,
             // create a temporary dictionary by grouping all attendances by attendance type and their respective count,
             // populate a list of pie chart slices each initialized by one of the dictionary items
             this.pieChart.setData(lecture.getAttendances().stream().collect(Collectors.groupingBy(Attendance::getType,
-                    Collectors.counting())).entrySet().stream().map(item -> new PieChart.Data(String.format(
-                            "%s: %.0f%%", item.getKey(), item.getValue() * 100f / lecture.getAttendaceSize()),
+                    Collectors.counting())).entrySet().stream().map(item -> new PieChart.Data(String
+                    .format("%s: %.0f%%", item.getKey(), item.getValue() * 100f / lecture.getAttendaceSize()),
                     item.getValue())).collect(toCollection(FXCollections::observableArrayList)));
     }
 

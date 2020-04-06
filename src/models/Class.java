@@ -89,9 +89,9 @@ public class Class {
         return Collections.unmodifiableList(this.lectures);
     }
 
-    public List<Lecture> getLecturesByDateTime(LocalDate dateTime) {
+    public List<Lecture> getLecturesByDate(LocalDate date) {
         return this.lectures.stream().filter(lecture ->
-                dateTime.isEqual(lecture.getStartDate().toLocalDate())).collect(Collectors.toList());
+                lecture.getStartDate().toLocalDate().isEqual(date)).collect(Collectors.toList());
     }
 
     public void setLectures(ArrayList<Lecture> lectures) {

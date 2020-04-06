@@ -24,7 +24,7 @@ public interface AttendanceType {
     enum Absent implements AttendanceType {
         ILL("Ziek"),
         DENTIST("Tandarts"),
-        DOCTOR("Doktor"),
+        DOCTOR("Dokter"),
         FUNERAL("Begravenis"),
         WEDDING("Trouwerij"),
         ENTOMBMENT("Mummificatie"),

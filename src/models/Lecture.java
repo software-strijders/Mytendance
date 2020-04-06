@@ -58,7 +58,6 @@ public class Lecture {
                                 Utils.formatDateTime(max, pattern)));
             }
         }
-
         return true;
     }
 
@@ -75,17 +74,17 @@ public class Lecture {
         return this.startDate;
     }
 
-    // Required by the TableView from AttendanceOverviewController
+    // Required by the TableView of AttendanceOverviewController
     public LocalTime getStartTime() {
         return LocalTime.from(this.startDate);
     }
 
-    // Required by the TableView from AttendanceOverviewController
+    // Required by the TableView of AttendanceOverviewController
     public LocalTime getEndTime() {
         return LocalTime.from(this.startDate.plusMinutes(this.duration));
     }
 
-    // Required by the TableView from AttendanceOverviewController
+    // Required by the TableView of AttendanceOverviewController
     public int getClassSize() {
         return this.className.getSize();
     }

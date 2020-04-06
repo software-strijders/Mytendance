@@ -113,7 +113,7 @@ public class CreateLectureController {
             return; // We don't want to update the list when the user hasn't selected anything yet.
 
         this.lectureListView.setItems(FXCollections.observableArrayList(
-                this.selectedClass.getLecturesByDateTime(this.selectedDate)));
+                this.selectedClass.getLecturesByDate(this.selectedDate)));
     }
 
     @FXML
@@ -154,7 +154,7 @@ public class CreateLectureController {
         this.selectedClass.addLecture(lecture);
 
         this.lectureListView.setItems(FXCollections.observableArrayList(
-                this.selectedClass.getLecturesByDateTime(this.selectedDate)));
+                this.selectedClass.getLecturesByDate(this.selectedDate)));
         FXUtils.showInfo("Les aangemaakt!");
     }
 
