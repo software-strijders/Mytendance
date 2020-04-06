@@ -2,7 +2,6 @@ package models;
 
 import models.user.Student;
 import utils.Utils;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -74,6 +73,9 @@ public class Class {
         this.studyField = studyField;
     }
 
+    public int getSize() {
+        return this.students.size();
+    }
 
     public static List<Class> getAllClasses() {
         return Collections.unmodifiableList(allClasses);
@@ -87,9 +89,9 @@ public class Class {
         return Collections.unmodifiableList(this.lectures);
     }
 
-    public List<Lecture> getLecturesByDateTime(LocalDate dateTime) {
+    public List<Lecture> getLecturesByDate(LocalDate date) {
         return this.lectures.stream().filter(lecture ->
-                dateTime.isEqual(lecture.getStartDate().toLocalDate())).collect(Collectors.toList());
+                lecture.getStartDate().toLocalDate().isEqual(date)).collect(Collectors.toList());
     }
 
     public void setLectures(ArrayList<Lecture> lectures) {

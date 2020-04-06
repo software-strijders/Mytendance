@@ -11,9 +11,11 @@ import models.user.Student;
 import models.user.Teacher;
 import models.user.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public final class VolatileData {
 
@@ -125,7 +127,7 @@ public final class VolatileData {
 
 
     private static void createLectures() {
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDate.now().atStartOfDay();
         List<Teacher> teachers = Teacher.getRegisteredTeachers();
         List<Class> classes = Class.getAllClasses();
 
@@ -171,12 +173,15 @@ public final class VolatileData {
 
     private static List<Attendance> createAttendances(List<Student> students) {
         List<Attendance> attendances = new ArrayList<>();
+        Random random = new Random();
+
         for (Student student : students) {
-            Attendance attendance = new Attendance(null, null, student, AttendanceType.PRESENT);
+            Attendance attendance = new Attendance(student, random.nextDouble() < 0.25
+                    ? AttendanceType.Absent.values()[random.nextInt(AttendanceType.Absent.values().length)]
+                    : AttendanceType.PRESENT, ""); // Descriptions are left empty on absent attendances
             attendances.add(attendance);
             Attendance.addAttendance(attendance);
         }
-
 
         return attendances;
     }

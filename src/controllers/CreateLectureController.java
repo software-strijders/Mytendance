@@ -13,7 +13,6 @@ import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class CreateLectureController {
         if (User.getLoggedInUser() instanceof Teacher)
             this.teacher = (Teacher)User.getLoggedInUser();
         else
-            throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten!");
+            throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten :(");
     }
 
     private void setUpSpinners() {
@@ -88,10 +87,11 @@ public class CreateLectureController {
     }
 
     private void setUpListeners() {
-        this.classComboBox.valueProperty().addListener((observableValue, aClass, teacher) -> updateLectureListView());
-        this.startDatePicker.valueProperty().addListener((observableValue, localDate, teacher) -> {
-            updateLectureListView();
-            updateLectureTitlePane();
+        this.classComboBox.valueProperty().addListener((observableValue, oldValue, newValue) ->
+                this.updateLectureListView());
+        this.startDatePicker.valueProperty().addListener((observableValue, oldValue, newValue) -> {
+            this.updateLectureListView();
+            this.updateLectureTitlePane();
         });
     }
 
@@ -113,7 +113,7 @@ public class CreateLectureController {
             return; // We don't want to update the list when the user hasn't selected anything yet.
 
         this.lectureListView.setItems(FXCollections.observableArrayList(
-                this.selectedClass.getLecturesByDateTime(this.selectedDate)));
+                this.selectedClass.getLecturesByDate(this.selectedDate)));
     }
 
     @FXML
@@ -154,7 +154,7 @@ public class CreateLectureController {
         this.selectedClass.addLecture(lecture);
 
         this.lectureListView.setItems(FXCollections.observableArrayList(
-                this.selectedClass.getLecturesByDateTime(this.selectedDate)));
+                this.selectedClass.getLecturesByDate(this.selectedDate)));
         FXUtils.showInfo("Les aangemaakt!");
     }
 

@@ -18,18 +18,13 @@ public class TeacherMenuController {
     }
 
     @FXML
-    public void onUserCreatePressed(ActionEvent event) {
-        FXUtils.loadView("Gebruiker aanmaken", "/views/CreateUser.fxml", true);
+    public void onTakeAttendanceClick(ActionEvent event) {
+        FXUtils.loadView("Presentie opnemen", "/views/TakeAttendance.fxml", true);
     }
 
     @FXML
-    public void onClassCreateButtonPressed(ActionEvent event) {
-        FXUtils.loadView("Klas aanmaken", "/views/CreateClass.fxml", true);
-    }
-
-    @FXML
-    public void onDoAttendanceClick(ActionEvent event) {
-        FXUtils.loadView("Presentie doen", "/views/TakeAttendance.fxml", true);
+    public void onAttendanceOverviewClick(ActionEvent event) {
+        FXUtils.loadView("Aanwezigheid overzicht", "/views/AttendanceOverview.fxml", true);
     }
 
     @FXML
@@ -43,7 +38,12 @@ public class TeacherMenuController {
     }
 
     @FXML
-    public void logoutButtonOnClick(ActionEvent event) {
-        FXUtils.loadView("Log in", "/views/RoleSelection.fxml", event);
+    public void onCreateClassClick(ActionEvent event) {
+        FXUtils.loadView("Klas aanmaken", "/views/CreateClass.fxml", true);
+    }
+
+    @FXML
+    public void onLogOffClick(ActionEvent event) {
+        FXUtils.loadView("Inloggen", "/views/RoleSelection.fxml", event);
     }
 }

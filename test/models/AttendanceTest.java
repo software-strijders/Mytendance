@@ -1,16 +1,9 @@
 package models;
 
 import enums.AttendanceType;
-import enums.ReasonType;
-import enums.SubjectType;
 import models.user.Student;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.Utils;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,29 +15,29 @@ class AttendanceTest {
     @BeforeEach
     void beforeEachTest() {
         student = new Student("firstname", "lastname", "email", "password");
-        a1 = new Attendance(ReasonType.ENTOMBMENT, "Ik word begraven", student, AttendanceType.ABSENT);
+        a1 = new Attendance(student, AttendanceType.Absent.ENTOMBMENT, "Ik word begraven");
     }
 
     @Test
-    void testReturnValueOfReasonType() {
-        assertEquals(ReasonType.ENTOMBMENT, a1.getReason());
+    void testReturnValueOfAttendanceType() {
+        assertEquals(AttendanceType.Absent.ENTOMBMENT, a1.getType());
     }
 
     @Test
-    void reasonTypeShouldReturnNullWhenNull() {
-        Attendance a2 = new Attendance(null, "null", student, AttendanceType.ABSENT);
-        assertNull(a2.getReason());
+    void attendanceTypeShouldReturnPresentByDefault() {
+        Attendance a2 = new Attendance(student);
+        assertEquals(AttendanceType.PRESENT, a2.getType());
     }
 
     @Test
     void testReturnValueOfDescription() {
-        assertEquals("Ik word begraven", a1.getReasonDescription());
+        assertEquals("Ik word begraven", a1.getDescription());
     }
 
     @Test
-    void descriptionShouldReturnNullWhenNull() {
-        Attendance a2 = new Attendance(ReasonType.ENTOMBMENT, null, student, AttendanceType.ABSENT);
-        assertNull(a2.getReasonDescription());
+    void descriptionShouldReturnEmptyByDefault() {
+        Attendance a2 = new Attendance(student);
+        assertEquals("", a2.getDescription());
     }
 
     @Test
@@ -54,23 +47,18 @@ class AttendanceTest {
 
     @Test
     void studentShouldReturnNullWhenNull() {
-        Attendance a2 = new Attendance(ReasonType.ENTOMBMENT, "null", null, AttendanceType.ABSENT);
+        Attendance a2 = new Attendance(null);
         assertNull(a2.getStudent());
     }
 
     @Test
-    void testReturnValueOfAttendanceType() {
-        assertEquals(AttendanceType.ABSENT, a1.getAttendanceType());
-    }
-
-    @Test
     void attendanceTypeShouldReturnNullWhenNull() {
-        Attendance a2 = new Attendance(ReasonType.ENTOMBMENT, "null", student, null);
-        assertNull(a2.getAttendanceType());
+        Attendance a2 = new Attendance(student, null, "");
+        assertNull(a2.getType());
     }
 
     @Test
-    void attendanceToStringShouldReturnNullWhenNull() {
-        assertEquals("Firstname Lastname - ENTOMBMENT", a1.toString());
+    void testReturnValueAttendanceToString() {
+        assertEquals("Firstname Lastname - Mummificatie", a1.toString());
     }
 }

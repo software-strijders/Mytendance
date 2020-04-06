@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="609.0" styleClass="teacherBg" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AttendanceOverviewController">
+   <children>
+      <HBox prefHeight="349.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <VBox prefHeight="345.0" prefWidth="106.0" spacing="5.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="239.0" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <DatePicker fx:id="datePicker" onAction="#handleDatePick" prefHeight="25.0" prefWidth="286.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                        <Label text="Datum" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="296.0" prefWidth="233.0">
+                     <children>
+                        <TableView fx:id="lectureTable" layoutY="20.0" prefHeight="276.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                          <columns>
+                            <TableColumn fx:id="subjectColumn" prefWidth="69.0" text="Vak" />
+                            <TableColumn fx:id="startTimeColumn" prefWidth="52.0" text="Begin" />
+                              <TableColumn fx:id="endTimeClolumn" prefWidth="52.0" text="Eind" />
+                              <TableColumn fx:id="studentsColumn" prefWidth="64.0" text="Leerlingen" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="345.0" prefWidth="107.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <TitledPane alignment="CENTER" collapsible="false" prefHeight="5000.0" prefWidth="178.0" text="Absentie" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                     <content>
+                        <PieChart fx:id="absencePieChart" />
+                     </content>
+                  </TitledPane>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="doneButton" layoutX="528.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleDone" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: white;" text="Klaar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Label fx:id="loggedInLabel" layoutX="12.0" layoutY="378.0" text="logged_teacher" textFill="#ffffff66" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+   </children>
+</AnchorPane>
