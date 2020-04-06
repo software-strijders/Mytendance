@@ -1,10 +1,17 @@
 package models;
 
 import enums.AttendanceType;
+import enums.SubjectType;
 import models.user.Student;
+
+import javax.security.auth.Subject;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Attendance {
 
@@ -13,12 +20,14 @@ public class Attendance {
     private AttendanceType type;
     private String description;
     private Student student;
+    private Lecture lecture;
 
-    public Attendance(Student student) {
-        this(student, AttendanceType.PRESENT, "");
+    public Attendance(Lecture lecture, Student student) {
+        this(lecture, student, AttendanceType.PRESENT, "");
     }
 
-    public Attendance(Student student, AttendanceType type, String description) {
+    public Attendance(Lecture lecture, Student student, AttendanceType type, String description) {
+        this.lecture = lecture;
         this.student = student;
         this.type = type;
         this.description = description;
@@ -34,20 +43,20 @@ public class Attendance {
         return Collections.unmodifiableList(attendancesByStudent);
     }
 
-    public static List<Attendance> getAttendances() {
-        return Collections.unmodifiableList(attendances);
-    }
-
     public static void addAttendance(Attendance attendance) {
         attendances.add(attendance);
+    }
+
+    public Lecture getLecture() {
+        return lecture;
     }
 
     public static void clearAttendances() {
         attendances.clear();
     }
 
-    public static void setAttendances(List<Attendance> attendances) {
-        Attendance.attendances = attendances;
+    public void setLecture(Lecture lecture) {
+        this.lecture = lecture;
     }
 
     public Student getStudent() {
@@ -58,6 +67,7 @@ public class Attendance {
         this.student = student;
     }
 
+    // Required by the TableView of AdjustAttendanceController
     public AttendanceType getType() {
         return this.type;
     }
@@ -73,6 +83,22 @@ public class Attendance {
     public String getDescription() {
         return this.description.isEmpty() ? "Er is geen reden opgegeven." : this.description;
     }
+
+    // Required by the TableView of AdjustAttendanceController
+    public SubjectType getLectureSubject() {
+        return this.lecture.getSubject();
+    }
+
+    // Required by the TableView of AdjustAttendanceController
+    public LocalTime getLectureDate() {
+        return this.lecture.getStartDate().toLocalTime();
+    }
+
+    public List<Attendance> getAttendancesByDate(LocalDate date) {
+        return attendances.stream().filter(attendance ->
+                attendance.getLecture().getStartDate().toLocalDate().isEqual(date)).collect(Collectors.toList());
+    }
+
 
     public void setDescription(String description) {
         this.description = description;

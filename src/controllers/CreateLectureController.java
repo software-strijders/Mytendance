@@ -147,23 +147,25 @@ public class CreateLectureController {
         int duration = this.durationSpinner.getValue();
         LocalDateTime date = this.selectedDate.atStartOfDay().withHour(hours).withMinute(minutes);
         Lecture lecture = new Lecture(date, duration, this.selectedSubjectType,
-                this.teacher, this.selectedClass, this.createAttendances());
+                this.teacher, this.selectedClass, null); // CLEAN THIS UP
 
         Lecture.addLecture(lecture); // If duplicate or within time range, this will throw the exception.
         this.teacher.addLecture(lecture);
         this.selectedClass.addLecture(lecture);
+
+        lecture.setAttendances(createAttendances(lecture));
 
         this.lectureListView.setItems(FXCollections.observableArrayList(
                 this.selectedClass.getLecturesByDate(this.selectedDate)));
         FXUtils.showInfo("Les aangemaakt!");
     }
 
-    private List<Attendance> createAttendances() {
+    private ArrayList<Attendance> createAttendances(Lecture lecture) {
         // TODO: in the future, when a student can toggle their absence, we should check if it's toggled here:
-        List<Attendance> attendances = new ArrayList<>();
+        ArrayList<Attendance> attendances = new ArrayList<>();
 
         for (Student student : this.classComboBox.getValue().getStudents()) {
-            attendances.add(new Attendance(student));
+            attendances.add(new Attendance(lecture, student));
         }
         return attendances;
     }
