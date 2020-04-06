@@ -24,6 +24,16 @@ public class Attendance {
         this.description = description;
     }
 
+    public static List<Attendance> getAttendancesbyStudent(Student student) {
+        ArrayList<Attendance> attendancesByStudent = new ArrayList<>();
+        for (Attendance attendance : attendances) {
+            if (attendance.getStudent().equals(student)) {
+               attendancesByStudent.add(attendance);
+            }
+        }
+        return Collections.unmodifiableList(attendancesByStudent);
+    }
+
     public static List<Attendance> getAttendances() {
         return Collections.unmodifiableList(attendances);
     }
