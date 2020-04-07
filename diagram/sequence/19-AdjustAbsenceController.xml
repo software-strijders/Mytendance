@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="app.diagrams.net" modified="2020-04-07T13:20:00.104Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36" etag="En71ufcCwF9Ji7d-BM3F" version="12.9.6">
+<mxfile host="app.diagrams.net" modified="2020-04-07T14:21:21.826Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36" etag="h_CUe8JyU2OMxhIOj5g0" version="12.9.6">
   <diagram id="7HnjlSTOiB96699Ax2TO" name="Page-1">
     <mxGraphModel dx="1422" dy="713" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -86,7 +86,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="BQsoouJGGz1c2dndfb5E-12" value=":selectedAttendance" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="BQsoouJGGz1c2dndfb5E-12" value="selectedAttendance : Attendance" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="380" y="70" width="120" height="440" as="geometry" />
         </mxCell>
         <mxCell id="BQsoouJGGz1c2dndfb5E-22" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="BQsoouJGGz1c2dndfb5E-12">
