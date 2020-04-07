@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 
 public class TakeAttendanceController {
 
-    @FXML private Label teacherLabel;
     @FXML private ListView<Attendance> presentListView;
     @FXML private ListView<Attendance> absentListView;
     @FXML private TableView<Lecture> lectureTable;
@@ -47,7 +46,6 @@ public class TakeAttendanceController {
             this.datePicker.setValue(LocalDate.now());
         } catch (IllegalAccessException exception) {
             FXUtils.showInfo(exception.getMessage());
-            FXUtils.closeStage(this.teacherLabel);
         } catch (Exception exception) {
             FXUtils.showError(exception);
         }
@@ -56,7 +54,6 @@ public class TakeAttendanceController {
     private void setUpUser() throws IllegalAccessException {
         if (User.getLoggedInUser() instanceof Teacher) {
             this.teacher = (Teacher)User.getLoggedInUser();
-            this.teacherLabel.setText(this.teacher.toString());
         } else
             throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten :(");
     }

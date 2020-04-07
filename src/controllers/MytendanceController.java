@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import models.user.Administrator;
 import models.user.Teacher;
 import models.user.User;
@@ -14,6 +15,7 @@ import utils.FXUtils;
 
 public class MytendanceController {
 
+    @FXML private VBox background;
     @FXML private Label loggedInUserLabel;
     @FXML private Button logOutButton;
     @FXML private HBox menu;
@@ -40,12 +42,16 @@ public class MytendanceController {
     private void setUpMenuButtons() {
         this.loggedInUser = User.getLoggedInUser();
 
-        if (this.loggedInUser instanceof Administrator)
+        if (this.loggedInUser instanceof Administrator) {
             this.loadAdministratorButtons();
-        else if (this.loggedInUser instanceof Teacher)
+            this.background.setStyle("-fx-background-image: url(\"/views/style/images/BackgroundGeneral.png\")");
+        } else if (this.loggedInUser instanceof Teacher) {
             this.loadTeacherButtons();
-        else
+            this.background.setStyle("-fx-background-image: url(\"/views/style/images/BackgroundTeacher.png\")");
+        } else {
             this.loadStudentButtons();
+            this.background.setStyle("-fx-background-image: url(\"/views/style/images/BackgroundStudent.png\")");
+        }
     }
 
 
@@ -67,8 +73,6 @@ public class MytendanceController {
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateLecture.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Klas aanmaken",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateClass.fxml"), 0, this.children, this.group);
-        FXUtils.loadButtonComponent("Gebruiker aanmaken",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateUser.fxml"), 0, this.children, this.group);
 
         this.loadMainView("/views/TakeAttendance.fxml");
     }
