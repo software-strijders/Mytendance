@@ -5,10 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import models.user.Administrator;
 import models.user.Teacher;
 import models.user.User;
@@ -29,8 +27,6 @@ public class MytendanceController {
     private void initialize() {
         this.setUpVariables();
         this.setUpMenuButtons();
-
-        FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AbsenceOverview.fxml");
 
         this.loggedInUserLabel.setText(this.loggedInUser.toString());
         this.logOutButton.getStyleClass().remove(0); // Remove default styling
@@ -54,32 +50,44 @@ public class MytendanceController {
 
 
     private void loadAdministratorButtons() {
-        FXUtils.loadButtonComponent("Gebruiker aanmaken",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateUser.fxml"), 0, this.children, this.group);
+        FXUtils.loadButtonComponent("Home",
+                event -> this.loadMainView("/views/CreateUser.fxml"), 0, this.children, this.group, true);
+
+        this.loadMainView("/views/CreateUser.fxml");
     }
 
     private void loadTeacherButtons() {
+        FXUtils.loadButtonComponent("Home",
+                event -> this.loadMainView("/views/TakeAttendance.fxml"), 0, this.children, this.group, true);
+        FXUtils.loadButtonComponent("Statistiek",
+                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AbsenceOverview.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Overzicht Lessen",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/TeacherShowLectures.fxml"), 0, this.children, this.group);
-        FXUtils.loadButtonComponent("Presentie doen",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/TakeAttendance.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Les aanmaken",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateLecture.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Klas aanmaken",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateClass.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Gebruiker aanmaken",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateUser.fxml"), 0, this.children, this.group);
+
+        this.loadMainView("/views/TakeAttendance.fxml");
     }
 
     private void loadStudentButtons() {
+        FXUtils.loadButtonComponent("Home",
+                event -> this.loadMainView("/views/AddAbsence.fxml"), 0, this.children, this.group, true);
         FXUtils.loadButtonComponent("Overzicht lessen",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/StudentLectureOverview.fxml"), 0, this.children, this.group);
-        FXUtils.loadButtonComponent("Absentie toevoegen",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AddAbsence.fxml"), 0, this.children, this.group);
+
+        this.loadMainView("/views/AddAbsence.fxml");
     }
 
     @FXML
     private void onLogOutClicked(ActionEvent event) {
         FXUtils.loadView("Hoofdmenu", "/views/RoleSelection.fxml", event);
+    }
+
+    private void loadMainView(String resource) {
+        FXUtils.loadPaneIntoView(this.FXMLContainer, resource);
     }
 }

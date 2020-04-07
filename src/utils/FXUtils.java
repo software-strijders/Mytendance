@@ -177,12 +177,13 @@ public final class FXUtils {
     }
 
     public static void loadButtonComponent(String text, EventHandler<ActionEvent> event,
-                                           double growSize, ObservableList<Node> childrenList) {
-        loadButtonComponent(text, event, growSize, childrenList, null);
+                                           double growSize, ObservableList<Node> childrenList, ToggleGroup group) {
+        loadButtonComponent(text, event, growSize, childrenList, group, false);
     }
 
     public static void loadButtonComponent(String text, EventHandler<ActionEvent> event,
-                                           double growSize, ObservableList<Node> childrenList, ToggleGroup group) {
+                                           double growSize, ObservableList<Node> childrenList,
+                                           ToggleGroup group, boolean shouldBeSelected) {
         AnchorPane anchorPane = FXUtils.loadAnchorPane();
         anchorPane.setPrefWidth(150);
         anchorPane.setMaxWidth(175);
@@ -190,6 +191,7 @@ public final class FXUtils {
         button.getStyleClass().remove(0); // Remove default styling
         button.getStyleClass().add("mytendanceButton");
         button.setToggleGroup(group);
+        button.setSelected(shouldBeSelected);
         anchorPane.getChildren().add(button);
         childrenList.add(anchorPane);
     }
