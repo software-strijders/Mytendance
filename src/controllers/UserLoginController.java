@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import models.user.Administrator;
-import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
@@ -56,18 +54,8 @@ public class UserLoginController {
         this.password = null;
     }
 
-    private void loadMainMenu(ActionEvent event) throws IOException {
-        String resource;
-
-        if (this.loggedInUser instanceof Teacher)
-            resource = "/views/TeacherMenu.fxml";
-        else if (this.loggedInUser instanceof Administrator)
-            resource = "/views/AdminMenu.fxml";
-        else
-            // Load student menu by default
-            resource = "/views/StudentMenu.fxml";
-
-        FXUtils.loadComponent("Hoofdmenu", resource, event);
+    private void loadMainWindow(ActionEvent event) throws IOException {
+        FXUtils.loadComponent("Hoofdmenu", "/views/Mytendance.fxml", event);
     }
 
     @FXML
@@ -76,7 +64,7 @@ public class UserLoginController {
             this.obtainCredentials();
             this.logInUser();
             this.clearPassword();
-            this.loadMainMenu(event);
+            this.loadMainWindow(event);
         } catch (InputMismatchException exception) {
             FXUtils.showInfo(exception.getMessage());
         } catch (IllegalArgumentException exception) {

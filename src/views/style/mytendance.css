@@ -2,12 +2,55 @@
     -fx-background-color: #484848;
 }
 
-.menuTitle {
-    -fx-font-size: 24px;
-    -fx-font-color: white;
+.loggedInUserLabel {
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
 }
 
 .windowPane {
-    -fx-background-color: rgb(72, 72, 72);
+    -fx-background-color: #484848;
     -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.scrollPane {
+    -fx-focus-color: transparent;
+    -fx-background: #484848;
+    -fx-background-color: #484848;
+}
+
+.mytendanceButton {
+    -fx-background-radius: 0px;
+    -fx-background-color: #636363;
+    -fx-border-color: #484848;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-border-color: #484848;
+    -fx-alignment: center;
+    -fx-border-color: #484848;
+    -fx-border-width: 3px 1px 3px 0px;
+    -fx-border-style: hidden solid solid hidden;
+}
+
+.mytendanceButton:hover {
+    -fx-background-color: #545454;
+}
+
+.mytendanceButton:selected {
+    -fx-background-color: #484848;
+}
+
+.logOutButton {
+    -fx-background-color: #e03c3c;
+    -fx-background-radius: 0;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-border-color: #484848;
+    -fx-border-width: 3px 1px 3px 0px;
+    -fx-border-style: hidden hidden solid solid;
+    -fx-alignment: center;
+}
+
+.logOutButton:hover {
+    -fx-background-color: #e81919;
 }

@@ -31,7 +31,6 @@ public class AttendanceOverviewController {
     @FXML private TableColumn<Lecture, String> classColumn;
     @FXML private TableColumn<Lecture, Integer> classSizeColumn;
     @FXML private PieChart pieChart;
-    @FXML private Label teacherLabel;
 
     private Teacher teacher;
     private LocalDate selectedDate;
@@ -45,7 +44,6 @@ public class AttendanceOverviewController {
             this.setUpPieChart();
         } catch (IllegalAccessException exception) {
             FXUtils.showInfo(exception.getMessage());
-            FXUtils.closeStage(this.teacherLabel);
         } catch (Exception exception) {
             FXUtils.showError(exception);
         }
@@ -54,7 +52,6 @@ public class AttendanceOverviewController {
     private void setUpUser() throws IllegalAccessException {
         if (User.getLoggedInUser() instanceof Teacher) {
             this.teacher = (Teacher)User.getLoggedInUser();
-            this.teacherLabel.setText(this.teacher.toString());
         } else
             throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten :(");
     }
