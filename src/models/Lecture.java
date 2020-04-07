@@ -76,12 +76,12 @@ public class Lecture {
 
     // Required by the TableView of AttendanceOverviewController
     public LocalTime getStartTime() {
-        return LocalTime.from(this.startDate);
+        return this.startDate.toLocalTime();
     }
 
     // Required by the TableView of AttendanceOverviewController
     public LocalTime getEndTime() {
-        return LocalTime.from(this.startDate.plusMinutes(this.duration));
+        return this.startDate.plusMinutes(this.duration).toLocalTime();
     }
 
     // Required by the TableView of AttendanceOverviewController
@@ -137,7 +137,9 @@ public class Lecture {
         this.attendances.add(attendance);
     }
 
-    public void removeAttendance(Attendance attendance) {this.attendances.remove(attendance); }
+    public void removeAttendance(Attendance attendance) {
+        this.attendances.remove(attendance);
+    }
 
     public void clearAttendances() {
         this.attendances.clear();

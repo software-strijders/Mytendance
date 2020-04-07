@@ -17,6 +17,7 @@ import models.user.User;
 import utils.FXUtils;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toCollection;
 
@@ -99,11 +100,12 @@ public class AttendanceOverviewController {
         else
             // Get all attendances of the lecture object which was obtained from the currently selected row,
             // create a temporary dictionary by grouping all attendances by attendance type and their respective count,
-            // populate a list of pie chart slices each initialized by one of the dictionary items
+            // sort the dictionary by attendance name and generate a list of pie chart slices for each dictionary item
             this.pieChart.setData(lecture.getAttendances().stream().collect(Collectors.groupingBy(Attendance::getType,
-                    Collectors.counting())).entrySet().stream().map(item -> new PieChart.Data(String
-                    .format("%s: %.0f%%", item.getKey(), item.getValue() * 100f / lecture.getAttendaceSize()),
-                    item.getValue())).collect(toCollection(FXCollections::observableArrayList)));
+                    Collectors.counting())).entrySet().stream().sorted(Comparator.comparing(item -> item.getKey()
+                    .toString())).map(item -> new PieChart.Data(String.format("%s: %.0f%%", item.getKey(),
+                    item.getValue() * 100f / lecture.getAttendaceSize()), item.getValue()))
+                    .collect(toCollection(FXCollections::observableArrayList)));
     }
 
     @FXML
