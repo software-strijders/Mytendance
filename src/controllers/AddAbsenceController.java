@@ -21,16 +21,11 @@ import java.util.Arrays;
 
 public class AddAbsenceController {
 
-    @FXML
-    private ComboBox<AttendanceType> reasonComboBox;
-    @FXML
-    private TextArea descriptionBox;
-    @FXML
-    private ComboBox<SubjectType> subjectComboBox;
-    @FXML
-    private DatePicker datedatePicker;
-    @FXML
-    private ListView<Lecture> lectureListView;
+    @FXML private ComboBox<AttendanceType> reasonComboBox;
+    @FXML private TextArea descriptionBox;
+    @FXML private ComboBox<SubjectType> subjectComboBox;
+    @FXML private DatePicker datedatePicker;
+    @FXML private ListView<Lecture> lectureListView;
     private Student loggedInStudent;
 
     @FXML
@@ -65,7 +60,7 @@ public class AddAbsenceController {
         datedatePicker.setValue(LocalDate.now());
         subjectComboBox.setValue(SubjectType.OOP);
         reasonComboBox.setValue(AttendanceType.Absent.ILL);
-        descriptionBox.setText("");
+        descriptionBox.clear();
     }
 
     @FXML

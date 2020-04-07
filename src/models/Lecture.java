@@ -145,7 +145,7 @@ public class Lecture {
         this.attendances.clear();
     }
 
-    public void setAttendances(ArrayList<Attendance> attendances) {
+    public void setAttendances(List<Attendance> attendances) {
         this.attendances = attendances;
     }
 

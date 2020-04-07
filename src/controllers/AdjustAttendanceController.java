@@ -3,25 +3,18 @@ package controllers;
 import enums.AttendanceType;
 import enums.SubjectType;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Attendance;
-import models.Lecture;
 import models.user.Student;
 import models.user.User;
-import models.Class;
 import utils.FXUtils;
-
-import javax.security.auth.Subject;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 public class AdjustAttendanceController {
 
@@ -90,7 +83,6 @@ public class AdjustAttendanceController {
         this.reasonBox.setItems(FXCollections.observableArrayList(Arrays.asList(AttendanceType.Absent.values())));
     }
 
-
     @FXML
     private void onConfirmButtonClick(ActionEvent event) {
         String description = descriptionBox.getText();
@@ -116,7 +108,7 @@ public class AdjustAttendanceController {
     }
 
     private void clearFields() {
-        descriptionBox.setText("");
+        descriptionBox.clear();
         reasonBox.setValue(null);
         setUpAttendanceTable();
     }

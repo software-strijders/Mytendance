@@ -160,9 +160,9 @@ public class CreateLectureController {
         FXUtils.showInfo("Les aangemaakt!");
     }
 
-    private ArrayList<Attendance> createAttendances(Lecture lecture) {
+    private List<Attendance> createAttendances(Lecture lecture) {
         // TODO: in the future, when a student can toggle their absence, we should check if it's toggled here:
-        ArrayList<Attendance> attendances = new ArrayList<>();
+        List<Attendance> attendances = new ArrayList<>();
 
         for (Student student : this.classComboBox.getValue().getStudents()) {
             attendances.add(new Attendance(lecture, student));

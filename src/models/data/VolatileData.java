@@ -98,7 +98,8 @@ public final class VolatileData {
 
     private static void createClasses() {
         FieldOfStudy fieldOfStudy = createFieldOfStudies();
-        List<Class> classes = new ArrayList<>();
+        List<Class> classes = new ArrayList<>() {
+        };
 
         // For now add all students to all classes, this should change obviously
         classes.add(new Class(1, 'A', fieldOfStudy, Student.getRegisteredStudents()));
