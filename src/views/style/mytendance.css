@@ -54,3 +54,75 @@
 .logOutButton:hover {
     -fx-background-color: #e81919;
 }
+
+/* DARK MODE */
+
+.list-view {
+    -fx-background-color: #484848;
+    -fx-text-fill: #fff;
+}
+
+.list-cell {
+    -fx-background-color: #484848;
+    -fx-text-fill: #939393;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #333;
+}
+
+.list-cell:selected {
+    -fx-text-fill: #fff;
+}
+
+.titled-pane {
+    -fx-background-color: #333;
+}
+
+.titled-pane > .title
+{
+    -fx-background-color: #333;
+
+}
+
+.titled-pane > *.content
+{
+    -fx-border-color: #333;
+}
+
+.scroll-bar {
+    -fx-background-color: #333;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #484848;
+}
+
+.combo-box-base {
+    -fx-background-color: #333;
+    -fx-border-color: #333;
+}
+
+.date-picker {
+    -fx-background-color: #484848;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: #484848;
+    -fx-text-fill: #fff;
+}
+
+.date-picker > . {
+    -fx-background-color: #333;
+}
+
+.button {
+    -fx-background-color: #fff;
+}
+
+.button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.button:disabled {
+    -fx-background-color: #333;
+    -fx-text-fill: #686868;
+}

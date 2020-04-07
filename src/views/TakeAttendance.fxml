@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TakeAttendanceController">
    <children>
-      <HBox prefHeight="349.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <HBox prefHeight="349.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <VBox prefHeight="300.0" prefWidth="195.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
@@ -59,12 +59,12 @@
             </VBox>
             <VBox prefHeight="350.0" prefWidth="185.0" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TitledPane alignment="CENTER" collapsible="false" prefHeight="5000.0" prefWidth="178.0" text="Present" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                  <TitledPane alignment="CENTER" collapsible="false" prefHeight="5000.0" prefWidth="178.0" text="Present" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
                      <content>
                         <ListView fx:id="presentListView" prefHeight="5000.0" prefWidth="185.0" />
                      </content>
                   </TitledPane>
-                  <Button fx:id="makeAbsentButton" disable="true" mnemonicParsing="false" onAction="#onMakeAbsentClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Maak absent" />
+                  <Button fx:id="makeAbsentButton" disable="true" mnemonicParsing="false" onAction="#onMakeAbsentClick" prefHeight="25.0" prefWidth="5000.0" text="Maak absent" />
                </children>
                <HBox.margin>
                   <Insets />
@@ -72,13 +72,13 @@
             </VBox>
             <VBox prefHeight="350.0" prefWidth="200.0" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TitledPane alignment="CENTER" collapsible="false" prefHeight="5000.0" prefWidth="194.0" text="Absent" VBox.vgrow="ALWAYS">
+                  <TitledPane alignment="CENTER" collapsible="false" prefHeight="5000.0" prefWidth="194.0" text="Absent" textFill="WHITE" VBox.vgrow="ALWAYS">
                      <content>
                         <ListView fx:id="absentListView" prefHeight="5000.0" prefWidth="198.0" />
                      </content>
                   </TitledPane>
-                  <Button fx:id="makePresentButton" disable="true" mnemonicParsing="false" onAction="#onMakePresentClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Maak present" />
-                  <Button fx:id="showReasonButton" disable="true" mnemonicParsing="false" onAction="#onShowReasonClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Toon reden" />
+                  <Button fx:id="makePresentButton" disable="true" mnemonicParsing="false" onAction="#onMakePresentClick" prefHeight="25.0" prefWidth="5000.0" text="Maak present" />
+                  <Button fx:id="showReasonButton" disable="true" mnemonicParsing="false" onAction="#onShowReasonClick" prefHeight="25.0" prefWidth="5000.0" text="Toon reden" />
                </children>
                <HBox.margin>
                   <Insets />
@@ -86,6 +86,5 @@
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="doneButton" layoutX="528.0" layoutY="361.0" mnemonicParsing="false" onAction="#onDoneClick" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: white;" text="Sluiten" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
    </children>
 </AnchorPane>
