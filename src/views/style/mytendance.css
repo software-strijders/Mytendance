@@ -19,23 +19,6 @@
     -fx-background-color: #484848;
 }
 
-.scroll-bar:horizontal {
-    -fx-background-color: transparent;
-}
-
-.scroll-bar:horizontal > .thumb {
-    -fx-background-color: rgb(99, 99, 99);
-}
-
-.scroll-bar:horizontal > .track {
-    -fx-background-color: transparent;
-}
-
-.scrollbar > .increment-button, .decrement-button {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-
 .mytendanceButton {
     -fx-background-radius: 0px;
     -fx-background-color: #636363;
