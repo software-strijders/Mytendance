@@ -1,13 +1,24 @@
 package utils;
 
+import javafx.animation.FadeTransition;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -129,8 +140,12 @@ public final class FXUtils {
     }
 
     public static FXMLLoader loadView(String title, String resource, Event event) {
+        return loadView(title, resource, getStage(event));
+    }
+
+    public static FXMLLoader loadView(String title, String resource, Stage stage) {
         try {
-            return loadComponent(title, resource, event);
+            return loadComponent(title, resource, stage);
         } catch (IOException exception) {
             showWarning(exception, title);
         } catch (Exception exception) {
@@ -139,10 +154,15 @@ public final class FXUtils {
     }
 
     public static FXMLLoader loadComponent(String title, String resource, Event event) throws IOException {
+        return loadComponent(title, resource, getStage(event));
+    }
+
+    public static FXMLLoader loadComponent(String title, String resource, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(loadResource(resource));
-        Stage stage = getStage(event);
         stage.setScene(new Scene(loader.load()));
         stage.setTitle(title);
+        stage.setMinWidth(967.5);
+        stage.setMinHeight(650);
 
         return loader;
     }
@@ -154,5 +174,72 @@ public final class FXUtils {
             throw new IOException(String.format("Resource bestand ontbreekt: %s", resource));
         else
             return location;
+    }
+
+    public static void loadButtonComponent(String text, EventHandler<ActionEvent> event,
+                                           double growSize, ObservableList<Node> childrenList) {
+        loadButtonComponent(text, event, growSize, childrenList, null);
+    }
+
+    public static void loadButtonComponent(String text, EventHandler<ActionEvent> event,
+                                           double growSize, ObservableList<Node> childrenList, ToggleGroup group) {
+        AnchorPane anchorPane = FXUtils.loadAnchorPane();
+        anchorPane.setPrefWidth(150);
+        anchorPane.setMaxWidth(175);
+        RadioButton button = FXUtils.loadToggleButton(text, event, growSize);
+        button.getStyleClass().remove(0); // Remove default styling
+        button.getStyleClass().add("mytendanceButton");
+        button.setToggleGroup(group);
+        anchorPane.getChildren().add(button);
+        childrenList.add(anchorPane);
+    }
+
+    public static AnchorPane loadAnchorPane() {
+        return loadAnchorPane(125);
+    }
+
+    private static AnchorPane loadAnchorPane(double minWidth) {
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setMinWidth(minWidth);
+
+        return anchorPane;
+    }
+
+    public static RadioButton loadToggleButton(String text, EventHandler<ActionEvent> event, double growSize) {
+        RadioButton button = new RadioButton();
+        button.setText(text);
+        button.setOnAction(event);
+        button.getStyleClass().remove(0);
+        button.getStyleClass().add("mytendanceButton");
+        grow(button, growSize);
+
+        return button;
+    }
+
+    public static void grow(Node node) {
+        grow(node, 0.0);
+    }
+
+    private static void grow(Node node, double value) {
+        AnchorPane.setBottomAnchor(node, value);
+        AnchorPane.setTopAnchor(node, value);
+        AnchorPane.setLeftAnchor(node, value);
+        AnchorPane.setRightAnchor(node, value);
+    }
+
+    public static void loadPaneIntoView(AnchorPane theView, String resource) {
+        try {
+            Pane pane = FXMLLoader.load(loadResource(resource));
+            grow(pane);
+            theView.getChildren().clear(); // Before we add, it's good practice to remove the remaining nodes.
+            theView.getChildren().add(pane);
+
+            FadeTransition transition = new FadeTransition(Duration.millis(500), pane);
+            transition.setFromValue(0);
+            transition.setToValue(1);
+            transition.play();
+        } catch (IOException e) {
+            showWarning(e, "FXML Laad error");
+        }
     }
 }
