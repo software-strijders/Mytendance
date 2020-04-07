@@ -182,7 +182,6 @@ public final class VolatileData {
             attendances.add(attendance);
             Attendance.addAttendance(attendance);
         }
-
         return attendances;
     }
 }

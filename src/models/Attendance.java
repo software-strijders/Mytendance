@@ -32,7 +32,7 @@ public class Attendance {
         attendances.add(attendance);
     }
 
-    public static void clearAttendance() {
+    public static void clearAttendances() {
         attendances.clear();
     }
 

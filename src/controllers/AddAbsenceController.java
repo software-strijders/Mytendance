@@ -16,7 +16,6 @@ import models.Lecture;
 import models.user.Student;
 import models.user.User;
 import utils.FXUtils;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 

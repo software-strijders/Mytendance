@@ -6,9 +6,8 @@ import models.user.Teacher;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.Utils;
-
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,6 +27,7 @@ class LectureTest {
         this.student = new Student("Xander", "Vedder", "xander.vedder@student.hu.nl", "goeie");
         this.study = new FieldOfStudy("TICT-SD");
         this.theClass = new Class(1, 'A', this.study);
+        this.theClass.addStudent(this.student);
         this.lecture = new Lecture(this.dateTime, 120, SubjectType.GP_SD, this.teacher, this.theClass);
         Lecture.addLecture(this.lecture);
     }
@@ -115,5 +115,37 @@ class LectureTest {
         this.lecture.addAttendance(new Attendance(this.student));
         this.lecture.addAttendance(new Attendance(this.student));
         assertEquals(2, this.lecture.getAttendances().size());
+    }
+
+    @Test
+    void lectureStartTimeShouldBeEqual() {
+        assertEquals(LocalTime.now().withHour(10).withMinute(30), this.lecture.getStartTime());
+    }
+
+    @Test
+    void lectureStartTimeShouldBeEqualNextDay() {
+        assertEquals(LocalDateTime.now().withHour(10).withMinute(30).plusDays(1).toLocalTime(),
+                this.lecture.getStartTime());
+    }
+
+    @Test
+    void lectureStartTimeShouldNotBeEqual() {
+        assertEquals(LocalTime.now().withHour(10).withMinute(31), this.lecture.getStartTime());
+    }
+
+    @Test
+    void lectureEndTimeEqualsStartTimeWithDuration() {
+        assertEquals(this.lecture.getStartDate().plusMinutes(this.lecture.getDuration()).toLocalTime(),
+                this.lecture.getEndTime());
+    }
+
+    @Test
+    void classSizeFromLectureShouldBeEqual() {
+        assertEquals(1, this.lecture.getClassSize());
+    }
+
+    @Test
+    void classSizeFromLectureShouldNotBeEqual() {
+        assertNotEquals(0, this.lecture.getClassSize());
     }
 }

@@ -3,11 +3,8 @@ package models;
 import models.user.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.Utils;
-
-import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,9 +16,9 @@ class ClassTest {
 
     @BeforeEach
     void initialize() {
-        Student student1 = new Student("xxx", "xxx", "xxx", "xxx", Utils.idGenerator());
-        Student student2 = new Student("xxx", "xxx", "xxx", "xxx", Utils.idGenerator());
-        Student student3 = new Student("xxx", "xxx", "xxx", "xxx", Utils.idGenerator());
+        Student student1 = new Student("xxx", "xxx", "xxx", "xxx");
+        Student student2 = new Student("xxx", "xxx", "xxx", "xxx");
+        Student student3 = new Student("xxx", "xxx", "xxx", "xxx");
 
         students = new ArrayList<>();
         students.add(student1);
@@ -50,13 +47,13 @@ class ClassTest {
     }
 
     @Test
-    void yearOfStudyShouldbeZero() {
+    void yearOfStudyShouldBeZero() {
         Class newClass2 = new Class(0, 'A', study, students);
         assertEquals(0, newClass2.getYearOfStudy());
     }
 
     @Test
-    void yearOfStudyShouldbeOne() {
+    void yearOfStudyShouldBeOne() {
         Class newClass2 = new Class(1, 'A', study, students);
         assertEquals(1, newClass2.getYearOfStudy());
     }
@@ -77,5 +74,23 @@ class ClassTest {
     void studyFieldShouldNotBeNull() {
         Class newClass2 = new Class(1, 'A', study, students);
         assertNotNull(newClass2.getStudyField());
+    }
+
+    @Test
+    void shouldReturnLecturesByEqualDate() {
+        LocalDate date = LocalDate.of(2020, 2, 2);
+        Lecture lecture = new Lecture(date.atStartOfDay(), 0, null, null, null);
+        Class newClass = new Class(0, (char)0, null);
+        newClass.addLecture(lecture);
+        assertEquals(lecture, newClass.getLecturesByDate(date).get(0));
+    }
+
+    @Test
+    void shouldReturnNoLecturesByUnequalDate() {
+        LocalDate date = LocalDate.of(2020, 2, 2);
+        Lecture lecture = new Lecture(date.atStartOfDay(), 0, null, null, null);
+        Class newClass = new Class(0, (char)0, null);
+        newClass.addLecture(lecture);
+        assertTrue(newClass.getLecturesByDate(date.plusDays(1)).isEmpty());
     }
 }
