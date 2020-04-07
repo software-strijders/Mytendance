@@ -44,7 +44,7 @@ public class AdjustAttendanceController {
             }
         });
 
-        datePicker.setValue(LocalDate.now());
+        datePicker.setValue(LocalDate.now().plusDays(1));
         setUpAttendanceTable();
         fillReasonBox();
     }
