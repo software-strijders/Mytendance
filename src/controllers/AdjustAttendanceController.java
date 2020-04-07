@@ -44,7 +44,7 @@ public class AdjustAttendanceController {
             }
         });
 
-        datePicker.setValue(LocalDate.now().plusDays(1));
+        datePicker.setValue(LocalDate.now().plusDays(0));
         setUpAttendanceTable();
         fillReasonBox();
     }
@@ -62,14 +62,19 @@ public class AdjustAttendanceController {
     }
 
     private void updateInfo() {
+
         Attendance attendance = attendanceTable.getSelectionModel().getSelectedItem();
+
+        if (attendance == null) {
+           return;
+        }
+
         reasonBox.setValue(attendance.getType());
         descriptionBox.setText(attendance.getDescription());
     }
 
     private void updateAttendanceTable() {
         ArrayList<Attendance> attendances = new ArrayList<>();
-
         for(Attendance attendance : Attendance.getAttendancesbyStudent(loggedInStudent)) {
             if (attendance.getLecture().getStartDate().toLocalDate().isEqual(datePicker.getValue()) && !attendance.getType().equals(AttendanceType.PRESENT)) {
                 attendances.add(attendance);
@@ -89,9 +94,20 @@ public class AdjustAttendanceController {
         Attendance selectedAttendance = attendanceTable.getSelectionModel().getSelectedItem();
         AttendanceType selectedType = reasonBox.getValue();
 
+        if (selectedAttendance == null) {
+            FXUtils.showWarning("Geen absentiemelding geselecteerd :/");
+            return;
+        }
+
+        if (description.equals("")) {
+            FXUtils.showInfo("Beschrijving is niet ingevuld :/");
+            return;
+        }
+
         selectedAttendance.setDescription(description);
         selectedAttendance.setType(selectedType);
         FXUtils.showInfo("Absentie aangepast.");
+        updateAttendanceTable();
     }
 
     @FXML
@@ -102,8 +118,15 @@ public class AdjustAttendanceController {
     @FXML
     private void onMakePresentButtonClick(ActionEvent event) {
         Attendance selectedAttendance = attendanceTable.getSelectionModel().getSelectedItem();
+
+        if(selectedAttendance == null) {
+            FXUtils.showWarning("Geen absentiemelding geselecteerd :/");
+            return;
+        }
+
         selectedAttendance.setDescription("");
         selectedAttendance.setType(AttendanceType.PRESENT);
+        FXUtils.showInfo("Absentiemelding verwijderd. Je bent weer present gemeld :)");
         clearFields();
     }
 

@@ -165,7 +165,9 @@ public class CreateLectureController {
         List<Attendance> attendances = new ArrayList<>();
 
         for (Student student : this.classComboBox.getValue().getStudents()) {
-            attendances.add(new Attendance(lecture, student));
+            Attendance attendance = new Attendance(lecture, student);
+            attendances.add(attendance);
+            Attendance.addAttendance(attendance);
         }
         return attendances;
     }
