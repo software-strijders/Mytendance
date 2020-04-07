@@ -62,7 +62,7 @@ class LectureTest {
     @Test
     void attendancesShouldBeAnUnmodifiableList() {
         assertThrows(UnsupportedOperationException.class, () ->
-                this.lecture.getAttendances().add(new Attendance(this.student)));
+                this.lecture.getAttendances().add(new Attendance(null, this.student)));
     }
 
     @Test
@@ -106,14 +106,14 @@ class LectureTest {
 
     @Test
     void attendanceListSizeShouldBeOne() {
-        this.lecture.addAttendance(new Attendance(this.student));
+        this.lecture.addAttendance(new Attendance(null, this.student));
         assertEquals(1, this.lecture.getAttendances().size());
     }
 
     @Test
     void attendanceListSizeShouldBeTwo() {
-        this.lecture.addAttendance(new Attendance(this.student));
-        this.lecture.addAttendance(new Attendance(this.student));
+        this.lecture.addAttendance(new Attendance(null, this.student));
+        this.lecture.addAttendance(new Attendance(null, this.student));
         assertEquals(2, this.lecture.getAttendances().size());
     }
 

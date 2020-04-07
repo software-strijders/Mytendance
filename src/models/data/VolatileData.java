@@ -98,7 +98,8 @@ public final class VolatileData {
 
     private static void createClasses() {
         FieldOfStudy fieldOfStudy = createFieldOfStudies();
-        List<Class> classes = new ArrayList<>();
+        List<Class> classes = new ArrayList<>() {
+        };
 
         // For now add all students to all classes, this should change obviously
         classes.add(new Class(1, 'A', fieldOfStudy, Student.getRegisteredStudents()));
@@ -107,8 +108,12 @@ public final class VolatileData {
         classes.add(new Class(1, 'D', fieldOfStudy, Student.getRegisteredStudents()));
         classes.add(new Class(1, 'E', fieldOfStudy, Student.getRegisteredStudents()));
 
-        for (Class theClass : classes)
+        for (Class theClass : classes) {
             Class.addClass(theClass);
+            for (Student student : Student.getRegisteredStudents()) {
+                student.addClass(theClass);
+            }
+        }
     }
 
     private static FieldOfStudy createFieldOfStudies() {
@@ -137,46 +142,66 @@ public final class VolatileData {
         Teacher roelant = teachers.get(4);
 
         List<Lecture> lectures = new ArrayList<>();
-        lectures.add(new Lecture(now.withHour(10).withMinute(0), 60, SubjectType.OOAD, henk, v1d, createAttendances(v1d.getStudents())));
-        v1d.addLecture(lectures.get(0));
-        henk.addLecture(lectures.get(0));
-        lectures.add(new Lecture(now.withHour(11).withMinute(0), 60, SubjectType.OOAD, henk, v1d, createAttendances(v1d.getStudents())));
-        v1d.addLecture(lectures.get(1));
-        henk.addLecture(lectures.get(1));
-        lectures.add(new Lecture(now.withHour(12).withMinute(0), 60, SubjectType.GP_SD, henk, v1d, createAttendances(v1d.getStudents())));
-        v1d.addLecture(lectures.get(2));
-        henk.addLecture(lectures.get(2));
-        lectures.add(new Lecture(now.withHour(13).withMinute(0), 60, SubjectType.GP_SD, henk, v1d, createAttendances(v1d.getStudents())));
-        v1d.addLecture(lectures.get(3));
-        henk.addLecture(lectures.get(3));
+
+        Lecture l1 = new Lecture(now.withHour(10).withMinute(0), 60, SubjectType.OOAD, henk, v1d, null);
+        Lecture l2 = new Lecture(now.withHour(11).withMinute(0), 60, SubjectType.OOAD, henk, v1d, null);
+        Lecture l3 = new Lecture(now.withHour(12).withMinute(0), 60, SubjectType.GP_SD, henk, v1d, null);
+        Lecture l4 = new Lecture(now.withHour(13).withMinute(0), 60, SubjectType.GP_SD, henk, v1d, null);
+
+        Lecture l5 = new Lecture(now.withHour(10).withMinute(0), 60, SubjectType.OOP, roelant, v1e, null);
+        Lecture l6 = new Lecture(now.withHour(11).withMinute(0), 60, SubjectType.OOAD, roelant, v1e, null);
+        Lecture l7 = new Lecture(now.withHour(13).withMinute(0), 60, SubjectType.GP_SD, roelant, v1e, null);
+        Lecture l8 = new Lecture(now.withHour(14).withMinute(0), 60, SubjectType.OOP, roelant, v1e, null);
+
+        lectures.add(l1);
+        lectures.add(l2);
+        lectures.add(l3);
+        lectures.add(l4);
+        lectures.add(l5);
+        lectures.add(l6);
+        lectures.add(l7);
+        lectures.add(l8);
+
+        l1.setAttendances(createAttendances(v1d.getStudents(), l1));
+        l2.setAttendances(createAttendances(v1d.getStudents(), l2));
+        l3.setAttendances(createAttendances(v1d.getStudents(), l3));
+        l4.setAttendances(createAttendances(v1d.getStudents(), l4));
+        l5.setAttendances(createAttendances(v1e.getStudents(), l5));
+        l6.setAttendances(createAttendances(v1e.getStudents(), l6));
+        l7.setAttendances(createAttendances(v1e.getStudents(), l7));
+        l8.setAttendances(createAttendances(v1e.getStudents(), l8));
+
+        v1d.addLecture(l1);
+        v1d.addLecture(l2);
+        v1d.addLecture(l3);
+        v1d.addLecture(l4);
+        v1e.addLecture(l5);
+        v1e.addLecture(l6);
+        v1e.addLecture(l7);
+        v1e.addLecture(l8);
+
+        henk.addLecture(l1);
+        henk.addLecture(l2);
+        henk.addLecture(l3);
+        henk.addLecture(l4);
+        roelant.addLecture(l5);
+        roelant.addLecture(l6);
+        roelant.addLecture(l7);
+        roelant.addLecture(l8);
 
         henk.addClass(v1d);
-
-        lectures.add(new Lecture(now.withHour(10).withMinute(0), 60, SubjectType.GP_SD, roelant, v1e, createAttendances(v1e.getStudents())));
-        v1e.addLecture(lectures.get(4));
-        roelant.addLecture(lectures.get(4));
-        lectures.add(new Lecture(now.withHour(11).withMinute(0), 60, SubjectType.GP_SD, roelant, v1e, createAttendances(v1e.getStudents())));
-        v1e.addLecture(lectures.get(5));
-        roelant.addLecture(lectures.get(5));
-        lectures.add(new Lecture(now.withHour(12).withMinute(0), 60, SubjectType.OOP, roelant, v1e, createAttendances(v1e.getStudents())));
-        v1e.addLecture(lectures.get(6));
-        roelant.addLecture(lectures.get(6));
-        lectures.add(new Lecture(now.withHour(13).withMinute(0), 60, SubjectType.OOP, roelant, v1e, createAttendances(v1e.getStudents())));
-        v1e.addLecture(lectures.get(7));
-        roelant.addLecture(lectures.get(7));
-
         roelant.addClass(v1e);
 
         for (Lecture lecture : lectures)
             Lecture.addLecture(lecture);
     }
 
-    private static List<Attendance> createAttendances(List<Student> students) {
-        List<Attendance> attendances = new ArrayList<>();
+    private static ArrayList<Attendance> createAttendances(List<Student> students, Lecture lecture) {
+        ArrayList<Attendance> attendances = new ArrayList<>();
         Random random = new Random();
 
         for (Student student : students) {
-            Attendance attendance = new Attendance(student, random.nextDouble() < 0.25
+            Attendance attendance = new Attendance(lecture, student, random.nextDouble() < 0.25
                     ? AttendanceType.Absent.values()[random.nextInt(AttendanceType.Absent.values().length)]
                     : AttendanceType.PRESENT, ""); // Descriptions are left empty on absent attendances
             attendances.add(attendance);

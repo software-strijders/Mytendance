@@ -24,7 +24,7 @@
                   <Insets />
                </BorderPane.margin>
                <children>
-                  <AnchorPane layoutX="39.0" layoutY="60.0" prefHeight="280.0" prefWidth="248.0" style="-fx-background-color: GRAY; -fx-background-radius: 10;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0">
+                  <AnchorPane layoutX="39.0" layoutY="60.0" prefHeight="280.0" prefWidth="248.0" style="-fx-background-color: #484848; -fx-background-radius: 10;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0">
                      <children>
                         <GridPane alignment="CENTER" prefHeight="262.0" prefWidth="216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columnConstraints>

@@ -33,4 +33,9 @@ public class StudentMenuController {
     public void onMakeAbsenceClick(ActionEvent event) {
         FXUtils.loadView("Nieuwe absentiemelding", "/views/AddAbsence.fxml", event);
     }
+
+    @FXML
+    public void onTestClick(ActionEvent event) {
+        FXUtils.loadView("Absentie aanpassen", "/views/AdjustAttendance.fxml", event);
+    }
 }
