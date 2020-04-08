@@ -64,7 +64,7 @@
 
 .list-cell {
     -fx-background-color: #484848;
-    -fx-text-fill: #939393;
+    -fx-text-fill: #dddddd;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #333;
 }
@@ -108,11 +108,14 @@
     -fx-border-color: #333;
 }
 
-.combo-box-popup .list-cell
-{
+.combo-box-popup .list-cell {
     -fx-background-color: #5b5b5b;
     -fx-border-color: #333;
     -fx-border-width: 0 1 1 1;
+}
+
+.combo-box .arrow-button .arrow {
+    -fx-background-color: #fff;
 }
 
 .date-picker {
@@ -130,6 +133,10 @@
 .date-picker > .arrow-button {
     -fx-background-color: #333;
     -fx-border-color: #333;
+}
+
+.hide--icon .date-picker > .arrow-button > .arrow {
+    -fx-background-color: transparent;
 }
 
 .date-picker .cell {
@@ -237,7 +244,7 @@
 }
 
 .table-view .table-cell{
-    -fx-text-fill: #939393;
+    -fx-text-fill: #dddddd;
 }
 
 .text-field {
@@ -286,7 +293,7 @@
 .date-cell {
     -fx-background-color: #484848;
     -fx-border-color: #333;
-    -fx-text-fill: #939393;
+    -fx-text-fill: #dddddd;
 }
 
 .date-cell:focused {

@@ -97,6 +97,7 @@ public class AttendanceOverviewController {
 
     private void setUpPieChart() {
         this.pieChart.setLabelLineLength(8f);
+        this.pieChart.setLegendVisible(false);
         this.updatePieChart();
     }
 

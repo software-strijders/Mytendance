@@ -33,7 +33,7 @@ public class TeacherShowLecturesController {
 
     @FXML
     private void initialize() {
-
+        datePicker.getStyleClass().add("hide--icon");
         datePicker.setManaged(false);
         DatePickerSkin skin = new DatePickerSkin(datePicker);
         vbox.getChildren().add(skin.getPopupContent());

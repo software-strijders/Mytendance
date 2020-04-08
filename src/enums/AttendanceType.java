@@ -7,7 +7,7 @@ public interface AttendanceType {
     String getColor();
 
     enum State implements AttendanceType {
-        PRESENT("Aanwezig", "green"),
+        PRESENT("Aanwezig", "#1dc452"),
         ABSENT("Afwezig", "black");
 
         private final String name;
@@ -29,13 +29,13 @@ public interface AttendanceType {
     }
 
     enum Absent implements AttendanceType {
-        ILL("Ziek", "#ff0000"),
-        DENTIST("Tandarts", "#ce0000"),
-        DOCTOR("Dokter", "#a80000"),
-        FUNERAL("Begravenis", "#870000"),
-        WEDDING("Trouwerij", "#560000"),
-        ENTOMBMENT("Mummificatie", "#380000"),
-        OTHER("Anders", "#1c0000");
+        ILL("Ziek", "#d32d2a"),
+        DENTIST("Tandarts", "#c12b28"),
+        DOCTOR("Dokter", "#a82321"),
+        FUNERAL("Begravenis", "#961d1b"),
+        WEDDING("Trouwerij", "#821716"),
+        ENTOMBMENT("Mummificatie", "#701514"),
+        OTHER("Anders", "#7c0d0b");
 
         private final String name;
         private final String color;

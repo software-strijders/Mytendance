@@ -34,7 +34,7 @@
                   <Label fx:id="lastNameLabel" text="Achternaam:" textFill="WHITE" GridPane.rowIndex="2" />
                   <Label fx:id="emailLabel" text="Email:" textFill="WHITE" GridPane.rowIndex="3" />
                   <Label fx:id="passwordLabel" text="Wachtwoord:" textFill="WHITE" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="userTypeComboBox" maxHeight="25.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="5000.0" promptText="Student" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                  <ComboBox fx:id="userTypeComboBox" maxHeight="25.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="5000.0" promptText="Student" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
                   <TextField fx:id="firstNameTextField" maxHeight="25.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
                   <TextField fx:id="lastNameTextField" maxHeight="25.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
                   <TextField fx:id="emailTextField" maxHeight="25.0" maxWidth="-Infinity" prefHeight="25.0" prefWidth="5000.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
