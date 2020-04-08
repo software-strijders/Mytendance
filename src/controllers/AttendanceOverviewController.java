@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -101,7 +100,7 @@ public class AttendanceOverviewController {
             this.pieChart.setData(lecture.getAttendances().stream().collect(Collectors.groupingBy(Attendance::getType,
                     Collectors.counting())).entrySet().stream().sorted(Comparator.comparing(item -> item.getKey()
                     .toString())).map(item -> new PieChart.Data(String.format("%s: %.0f%%", item.getKey(),
-                    item.getValue() * 100f / lecture.getAttendaceSize()), item.getValue()))
+                    item.getValue() * 100f / lecture.getAttendancesSize()), item.getValue()))
                     .collect(toCollection(FXCollections::observableArrayList)));
     }
 

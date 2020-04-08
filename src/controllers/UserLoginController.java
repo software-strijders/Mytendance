@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
-import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class UserLoginController {
@@ -20,16 +19,23 @@ public class UserLoginController {
     private String email;
     private String password;
     private UserType userType;
-    private User loggedInUser;
-
-    public void setUserType(UserType type) {
-        this.userTypeLabel.setText(type.toString());
-        this.userType = type;
-    }
 
     @FXML
-    public void handleSwitchRole(ActionEvent event) {
-        FXUtils.loadView("Selecteer rol", "/views/RoleSelection.fxml", event);
+    public void handleLogin(ActionEvent event) {
+        try {
+            this.obtainCredentials();
+            this.logInUser();
+            this.clearPassword();
+            this.loadMainWindow(event);
+        } catch (InputMismatchException exception) {
+            FXUtils.showInfo(exception.getMessage());
+        } catch (IllegalArgumentException exception) {
+            this.clearPassword();
+            FXUtils.showInfo("Het e-mailadres of wachtwoord is incorrect :(");
+        } catch (Exception exception) {
+            this.clearPassword();
+            FXUtils.showError(exception);
+        }
     }
 
     private void obtainCredentials() throws InputMismatchException {
@@ -45,8 +51,7 @@ public class UserLoginController {
     }
 
     private void logInUser() throws IllegalArgumentException {
-        this.loggedInUser = User.authenticateUser(this.email, this.password, this.userType);
-        User.setLoggedInUser(this.loggedInUser);
+        User.setLoggedInUser(User.authenticateUser(this.email, this.password, this.userType));
     }
 
     private void clearPassword() {
@@ -54,27 +59,17 @@ public class UserLoginController {
         this.password = null;
     }
 
-    private void loadMainWindow(ActionEvent event) throws IOException {
-        FXUtils.loadComponent("Hoofdmenu", "/views/Mytendance.fxml", event);
+    private void loadMainWindow(ActionEvent event) {
+        FXUtils.loadView("Hoofdmenu", "/views/Mytendance.fxml", event);
     }
 
     @FXML
-    public void handleLogin(ActionEvent event) {
-        try {
-            this.obtainCredentials();
-            this.logInUser();
-            this.clearPassword();
-            this.loadMainWindow(event);
-        } catch (InputMismatchException exception) {
-            FXUtils.showInfo(exception.getMessage());
-        } catch (IllegalArgumentException exception) {
-            this.clearPassword();
-            FXUtils.showInfo("Het e-mailadres of wachtwoord is incorrect :(");
-        } catch (IOException exception) {
-            this.clearPassword();
-            FXUtils.showWarning(exception, "Hoofdmenu");
-        } catch (Exception exception) {
-            FXUtils.showError(exception);
-        }
+    public void handleSwitchRole(ActionEvent event) {
+        FXUtils.loadView("Selecteer rol", "/views/RoleSelection.fxml", event);
+    }
+
+    public void setUserType(UserType type) {
+        this.userTypeLabel.setText(type.toString());
+        this.userType = type;
     }
 }
