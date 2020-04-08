@@ -44,6 +44,7 @@ public class TakeAttendanceController {
             this.setUpListViews();
             this.setUpLectureTable();
             this.datePicker.setValue(LocalDate.now());
+            this.classComboBox.setPromptText("Klas");
         } catch (IllegalAccessException exception) {
             FXUtils.showInfo(exception.getMessage());
         } catch (Exception exception) {

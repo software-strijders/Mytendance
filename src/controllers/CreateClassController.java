@@ -52,6 +52,7 @@ public class CreateClassController {
 
         // Unsure whether or not we use this
         this.studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        this.fieldOfStudy.setPromptText("Studierichting");
     }
 
     private void setUpListeners() {

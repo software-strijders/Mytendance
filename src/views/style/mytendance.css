@@ -5,6 +5,11 @@
 .loggedInUserLabel {
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.title {
+    -fx-font-weight: bold;
 }
 
 .windowPane {
@@ -24,6 +29,7 @@
     -fx-background-color: #636363;
     -fx-border-color: #484848;
     -fx-text-fill: #fff;
+    -fx-font-weight: bold;
     -fx-font-size: 14px;
     -fx-border-color: #484848;
     -fx-alignment: center;
@@ -45,6 +51,7 @@
     -fx-background-radius: 0;
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
     -fx-border-color: #484848;
     -fx-border-width: 3px 1px 3px 0px;
     -fx-border-style: hidden hidden solid solid;
@@ -108,8 +115,12 @@
     -fx-border-color: #333;
 }
 
+.combo-box > .list-cell {
+    -fx-background-color: #686868;
+}
+
 .combo-box-popup .list-cell {
-    -fx-background-color: #5b5b5b;
+    -fx-background-color: #686868;
     -fx-border-color: #333;
     -fx-border-width: 0 1 1 1;
 }
@@ -124,7 +135,7 @@
 }
 
 .date-picker > .text-field {
-    -fx-background-color: #484848;
+    -fx-background-color: #686868;
     -fx-text-fill: #fff;
     -fx-effect: dropshadow(three-pass-box, transparent, 10, 0, 0, 0);
     -fx-border-color: #333;
@@ -164,6 +175,15 @@
     -fx-background-color: #333;
 }
 
+.date-picker-popup > * > .selected {
+    -fx-background-color: #686868;
+    -fx-text-fill: #fff;
+}
+
+.date-picker-popup > * > .today {
+    -fx-background-color: rgba(78, 211, 16, 0.25)
+}
+
 .date-picker-popup > * > .day-name-cell,
 .date-picker-popup > * > .week-number-cell {
     -fx-text-fill: #fff;
@@ -171,10 +191,6 @@
 
 .date-picker-popup > * > .hijrah-day-cell {
     -fx-background-color: #484848;
-}
-
-.date-picker-popup > * >  .today {
-    -fx-background-color: #686868;
 }
 
 .date-picker > .calendar-grid {
@@ -188,15 +204,11 @@
 .button {
     -fx-background-color: #fff;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-font-weight: bold;
 }
 
 .button:hover {
     -fx-background-color: #e0e0e0;
-}
-
-.button:disabled {
-    -fx-background-color: #333;
-    -fx-text-fill: #686868;
 }
 
 .list-view .list-cell:selected {
@@ -229,7 +241,7 @@
     -fx-background-color: #313131;
 }
 
-.table-row-cell{
+.table-row-cell {
     -fx-background-color: #484848;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #333;
@@ -248,32 +260,32 @@
 }
 
 .text-field {
-    -fx-background-color: #484848;
+    -fx-background-color: #686868;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
     -fx-text-fill: #fff;
     -fx-border-color: #333;
 }
 
 .text-area {
-    -fx-background-color: #484848;
+    -fx-background-color: #686868;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
     -fx-text-fill: #fff;
     -fx-border-color: #333;
 }
 
 .text-area .content {
-    -fx-background-color: #484848;
+    -fx-background-color: #686868;
     -fx-text-fill: #fff;
 }
 
 .spinner .increment-arrow-button{
-    -fx-background-color: #484848;
+    -fx-background-color: #333;
     -fx-border-color: #333;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
-.spinner .decrement-arrow-button{
-    -fx-background-color: #484848;
+.spinner .decrement-arrow-button {
+    -fx-background-color: #333;
     -fx-border-color: #333;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }

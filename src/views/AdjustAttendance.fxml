@@ -19,6 +19,9 @@
                <children>
                   <DatePicker fx:id="datePicker" onAction="#onDatePickerAction" prefHeight="25.0" prefWidth="5000.0" VBox.vgrow="NEVER" />
                   <TableView fx:id="attendanceTable" prefHeight="386.0" prefWidth="285.0" VBox.vgrow="ALWAYS">
+                     <placeholder>
+                        <Label text="Er zijn geen absenties gevonden" style="-fx-text-fill: white;" />
+                     </placeholder>
                      <columns>
                         <TableColumn fx:id="timeColumn" prefWidth="96.0" text="Tijd" />
                         <TableColumn fx:id="subjectColumn" prefWidth="81.0" text="Vak" />

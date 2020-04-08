@@ -38,7 +38,7 @@
                      <children>
                         <TableView fx:id="lectureTable" prefHeight="233.0" prefWidth="194.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                           <placeholder>
-                             <Label text="Er zijn geen lessen gevonden" />
+                             <Label text="Er zijn geen lessen gevonden" style="-fx-text-fill: white;" />
                           </placeholder>
                           <columns>
                             <TableColumn fx:id="subjectColumn" editable="false" prefWidth="48.0" text="Vak" />
