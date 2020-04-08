@@ -156,6 +156,11 @@
     /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
 }
 
+.table-view .column-header-background,
+.table-view:constrained-resize .filler {
+    -fx-background-color: #333;
+}
+
 .table-view:focused {
     -fx-background-color: #484848;
     -fx-border-color: #333;

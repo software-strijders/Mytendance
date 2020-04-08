@@ -80,6 +80,7 @@
     -fx-text-fill: #000;
     -fx-background-color: #dddddd;
     -fx-font-weight: bold;
+    -fx-font-size: 14px;
     -fx-border-color: #484848;
     -fx-border-width: 3px 1px 3px 0px;
     -fx-border-style: hidden solid solid hidden;
