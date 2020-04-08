@@ -9,6 +9,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Attendance;
 import models.Lecture;
@@ -23,6 +24,7 @@ import static java.util.stream.Collectors.toCollection;
 
 public class AttendanceOverviewController {
 
+    @FXML private TitledPane attendancePane;
     @FXML private DatePicker datePicker;
     @FXML private TableView<Lecture> lectureTable;
     @FXML private TableColumn<Lecture, SubjectType> subjectColumn;
@@ -77,16 +79,6 @@ public class AttendanceOverviewController {
         });
     }
 
-    private void colorPieChartSlices() {
-        for (PieChart.Data slice : this.pieChart.getData())
-            if (slice.getName().startsWith(AttendanceType.PRESENT.toString()))
-                slice.getNode().setStyle(String.format("-fx-pie-color: %s;", AttendanceType.PRESENT.getColor()));
-            else
-                for (AttendanceType type : AttendanceType.Absent.values())
-                    if (slice.getName().startsWith(type.toString()))
-                        slice.getNode().setStyle(String.format("-fx-pie-color: %s;", type.getColor()));
-    }
-
     private void updateLectureTable() {
         this.lectureTable.setItems(FXCollections.observableList(
                 this.teacher.getLecturesByDate(this.selectedDate)));
@@ -96,7 +88,6 @@ public class AttendanceOverviewController {
 
     private void setUpPieChart() {
         this.pieChart.setLabelLineLength(8f);
-        this.pieChart.setLegendVisible(false);
         this.updatePieChart();
     }
 
@@ -106,6 +97,8 @@ public class AttendanceOverviewController {
         if (lecture == null)
             this.pieChart.getData().clear();
         else {
+            this.pieChart = new PieChart();
+            this.attendancePane.setContent(this.pieChart);
             // Get all attendances of the lecture object which was obtained from the currently selected row,
             // create a temporary dictionary by grouping all attendances by attendance type and their respective count,
             // sort the dictionary by attendance name and generate a list of pie chart slices for each dictionary item
@@ -115,8 +108,6 @@ public class AttendanceOverviewController {
                     item.getValue() * 100f / lecture.getAttendancesSize()), item.getValue()))
                     .collect(toCollection(FXCollections::observableArrayList)));
 
-            // Check if dark mode is enabled
-            this.colorPieChartSlices();
         }
     }
 

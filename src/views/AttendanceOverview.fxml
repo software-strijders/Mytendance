@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="609.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AttendanceOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="609.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AttendanceOverviewController">
    <children>
       <HBox prefHeight="349.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -27,7 +27,7 @@
                      <children>
                         <TableView fx:id="lectureTable" layoutY="20.0" prefHeight="276.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                           <placeholder>
-                             <Label text="Er zijn geen lessen gevonden" style="-fx-text-fill: white;"/>
+                             <Label style="-fx-text-fill: white;" text="Er zijn geen lessen gevonden" />
                           </placeholder>
                           <columns>
                             <TableColumn fx:id="subjectColumn" editable="false" prefWidth="40.0" text="Vak" />
@@ -51,7 +51,7 @@
                <children>
                   <AnchorPane VBox.vgrow="ALWAYS">
                      <children>
-                        <TitledPane alignment="CENTER" collapsible="false" prefHeight="345.0" prefWidth="279.0" text="Aanwezigheid" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TitledPane fx:id="attendancePane" alignment="CENTER" collapsible="false" prefHeight="345.0" prefWidth="279.0" text="Aanwezigheid" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
                               <PieChart fx:id="pieChart" prefHeight="320.0" prefWidth="287.0" />
                            </content>
