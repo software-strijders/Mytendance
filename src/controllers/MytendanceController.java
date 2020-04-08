@@ -56,34 +56,34 @@ public class MytendanceController {
 
 
     private void loadAdministratorButtons() {
-        FXUtils.loadButtonComponent("Home",
-                event -> this.loadMainView("/views/CreateUser.fxml"), 0, this.children, this.group, true);
+        FXUtils.loadButtonComponent("Home", event -> this.loadMainView(
+                "/views/CreateUser.fxml"), 0, this.children, this.group, true);
 
         this.loadMainView("/views/CreateUser.fxml");
     }
 
     private void loadTeacherButtons() {
-        FXUtils.loadButtonComponent("Home",
-                event -> this.loadMainView("/views/TakeAttendance.fxml"), 0, this.children, this.group, true);
-        FXUtils.loadButtonComponent("Statistiek",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AttendanceOverview.fxml"), 0, this.children, this.group);
-        FXUtils.loadButtonComponent("Overzicht Lessen",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/TeacherLectureOverviewController.fxml"), 0, this.children, this.group);
-        FXUtils.loadButtonComponent("Les aanmaken",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateLecture.fxml"), 0, this.children, this.group);
-        FXUtils.loadButtonComponent("Klas aanmaken",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateClass.fxml"), 0, this.children, this.group);
+        FXUtils.loadButtonComponent("Home", event -> this.loadMainView(
+                "/views/TakeAttendance.fxml"), 0, this.children, this.group, true);
+        FXUtils.loadButtonComponent("Statistiek", event -> FXUtils.loadPaneIntoView(this.FXMLContainer,
+                "/views/AttendanceOverview.fxml"), 0, this.children, this.group);
+        FXUtils.loadButtonComponent("Overzicht Lessen", event -> FXUtils.loadPaneIntoView(this.FXMLContainer,
+                "/views/TeacherShowLectures.fxml"), 0, this.children, this.group);
+        FXUtils.loadButtonComponent("Les aanmaken", event -> FXUtils.loadPaneIntoView(this.FXMLContainer,
+                "/views/CreateLecture.fxml"), 0, this.children, this.group);
+        FXUtils.loadButtonComponent("Klas aanmaken", event -> FXUtils.loadPaneIntoView(this.FXMLContainer,
+                "/views/CreateClass.fxml"), 0, this.children, this.group);
 
         this.loadMainView("/views/TakeAttendance.fxml");
     }
 
     private void loadStudentButtons() {
-        FXUtils.loadButtonComponent("Home",
-                event -> this.loadMainView("/views/AddAbsence.fxml"), 0, this.children, this.group, true);
-        FXUtils.loadButtonComponent("Absentie aanpassen",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AdjustAttendance.fxml"), 0, this.children, this.group);
-        FXUtils.loadButtonComponent("Overzicht lessen",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/StudentLectureOverview.fxml"), 0, this.children, this.group);
+        FXUtils.loadButtonComponent("Home", event -> this.loadMainView(
+                "/views/AddAbsence.fxml"), 0, this.children, this.group, true);
+        FXUtils.loadButtonComponent("Absentie aanpassen", event -> FXUtils.loadPaneIntoView(this.FXMLContainer,
+                "/views/AdjustAttendance.fxml"), 0, this.children, this.group);
+        FXUtils.loadButtonComponent("Overzicht lessen", event -> FXUtils.loadPaneIntoView(this.FXMLContainer,
+                "/views/StudentLectureOverview.fxml"), 0, this.children, this.group);
 
         this.loadMainView("/views/AddAbsence.fxml");
     }

@@ -3,10 +3,7 @@ package models;
 import enums.AttendanceType;
 import enums.SubjectType;
 import models.user.Student;
-
-import javax.security.auth.Subject;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +20,7 @@ public class Attendance {
     private Lecture lecture;
 
     public Attendance(Lecture lecture, Student student) {
-        this(lecture, student, AttendanceType.PRESENT, "");
+        this(lecture, student, student.isSick() ? AttendanceType.Absent.ILL : AttendanceType.PRESENT, "");
     }
 
     public Attendance(Lecture lecture, Student student, AttendanceType type, String description) {
@@ -78,6 +75,10 @@ public class Attendance {
 
     public boolean isPresent() {
         return this.type.equals(AttendanceType.PRESENT);
+    }
+
+    public boolean isSick() {
+        return this.type.equals(AttendanceType.Absent.ILL);
     }
 
     public String getDescription() {

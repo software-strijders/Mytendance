@@ -1,6 +1,7 @@
 package models;
 
 import enums.SubjectType;
+import models.user.Student;
 import models.user.Teacher;
 import utils.Utils;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Lecture {
 
@@ -131,6 +133,11 @@ public class Lecture {
 
     public List<Attendance> getAttendances() {
         return Collections.unmodifiableList(this.attendances);
+    }
+
+    public Attendance getAttendanceOfStudent(Student student) {
+        return attendances.stream().filter(attendance ->
+                attendance.getStudent().equals(student)).findFirst().orElse(null);
     }
 
     public void addAttendance(Attendance attendance) {

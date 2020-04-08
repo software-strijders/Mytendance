@@ -23,9 +23,9 @@
                         <Label text="Er zijn geen absenties gevonden" style="-fx-text-fill: white;" />
                      </placeholder>
                      <columns>
-                        <TableColumn fx:id="timeColumn" prefWidth="96.0" text="Tijd" />
-                        <TableColumn fx:id="subjectColumn" prefWidth="81.0" text="Vak" />
-                        <TableColumn fx:id="reasonColumn" prefWidth="50.0" text="Reden" />
+                        <TableColumn fx:id="timeColumn" prefWidth="96.0" style="-fx-alignment: CENTER;" text="Tijd" />
+                        <TableColumn fx:id="subjectColumn" prefWidth="81.0" style="-fx-alignment: CENTER;" text="Vak" />
+                        <TableColumn fx:id="reasonColumn" prefWidth="50.0" style="-fx-alignment: CENTER;" text="Reden" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

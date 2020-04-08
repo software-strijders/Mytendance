@@ -144,9 +144,4 @@ public class TakeAttendanceController {
         FXUtils.showInfo("Reden van absentie",
                 this.absentListView.getSelectionModel().getSelectedItem().getDescription());
     }
-
-    @FXML
-    public void onDoneClick(ActionEvent event) {
-        FXUtils.closeStage(event);
-    }
 }

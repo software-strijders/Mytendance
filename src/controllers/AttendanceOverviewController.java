@@ -32,10 +32,10 @@ public class AttendanceOverviewController {
     @FXML private TableColumn<Lecture, LocalTime> endTimeColumn;
     @FXML private TableColumn<Lecture, String> classColumn;
     @FXML private TableColumn<Lecture, Integer> classSizeColumn;
-    @FXML private PieChart pieChart;
 
     private Teacher teacher;
     private LocalDate selectedDate;
+    private PieChart pieChart;
 
     @FXML
     private void initialize() {
@@ -43,7 +43,6 @@ public class AttendanceOverviewController {
             this.setUpUser();
             this.setUpDatePicker();
             this.setUpLectureTable();
-            this.setUpPieChart();
         } catch (IllegalAccessException exception) {
             FXUtils.showInfo(exception.getMessage());
         } catch (Exception exception) {
@@ -69,7 +68,6 @@ public class AttendanceOverviewController {
         this.endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         this.classColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
         this.classSizeColumn.setCellValueFactory(new PropertyValueFactory<>("classSize"));
-        this.updateLectureTable();
         this.lectureTable.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 this.updatePieChart();
@@ -77,6 +75,8 @@ public class AttendanceOverviewController {
                 FXUtils.showError(exception);
             }
         });
+        // We do this last to trigger a this.updatePieChart() call
+        this.updateLectureTable();
     }
 
     private void updateLectureTable() {
@@ -87,8 +87,9 @@ public class AttendanceOverviewController {
     }
 
     private void setUpPieChart() {
+        this.pieChart = new PieChart();
         this.pieChart.setLabelLineLength(8f);
-        this.updatePieChart();
+        this.attendancePane.setContent(this.pieChart);
     }
 
     private void updatePieChart() {
@@ -97,8 +98,7 @@ public class AttendanceOverviewController {
         if (lecture == null)
             this.pieChart.getData().clear();
         else {
-            this.pieChart = new PieChart();
-            this.attendancePane.setContent(this.pieChart);
+            this.setUpPieChart();
             // Get all attendances of the lecture object which was obtained from the currently selected row,
             // create a temporary dictionary by grouping all attendances by attendance type and their respective count,
             // sort the dictionary by attendance name and generate a list of pie chart slices for each dictionary item
@@ -107,7 +107,6 @@ public class AttendanceOverviewController {
                     .toString())).map(item -> new PieChart.Data(String.format("%s: %.0f%%", item.getKey(),
                     item.getValue() * 100f / lecture.getAttendancesSize()), item.getValue()))
                     .collect(toCollection(FXCollections::observableArrayList)));
-
         }
     }
 
@@ -119,10 +118,5 @@ public class AttendanceOverviewController {
         } catch (Exception exception) {
             FXUtils.showError(exception);
         }
-    }
-
-    @FXML
-    void handleDone(ActionEvent event) {
-        FXUtils.closeStage(event);
     }
 }
