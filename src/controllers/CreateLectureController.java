@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import models.Attendance;
 import models.Class;
 import models.Lecture;
@@ -13,8 +14,10 @@ import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -22,13 +25,17 @@ import java.util.List;
 public class CreateLectureController {
 
     @FXML private TitledPane lectureTitlePane;
+    @FXML private TableView<Lecture> lectureTable;
+    @FXML private TableColumn<Lecture, SubjectType> subjectColumn;
+    @FXML private TableColumn<Lecture, LocalTime> startColumn;
+    @FXML private TableColumn<Lecture, LocalTime> endColumn;
+    @FXML private TableColumn<Lecture, Class> classColumn;
     @FXML private DatePicker startDatePicker;
     @FXML private ComboBox<Class> classComboBox;
     @FXML private ComboBox<SubjectType> subjectComboBox;
     @FXML private Spinner<Integer> hourSpinner;
     @FXML private Spinner<Integer> minuteSpinner;
     @FXML private Spinner<Integer> durationSpinner;
-    @FXML private ListView<Lecture> lectureListView;
 
     private Teacher teacher;
     private Class selectedClass;
@@ -41,6 +48,7 @@ public class CreateLectureController {
         this.setUpSpinners();
         this.setUpFactory();
         this.setUpListeners();
+        this.setUpLectureTable();
 
         this.lectureTitlePane.setText("Geen datum geselecteerd");
         this.classComboBox.setPromptText("Klas");
@@ -51,7 +59,7 @@ public class CreateLectureController {
 
     private void setUpUser() throws IllegalAccessException {
         if (User.getLoggedInUser() instanceof Teacher)
-            this.teacher = (Teacher)User.getLoggedInUser();
+            this.teacher = (Teacher) User.getLoggedInUser();
         else
             throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten :(");
     }
@@ -88,9 +96,9 @@ public class CreateLectureController {
 
     private void setUpListeners() {
         this.classComboBox.valueProperty().addListener((observableValue, oldValue, newValue) ->
-                this.updateLectureListView());
+                this.updateLectureTable());
         this.startDatePicker.valueProperty().addListener((observableValue, oldValue, newValue) -> {
-            this.updateLectureListView();
+            this.updateLectureTable();
             this.updateLectureTitlePane();
         });
     }
@@ -105,14 +113,22 @@ public class CreateLectureController {
         this.lectureTitlePane.setText(Utils.formatDateTime(dateTime, "d-M-y"));
     }
 
-    private void updateLectureListView() {
+    private void setUpLectureTable() {
+        this.subjectColumn.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        this.startColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        this.endColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        this.classColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
+        this.updateLectureTable();
+    }
+
+    private void updateLectureTable() {
         this.selectedClass = this.classComboBox.getValue();
         this.selectedDate = this.startDatePicker.getValue();
 
         if (this.selectedClass == null || this.selectedDate == null)
             return; // We don't want to update the list when the user hasn't selected anything yet.
 
-        this.lectureListView.setItems(FXCollections.observableArrayList(
+        this.lectureTable.setItems(FXCollections.observableArrayList(
                 this.selectedClass.getLecturesByDate(this.selectedDate)));
     }
 
@@ -155,7 +171,7 @@ public class CreateLectureController {
 
         lecture.setAttendances(createAttendances(lecture));
 
-        this.lectureListView.setItems(FXCollections.observableArrayList(
+        this.lectureTable.setItems(FXCollections.observableArrayList(
                 this.selectedClass.getLecturesByDate(this.selectedDate)));
         FXUtils.showInfo("Les aangemaakt!");
     }
@@ -170,10 +186,5 @@ public class CreateLectureController {
             Attendance.addAttendance(attendance);
         }
         return attendances;
-    }
-
-    @FXML
-    private void onCancelClick(ActionEvent event) {
-        FXUtils.closeStage(event);
     }
 }
