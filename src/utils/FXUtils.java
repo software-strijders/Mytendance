@@ -1,5 +1,6 @@
 package utils;
 
+import controllers.AddAbsenceController;
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -159,8 +161,8 @@ public final class FXUtils {
         FXMLLoader loader = new FXMLLoader(loadResource(resource));
         stage.setScene(new Scene(loader.load()));
         stage.setTitle(title);
-        stage.setMinWidth(967.5);
-        stage.setMinHeight(650);
+        stage.setMinWidth(1025);
+        stage.setMinHeight(750);
 
         return loader;
     }
@@ -185,7 +187,7 @@ public final class FXUtils {
         AnchorPane anchorPane = FXUtils.loadAnchorPane();
         anchorPane.setPrefWidth(150);
         anchorPane.setMaxWidth(175);
-        RadioButton button = FXUtils.loadToggleButton(text, event, growSize);
+        RadioButton button = FXUtils.loadRadioButton(text, event, growSize);
         button.getStyleClass().remove(0); // Remove default styling
         button.getStyleClass().add("mytendanceButton");
         button.setToggleGroup(group);
@@ -205,7 +207,7 @@ public final class FXUtils {
         return anchorPane;
     }
 
-    public static RadioButton loadToggleButton(String text, EventHandler<ActionEvent> event, double growSize) {
+    public static RadioButton loadRadioButton(String text, EventHandler<ActionEvent> event, double growSize) {
         RadioButton button = new RadioButton();
         button.setText(text);
         button.setOnAction(event);
@@ -214,6 +216,20 @@ public final class FXUtils {
         grow(button, growSize);
 
         return button;
+    }
+
+    public static void loadToggleButtonComponent(String text, EventHandler<ActionEvent> event,
+                                                 double growSize, ObservableList<Node> childrenList) {
+        AnchorPane anchorPane = FXUtils.loadAnchorPane();
+        ToggleButton button = new ToggleButton();
+        button.setText(text);
+        button.setOnAction(event);
+        button.getStyleClass().remove(0);
+        button.getStyleClass().add("toggleButton");
+        anchorPane.getChildren().add(button);
+        grow(button, growSize);
+
+        childrenList.add(anchorPane);
     }
 
     public static void grow(Node node) {
@@ -243,5 +259,17 @@ public final class FXUtils {
         } catch (Exception exception) {
             showError(exception);
         }
+    }
+
+    public static void toggleDarkMode(Node node, String resource) {
+        String css = FXUtils.class.getResource(resource).toString();
+        ObservableList<String> stylesheets = node.getScene().getStylesheets();
+
+        if (stylesheets.contains(css)) {
+            stylesheets.remove(css);
+            return;
+        }
+
+        stylesheets.add(css);
     }
 }

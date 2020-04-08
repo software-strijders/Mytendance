@@ -14,55 +14,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="generalBg" stylesheets="@style/GeneralBG.css, @style/mytendance.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.UserLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="generalBg" stylesheets="@style/GeneralBG.css, @style/darkmode.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.UserLoginController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
             <Insets left="100.0" right="100.0" />
          </padding>
-         <center>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="336.0" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-               <children>
-                  <AnchorPane layoutX="39.0" layoutY="60.0" prefHeight="280.0" prefWidth="248.0" style="-fx-background-color: #484848; -fx-background-radius: 10;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0">
-                     <children>
-                        <GridPane alignment="CENTER" prefHeight="262.0" prefWidth="216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="194.0" minHeight="5.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="56.0" minHeight="9.0" prefHeight="56.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <children>
-                              <TextField fx:id="emailField" prefHeight="25.0" prefWidth="180.0" promptText="E-mail" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </TextField>
-                              <PasswordField fx:id="passwordField" onAction="#handleLogin" prefHeight="25.0" prefWidth="197.0" promptText="Wachtwoord" GridPane.rowIndex="2" />
-                              <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" style="-fx-background-color: white;" text="Log in" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button fx:id="switchButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleSwitchRole" style="-fx-background-color: white;" text="Verander rol" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                              <Label fx:id="userTypeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="48.0" prefWidth="144.0" text="Student" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </center>
          <top>
             <GridPane BorderPane.alignment="CENTER">
               <columnConstraints>
@@ -72,7 +29,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                  <ImageView fitHeight="100.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                      <image>
                         <Image url="@style/images/logo-text-left-background-border.png" />
                      </image>
@@ -83,6 +40,45 @@
                </children>
             </GridPane>
          </top>
+         <center>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="280.0" prefWidth="248.0" style="-fx-background-color: #484848; -fx-background-radius: 10;" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="262.0" prefWidth="216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="194.0" minHeight="5.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="56.0" minHeight="9.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                     <children>
+                        <TextField fx:id="emailField" prefHeight="25.0" prefWidth="180.0" promptText="E-mail" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </TextField>
+                        <PasswordField fx:id="passwordField" onAction="#handleLogin" prefHeight="25.0" prefWidth="197.0" promptText="Wachtwoord" GridPane.rowIndex="2" />
+                        <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" style="-fx-background-color: white;" text="Log in" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Button fx:id="switchButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleSwitchRole" style="-fx-background-color: white;" text="Verander rol" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Label fx:id="userTypeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="48.0" prefWidth="244.0" text="Student" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </center>
+         <bottom>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

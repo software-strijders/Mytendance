@@ -50,7 +50,10 @@
                      <styleClass>
                         <String fx:value="menuBar" />
                         <String fx:value="middleSection" />
-                     </styleClass></HBox>
+                     </styleClass>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></HBox>
                </children>
             </AnchorPane>
             <AnchorPane maxWidth="-Infinity" prefHeight="75.0" prefWidth="114.0">
