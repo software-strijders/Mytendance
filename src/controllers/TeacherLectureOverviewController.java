@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 
-public class TeacherShowLecturesController {
+public class TeacherLectureOverviewController {
 
     @FXML private VBox vbox;
     @FXML private TableView<Lecture> lectureTable;
