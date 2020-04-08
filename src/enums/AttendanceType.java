@@ -4,15 +4,22 @@ public interface AttendanceType {
 
     AttendanceType PRESENT = State.PRESENT;
     AttendanceType ABSENT = State.ABSENT;
+    String getColor();
 
     enum State implements AttendanceType {
-        PRESENT("Aanwezig"),
-        ABSENT("Afwezig");
+        PRESENT("Aanwezig", "green"),
+        ABSENT("Afwezig", "black");
 
         private final String name;
+        private final String color;
 
-        State(String name) {
+        State(String name, String color) {
             this.name = name;
+            this.color = color;
+        }
+
+        public String getColor() {
+            return this.color;
         }
 
         @Override
@@ -22,18 +29,24 @@ public interface AttendanceType {
     }
 
     enum Absent implements AttendanceType {
-        ILL("Ziek"),
-        DENTIST("Tandarts"),
-        DOCTOR("Dokter"),
-        FUNERAL("Begravenis"),
-        WEDDING("Trouwerij"),
-        ENTOMBMENT("Mummificatie"),
-        OTHER("Anders");
+        ILL("Ziek", "#ff0000"),
+        DENTIST("Tandarts", "#ce0000"),
+        DOCTOR("Dokter", "#a80000"),
+        FUNERAL("Begravenis", "#870000"),
+        WEDDING("Trouwerij", "#560000"),
+        ENTOMBMENT("Mummificatie", "#380000"),
+        OTHER("Anders", "#1c0000");
 
         private final String name;
+        private final String color;
 
-        Absent(String name) {
+        Absent(String name, String color) {
             this.name = name;
+            this.color = color;
+        }
+
+        public String getColor() {
+            return this.color;
         }
 
         @Override
