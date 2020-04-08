@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -37,7 +38,6 @@ public class CreateClassController {
     }
 
     private void setUpUser() throws IllegalAccessException {
-        // TODO: Util method?
         if (User.getLoggedInUser() instanceof Teacher)
             this.teacher = (Teacher)User.getLoggedInUser();
         else
@@ -50,8 +50,8 @@ public class CreateClassController {
         this.allStudents = Student.getRegisteredStudents();
         this.studentList.setItems(FXCollections.observableList(this.allStudents));
 
-        // Unsure whether or not we use this
         this.studentList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        this.addedStudentsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         this.fieldOfStudy.setPromptText("Studierichting");
     }
 
@@ -93,14 +93,14 @@ public class CreateClassController {
     }
 
     private void move(ListView<Student> selectedListView, boolean moveToAdded) {
-        Student selected = selectedListView.getSelectionModel().getSelectedItem();
+        ObservableList<Student> selected = selectedListView.getSelectionModel().getSelectedItems();
 
         if (moveToAdded) {
-            this.addedStudentsList.getItems().add(selected);
-            this.allStudents.remove(selected);
+            this.addedStudentsList.getItems().addAll(selected);
+            this.allStudents.removeAll(selected);
         } else {
-            this.addedStudentsList.getItems().remove(selected);
-            this.allStudents.add(selected);
+            this.allStudents.addAll(selected);
+            this.addedStudentsList.getItems().removeAll(selected);
         }
         this.studentList.setItems(FXCollections.observableList(this.allStudents));
         this.searchStudentBar.clear();
