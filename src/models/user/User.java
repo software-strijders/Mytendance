@@ -33,6 +33,14 @@ public abstract class User {
         return Collections.unmodifiableList(registeredUsers);
     }
 
+    public static void removeUser(User user) {
+        registeredUsers.remove(user);
+    }
+
+    public static void removeUser(int index) {
+        registeredUsers.remove(index);
+    }
+
     public static List<User> getRegisteredUsers(UserType type) {
         return registeredUsers.stream().filter(user ->
                 user.getClass() == type.typeClass()).collect(Collectors.toList());

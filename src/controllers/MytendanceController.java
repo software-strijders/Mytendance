@@ -56,8 +56,10 @@ public class MytendanceController {
 
 
     private void loadAdministratorButtons() {
-        FXUtils.loadButtonComponent("Home", event -> this.loadMainView(
-                "/views/CreateUser.fxml"), 0, this.children, this.group, true);
+        FXUtils.loadButtonComponent("Home",
+                event -> this.loadMainView("/views/CreateUser.fxml"), 0, this.children, this.group, true);
+        FXUtils.loadButtonComponent("Gebruikers overzicht",
+                event -> this.loadMainView("/views/UserOverview.fxml"), 0, this.children, this.group);
 
         this.loadMainView("/views/CreateUser.fxml");
     }
