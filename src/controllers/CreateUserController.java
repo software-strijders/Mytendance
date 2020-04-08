@@ -77,9 +77,4 @@ public class CreateUserController {
             FXUtils.showInfo(exception.getMessage());
         }
     }
-
-    @FXML
-    public void onCancelButtonClick(ActionEvent event) {
-        FXUtils.closeStage(event);
-    }
 }

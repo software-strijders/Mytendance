@@ -85,9 +85,4 @@ public class TeacherLectureOverviewController {
             FXUtils.showError(exception);
         }
     }
-
-    @FXML
-    void handleDone(ActionEvent event) {
-        FXUtils.loadView("hoofdmenu", "/views/TeacherMenu.fxml", event);
-    }
 }

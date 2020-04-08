@@ -13,10 +13,8 @@ import models.user.Teacher;
 import models.user.User;
 import utils.FXUtils;
 import utils.Utils;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class CreateClassController {
 
@@ -32,9 +30,9 @@ public class CreateClassController {
     private List<Student> allStudents;
 
     public void initialize() throws IllegalAccessException {
-        setUpUser();
-        setUpItems();
-        setUpListeners();
+        this.setUpUser();
+        this.setUpItems();
+        this.setUpListeners();
     }
 
     private void setUpUser() throws IllegalAccessException {
@@ -56,8 +54,10 @@ public class CreateClassController {
     }
 
     private void setUpListeners() {
-        this.fieldOfStudy.valueProperty().addListener((observableValue, fieldOfStudy, teacher) -> this.showGeneratedName());
-        this.studyYearNumber.getEditor().textProperty().addListener((observableValue, oldText, newText) -> this.showGeneratedName());
+        this.fieldOfStudy.valueProperty().addListener(
+                (observableValue, fieldOfStudy, teacher) -> this.showGeneratedName());
+        this.studyYearNumber.getEditor().textProperty().addListener(
+                (observableValue, oldText, newText) -> this.showGeneratedName());
         this.classLetter.textProperty().addListener((observableValue, oldText, newText) -> {
             if (newText.length() > 1 || Utils.hasSpecial(newText) || Utils.isNumeric(newText)) {
                 this.classLetter.setText(oldText);
@@ -158,10 +158,5 @@ public class CreateClassController {
             }
         }
         this.studentList.setItems(FXCollections.observableList(matchedStudents));
-    }
-
-    @FXML
-    private void onCancelClick(ActionEvent event) {
-        FXUtils.closeStage(event);
     }
 }

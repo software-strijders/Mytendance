@@ -43,18 +43,24 @@ public class CreateLectureController {
     private LocalDate selectedDate;
 
     @FXML
-    private void initialize() throws IllegalAccessException {
-        this.setUpUser();
-        this.setUpSpinners();
-        this.setUpFactory();
-        this.setUpListeners();
-        this.setUpLectureTable();
+    private void initialize() {
+        try {
+            this.setUpUser();
+            this.setUpSpinners();
+            this.setUpFactory();
+            this.setUpListeners();
+            this.setUpLectureTable();
 
-        this.lectureTitlePane.setText("Geen datum geselecteerd");
-        this.classComboBox.setPromptText("Klas");
-        this.classComboBox.setItems(FXCollections.observableArrayList(this.teacher.getAllClasses()));
-        this.subjectComboBox.setPromptText("Vak");
-        this.subjectComboBox.setItems(FXCollections.observableArrayList(SubjectType.values()));
+            this.lectureTitlePane.setText("Geen datum geselecteerd");
+            this.classComboBox.setPromptText("Klas");
+            this.classComboBox.setItems(FXCollections.observableArrayList(this.teacher.getAllClasses()));
+            this.subjectComboBox.setPromptText("Vak");
+            this.subjectComboBox.setItems(FXCollections.observableArrayList(SubjectType.values()));
+        } catch (IllegalAccessException exception) {
+            FXUtils.showInfo(exception.getMessage());
+        } catch (Exception exception) {
+            FXUtils.showError(exception);
+        }
     }
 
     private void setUpUser() throws IllegalAccessException {
@@ -138,7 +144,9 @@ public class CreateLectureController {
             this.obtainVariables();
             this.createLecture();
         } catch (InputMismatchException | IllegalArgumentException exception) {
-            FXUtils.showWarning(exception.getMessage());
+            FXUtils.showInfo(exception.getMessage());
+        } catch (Exception exception) {
+            FXUtils.showError(exception);
         }
     }
 
@@ -168,12 +176,11 @@ public class CreateLectureController {
         Lecture.addLecture(lecture); // If duplicate or within time range, this will throw the exception.
         this.teacher.addLecture(lecture);
         this.selectedClass.addLecture(lecture);
-
         lecture.setAttendances(createAttendances(lecture));
 
         this.lectureTable.setItems(FXCollections.observableArrayList(
                 this.selectedClass.getLecturesByDate(this.selectedDate)));
-        FXUtils.showInfo("Les aangemaakt!");
+        FXUtils.showInfo("De nieuwe les is aangemaakt :)");
     }
 
     private List<Attendance> createAttendances(Lecture lecture) {

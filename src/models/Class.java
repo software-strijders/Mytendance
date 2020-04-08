@@ -1,8 +1,10 @@
 package models;
 
+import enums.SubjectType;
 import models.user.Student;
 import utils.Utils;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -92,6 +94,16 @@ public class Class {
     public List<Lecture> getLecturesByDate(LocalDate date) {
         return this.lectures.stream().filter(lecture ->
                 lecture.getStartDate().toLocalDate().isEqual(date)).collect(Collectors.toList());
+    }
+
+    public List<Lecture> getLecturesBySubjectAndDate(SubjectType type, LocalDate date) {
+        return this.lectures.stream().filter(lecture -> lecture.getSubject().equals(type)
+                && lecture.getStartDate().toLocalDate().isEqual(date)).collect(Collectors.toList());
+    }
+
+    public List<Lecture> getUpcomingLectures() {
+        return this.lectures.stream().filter(lecture ->
+                lecture.getStartDate().compareTo(LocalDateTime.now()) >= 0).collect(Collectors.toList());
     }
 
     public void setLectures(ArrayList<Lecture> lectures) {
