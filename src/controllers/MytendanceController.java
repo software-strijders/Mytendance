@@ -68,7 +68,7 @@ public class MytendanceController {
         FXUtils.loadButtonComponent("Statistiek",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AttendanceOverview.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Overzicht Lessen",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/TeacherShowLectures.fxml"), 0, this.children, this.group);
+                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/TeacherLectureOverviewController.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Les aanmaken",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateLecture.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Klas aanmaken",

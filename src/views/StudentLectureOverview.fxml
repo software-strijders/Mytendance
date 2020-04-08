@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -9,23 +8,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="609.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.StudentLectureOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="609.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentLectureOverviewController">
    <children>
       <HBox prefHeight="349.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <VBox maxWidth="400.0" prefHeight="345.0" prefWidth="106.0" spacing="5.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="239.0" VBox.vgrow="NEVER">
-                     <children>
-                        <DatePicker fx:id="datePicker" onAction="#handleDatePick" prefHeight="25.0" prefWidth="286.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-                        <Label text="Datum" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="datePickerAnchorPane" prefHeight="264.0" prefWidth="289.0" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin></AnchorPane>
-               </children>
+            <VBox fx:id="vbox" maxWidth="400.0" prefHeight="345.0" prefWidth="106.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -34,7 +21,7 @@
                <children>
                   <AnchorPane VBox.vgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="lectureTable" layoutX="-63.0" prefHeight="325.0" prefWidth="358.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-90.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                        <TableView fx:id="lectureTable" layoutX="-63.0" prefHeight="325.0" prefWidth="358.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <placeholder>
                               <Label text="Er zijn geen lessen gevonden" />
                            </placeholder>
