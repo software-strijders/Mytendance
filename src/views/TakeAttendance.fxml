@@ -12,13 +12,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.TakeAttendanceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TakeAttendanceController">
    <children>
       <HBox prefHeight="349.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <VBox prefHeight="300.0" prefWidth="195.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
+                  <Label alignment="TOP_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="285.0" style="-fx-text-fill: WHITE;" text="Presentie">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
                   <AnchorPane prefHeight="51.0" prefWidth="188.0" VBox.vgrow="SOMETIMES">
                      <children>
                         <Label layoutX="6.0" layoutY="6.0" prefHeight="17.0" prefWidth="29.0" text="Klas" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -38,7 +44,7 @@
                      <children>
                         <TableView fx:id="lectureTable" prefHeight="233.0" prefWidth="194.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                           <placeholder>
-                             <Label text="Er zijn geen lessen gevonden" style="-fx-text-fill: white;" />
+                             <Label style="-fx-text-fill: white;" text="Er zijn geen lessen gevonden" />
                           </placeholder>
                           <columns>
                             <TableColumn fx:id="subjectColumn" editable="false" prefWidth="48.0" style="-fx-alignment: CENTER;" text="Vak" />

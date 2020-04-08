@@ -32,6 +32,7 @@ public class MytendanceController {
 
         this.loggedInUserLabel.setText(this.loggedInUser.toString());
         this.logOutButton.getStyleClass().remove(0); // Remove default styling
+        FXUtils.setDarkmode(menu);
     }
 
     private void setUpVariables() {

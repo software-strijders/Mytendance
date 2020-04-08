@@ -1,5 +1,6 @@
 package utils;
 
+import controllers.AddAbsenceController;
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -28,6 +30,7 @@ public final class FXUtils {
     private FXUtils() {}
 
     private static final String appTitle = "Mytendance";
+    private static boolean darkmodeOn = true;
 
     public static void showError(Exception exception) {
         showError("Er is iets goed misgegaan x(", exception);
@@ -185,7 +188,7 @@ public final class FXUtils {
         AnchorPane anchorPane = FXUtils.loadAnchorPane();
         anchorPane.setPrefWidth(150);
         anchorPane.setMaxWidth(175);
-        RadioButton button = FXUtils.loadToggleButton(text, event, growSize);
+        RadioButton button = FXUtils.loadRadioButton(text, event, growSize);
         button.getStyleClass().remove(0); // Remove default styling
         button.getStyleClass().add("mytendanceButton");
         button.setToggleGroup(group);
@@ -205,7 +208,7 @@ public final class FXUtils {
         return anchorPane;
     }
 
-    public static RadioButton loadToggleButton(String text, EventHandler<ActionEvent> event, double growSize) {
+    public static RadioButton loadRadioButton(String text, EventHandler<ActionEvent> event, double growSize) {
         RadioButton button = new RadioButton();
         button.setText(text);
         button.setOnAction(event);
@@ -243,5 +246,20 @@ public final class FXUtils {
         } catch (Exception exception) {
             showError(exception);
         }
+    }
+
+    public static void switchDarkMode() {
+        darkmodeOn = !darkmodeOn;
+        System.out.println("Darkmode is " + darkmodeOn);
+    }
+
+    public static void setDarkmode(Node node) {
+        String css = "/../views/style/darkmode.css";
+        System.out.println(node.getScene().getStylesheets());
+        if (darkmodeOn) {
+            node.getScene().getStylesheets().remove(css);
+        }
+
+        node.getScene().getStylesheets().add(css);
     }
 }
