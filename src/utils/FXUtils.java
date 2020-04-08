@@ -11,14 +11,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.net.URL;
 
@@ -55,6 +53,10 @@ public final class FXUtils {
         showAlert(title, message, Alert.AlertType.WARNING);
     }
 
+    public static void showWarning(String message, Exception exception) {
+        showAlert(appTitle, message, exception, Alert.AlertType.WARNING);
+    }
+
     public static void showWarning(String title, String message, Exception exception) {
         showAlert(title, message, exception, Alert.AlertType.WARNING);
     }
@@ -69,10 +71,6 @@ public final class FXUtils {
 
     public static void showAlert(String title, String message, Exception exception, Alert.AlertType alertType) {
         showAlert(title, String.format("%s\n%s", message, exception.getMessage()), alertType);
-    }
-
-    public static void showAlert(String message, Alert.AlertType alertType) {
-        showAlert(appTitle, message, alertType);
     }
 
     public static void showAlert(String title, String message, Alert.AlertType alertType) {
@@ -240,8 +238,10 @@ public final class FXUtils {
             transition.setFromValue(0);
             transition.setToValue(1);
             transition.play();
-        } catch (IOException e) {
-            showWarning(e, "FXML Laad error");
+        } catch (IOException exception) {
+            showWarning("FXML pane kan niet geladen worden :(", exception);
+        } catch (Exception exception) {
+            showError(exception);
         }
     }
 }

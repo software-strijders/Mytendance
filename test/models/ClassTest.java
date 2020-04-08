@@ -82,7 +82,7 @@ class ClassTest {
         Lecture lecture = new Lecture(date.atStartOfDay(), 0, null, null, null);
         Class newClass = new Class(0, (char)0, null);
         newClass.addLecture(lecture);
-        assertEquals(lecture, newClass.getLecturesByDate(date).get(0));
+        assertSame(lecture, newClass.getLecturesByDate(date).get(0));
     }
 
     @Test

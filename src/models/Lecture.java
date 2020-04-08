@@ -125,7 +125,7 @@ public class Lecture {
         this.className = className;
     }
 
-    public int getAttendaceSize() {
+    public int getAttendancesSize() {
         return this.attendances.size();
     }
 
