@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateLectureController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.CreateLectureController">
    <children>
       <HBox prefHeight="60000.0" prefWidth="50000.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -76,6 +76,9 @@
                      </VBox.margin>
                      <content>
                         <TableView fx:id="lectureTable" prefHeight="200.0" prefWidth="200.0">
+                           <placeholder>
+                              <Label style="-fx-text-fill: white;" text="Er zijn geen lessen gevonden" />
+                           </placeholder>
                           <columns>
                             <TableColumn fx:id="subjectColumn" prefWidth="68.0" text="Vak" />
                             <TableColumn fx:id="startColumn" prefWidth="73.0" text="Begin" />

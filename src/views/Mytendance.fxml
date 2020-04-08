@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="background" prefHeight="400.0" prefWidth="640.0" stylesheets="@style/mytendance.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MytendanceController">
+<VBox fx:id="background" prefHeight="400.0" prefWidth="640.0" stylesheets="@style/mytendance.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.MytendanceController">
   <children>
       <HBox prefHeight="75.0" VBox.vgrow="NEVER">
          <children>
