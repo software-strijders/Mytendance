@@ -1,5 +1,6 @@
 package controllers;
 
+import enums.AttendanceType;
 import enums.SubjectType;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -76,6 +77,16 @@ public class AttendanceOverviewController {
         });
     }
 
+    private void colorPieChartSlices() {
+        for (PieChart.Data slice : this.pieChart.getData())
+            if (slice.getName().startsWith(AttendanceType.PRESENT.toString()))
+                slice.getNode().setStyle(String.format("-fx-pie-color: %s;", AttendanceType.PRESENT.getColor()));
+            else
+                for (AttendanceType type : AttendanceType.Absent.values())
+                    if (slice.getName().startsWith(type.toString()))
+                        slice.getNode().setStyle(String.format("-fx-pie-color: %s;", type.getColor()));
+    }
+
     private void updateLectureTable() {
         this.lectureTable.setItems(FXCollections.observableList(
                 this.teacher.getLecturesByDate(this.selectedDate)));
@@ -85,6 +96,7 @@ public class AttendanceOverviewController {
 
     private void setUpPieChart() {
         this.pieChart.setLabelLineLength(8f);
+        this.pieChart.setLegendVisible(false);
         this.updatePieChart();
     }
 
@@ -93,7 +105,7 @@ public class AttendanceOverviewController {
 
         if (lecture == null)
             this.pieChart.getData().clear();
-        else
+        else {
             // Get all attendances of the lecture object which was obtained from the currently selected row,
             // create a temporary dictionary by grouping all attendances by attendance type and their respective count,
             // sort the dictionary by attendance name and generate a list of pie chart slices for each dictionary item
@@ -102,6 +114,10 @@ public class AttendanceOverviewController {
                     .toString())).map(item -> new PieChart.Data(String.format("%s: %.0f%%", item.getKey(),
                     item.getValue() * 100f / lecture.getAttendancesSize()), item.getValue()))
                     .collect(toCollection(FXCollections::observableArrayList)));
+
+            // Check if dark mode is enabled
+            this.colorPieChartSlices();
+        }
     }
 
     @FXML

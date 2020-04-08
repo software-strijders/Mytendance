@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="427.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/11.0.1" stylesheets="@style/TeacherBG.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateClassController">
+<AnchorPane prefHeight="427.0" prefWidth="716.0" stylesheets="@style/TeacherBG.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.CreateClassController">
    <children>
       <HBox prefHeight="427.0" prefWidth="716.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -58,7 +58,7 @@
                         <Label fx:id="generatedClassName" alignment="CENTER_RIGHT" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <TitledPane animated="false" collapsible="false" prefHeight="5000.0" prefWidth="358.0" text="Toegevoegde Leerlingen" VBox.vgrow="ALWAYS">
+                  <TitledPane animated="false" collapsible="false" prefHeight="5000.0" prefWidth="358.0" text="Toegevoegde Leerlingen" textFill="WHITE" VBox.vgrow="ALWAYS">
                      <content>
                         <ListView fx:id="addedStudentsList" prefHeight="328.0" prefWidth="326.0" />
                      </content>
@@ -68,7 +68,7 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="10.0" prefHeight="427.0" prefWidth="5000.0" spacing="10.0">
                <children>
-                  <TitledPane collapsible="false" prefHeight="5000.0" prefWidth="358.0" text="Leerlingen" VBox.vgrow="ALWAYS">
+                  <TitledPane collapsible="false" prefHeight="5000.0" prefWidth="358.0" text="Leerlingen" textFill="WHITE" VBox.vgrow="ALWAYS">
                      <content>
                         <ListView fx:id="studentList" prefHeight="200.0" prefWidth="200.0" />
                      </content>
@@ -77,7 +77,6 @@
                   <Button fx:id="addStudentButton" mnemonicParsing="false" onAction="#onAddUserClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Voeg toe" VBox.vgrow="NEVER" />
                   <HBox prefHeight="25.0" prefWidth="358.0" spacing="5.0" VBox.vgrow="NEVER">
                      <children>
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Annuleer" HBox.hgrow="ALWAYS" />
                         <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#onConfirmClick" prefHeight="25.0" prefWidth="5000.0" style="-fx-background-color: white;" text="Bevestig" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>

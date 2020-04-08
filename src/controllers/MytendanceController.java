@@ -68,8 +68,6 @@ public class MytendanceController {
         FXUtils.loadButtonComponent("Statistiek",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AttendanceOverview.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Overzicht Lessen",
-                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AbsenceOverview.fxml"), 0, this.children, this.group);
-        FXUtils.loadButtonComponent("Overzicht Lessen",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/TeacherShowLectures.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Les aanmaken",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/CreateLecture.fxml"), 0, this.children, this.group);
@@ -82,6 +80,8 @@ public class MytendanceController {
     private void loadStudentButtons() {
         FXUtils.loadButtonComponent("Home",
                 event -> this.loadMainView("/views/AddAbsence.fxml"), 0, this.children, this.group, true);
+        FXUtils.loadButtonComponent("Absentie aanpassen",
+                event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/AdjustAttendance.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Overzicht lessen",
                 event -> FXUtils.loadPaneIntoView(this.FXMLContainer, "/views/StudentLectureOverview.fxml"), 0, this.children, this.group);
 

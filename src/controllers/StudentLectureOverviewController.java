@@ -33,8 +33,6 @@ public class StudentLectureOverviewController {
     @FXML private TableColumn<Lecture, String> subjectColumn;
     @FXML private TableColumn<LocalDateTime, LocalTime> startTimeColumn;
     @FXML private TableColumn<LocalDateTime, LocalTime> endTimeColumn;
-    @FXML private Button doneButton;
-    @FXML private Label studentLabel;
 
     @FXML
     private void initialize() {
@@ -44,7 +42,6 @@ public class StudentLectureOverviewController {
             this.setUpLectureTable();
         } catch (IllegalAccessException exception) {
             FXUtils.showInfo(exception.getMessage());
-            FXUtils.closeStage(this.studentLabel);
         } catch (Exception exception) {
             FXUtils.showError(exception);
         }
@@ -53,7 +50,6 @@ public class StudentLectureOverviewController {
     private void setUpUser() throws IllegalAccessException {
         if (User.getLoggedInUser() instanceof Student) {
             this.student = (Student) User.getLoggedInUser();
-            this.studentLabel.setText(this.student.toString());
         } else
             throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor studenten :(");
     }

@@ -26,7 +26,6 @@ public class TeacherShowLecturesController {
     @FXML private TableColumn<Lecture, LocalTime> endTimeColumn;
     @FXML private TableColumn<Lecture, String> classColumn;
     @FXML private TableColumn<Lecture, Integer> classSizeColumn;
-    @FXML private Label teacherLabel;
 
     private Teacher teacher;
     private LocalDate selectedDate;
@@ -34,7 +33,7 @@ public class TeacherShowLecturesController {
 
     @FXML
     private void initialize() {
-
+        datePicker.getStyleClass().add("hide--icon");
         datePicker.setManaged(false);
         DatePickerSkin skin = new DatePickerSkin(datePicker);
         vbox.getChildren().add(skin.getPopupContent());
@@ -46,7 +45,6 @@ public class TeacherShowLecturesController {
             this.setUpLectureTable();
         } catch (IllegalAccessException exception) {
             FXUtils.showInfo(exception.getMessage());
-            FXUtils.closeStage(this.teacherLabel);
         } catch (Exception exception) {
             FXUtils.showError(exception);
         }
@@ -55,7 +53,6 @@ public class TeacherShowLecturesController {
     private void setUpUser() throws IllegalAccessException {
         if (User.getLoggedInUser() instanceof Teacher) {
             this.teacher = (Teacher)User.getLoggedInUser();
-            this.teacherLabel.setText(this.teacher.toString());
         } else
             throw new IllegalAccessException("Dit scherm is alleen toegankelijk voor docenten :(");
     }
