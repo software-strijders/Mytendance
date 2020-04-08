@@ -7,8 +7,8 @@ import utils.FXUtils;
 
 public class Mytendance extends Application {
 
-    public static final double WIDTH = 1000;
-    public static final double HEIGHT = 650;
+    public static final double WIDTH = 1025;
+    public static final double HEIGHT = 750;
 
     public static void main(String[] args) {
         VolatileData.createData();

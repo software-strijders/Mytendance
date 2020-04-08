@@ -46,24 +46,21 @@
             </AnchorPane>
             <AnchorPane maxHeight="-Infinity" prefHeight="45.0" prefWidth="512.0" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox fx:id="menu" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox fx:id="menu" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <styleClass>
                         <String fx:value="menuBar" />
                         <String fx:value="middleSection" />
                      </styleClass>
                      <opaqueInsets>
                         <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding></HBox>
+                     </opaqueInsets></HBox>
                </children>
             </AnchorPane>
             <AnchorPane maxWidth="-Infinity" prefHeight="75.0" prefWidth="114.0">
                <children>
                   <Pane maxWidth="-Infinity" prefHeight="45.0" prefWidth="125.0" styleClass="menuBar">
                      <children>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="75.0" prefWidth="173.0">
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="75.0" prefWidth="111.0">
                            <children>
                               <VBox prefHeight="75.0" prefWidth="125.0">
                                  <children>

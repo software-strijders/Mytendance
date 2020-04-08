@@ -32,7 +32,6 @@ public class MytendanceController {
 
         this.loggedInUserLabel.setText(this.loggedInUser.toString());
         this.logOutButton.getStyleClass().remove(0); // Remove default styling
-        FXUtils.setDarkmode(menu);
     }
 
     private void setUpVariables() {
@@ -76,6 +75,8 @@ public class MytendanceController {
                 "/views/CreateLecture.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Klas aanmaken", event -> FXUtils.loadPaneIntoView(this.FXMLContainer,
                 "/views/CreateClass.fxml"), 0, this.children, this.group);
+        FXUtils.loadToggleButtonComponent("Darkmode",
+                event -> FXUtils.toggleDarkMode(this.background, "/views/style/darkmode.css"), 0, this.children);
 
         this.loadMainView("/views/TakeAttendance.fxml");
     }
@@ -87,6 +88,8 @@ public class MytendanceController {
                 "/views/AdjustAttendance.fxml"), 0, this.children, this.group);
         FXUtils.loadButtonComponent("Overzicht lessen", event -> FXUtils.loadPaneIntoView(this.FXMLContainer,
                 "/views/StudentLectureOverview.fxml"), 0, this.children, this.group);
+        FXUtils.loadToggleButtonComponent("Darkmode",
+                event -> FXUtils.toggleDarkMode(this.background, "/views/style/darkmode.css"), 0, this.children);
 
         this.loadMainView("/views/AddAbsence.fxml");
     }

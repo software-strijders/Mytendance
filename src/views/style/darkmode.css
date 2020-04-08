@@ -19,11 +19,8 @@
     /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
 }
 
-.titled-pane > .title
-{
+.titled-pane > .title {
     -fx-background-color: #333;
-    -fx-text-fill: #fff;
-
 }
 
 .titled-pane > *.content
@@ -268,6 +265,28 @@
     -fx-text-fill: #fff;
 }
 
+.chart-pie-label-line {
+    -fx-stroke: #fff;
+    -fx-fill: #fff;
+}
+
+.chart-pie-label {
+    -fx-fill: #fff;
+}
+
 .titled-pane, .table-view, .combo-box-base, .text-field, .text-area, .date-picker, .list-view {
     -fx-border-width: 1;
+}
+
+.title {
+    -fx-font-weight: bold;
+    -fx-text-fill: #fff;
+}
+
+.titled-pane {
+    -fx-text-fill: #fff;
+}
+
+.titled-pane > .title > .label {
+    -fx-text-fill: #fff;
 }

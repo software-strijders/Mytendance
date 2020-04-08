@@ -30,7 +30,6 @@ public final class FXUtils {
     private FXUtils() {}
 
     private static final String appTitle = "Mytendance";
-    private static boolean darkmodeOn = true;
 
     public static void showError(Exception exception) {
         showError("Er is iets goed misgegaan x(", exception);
@@ -162,8 +161,8 @@ public final class FXUtils {
         FXMLLoader loader = new FXMLLoader(loadResource(resource));
         stage.setScene(new Scene(loader.load()));
         stage.setTitle(title);
-        stage.setMinWidth(967.5);
-        stage.setMinHeight(650);
+        stage.setMinWidth(1025);
+        stage.setMinHeight(750);
 
         return loader;
     }
@@ -219,6 +218,20 @@ public final class FXUtils {
         return button;
     }
 
+    public static void loadToggleButtonComponent(String text, EventHandler<ActionEvent> event,
+                                                 double growSize, ObservableList<Node> childrenList) {
+        AnchorPane anchorPane = FXUtils.loadAnchorPane();
+        ToggleButton button = new ToggleButton();
+        button.setText(text);
+        button.setOnAction(event);
+        button.getStyleClass().remove(0);
+        button.getStyleClass().add("toggleButton");
+        anchorPane.getChildren().add(button);
+        grow(button, growSize);
+
+        childrenList.add(anchorPane);
+    }
+
     public static void grow(Node node) {
         grow(node, 0.0);
     }
@@ -248,18 +261,15 @@ public final class FXUtils {
         }
     }
 
-    public static void switchDarkMode() {
-        darkmodeOn = !darkmodeOn;
-        System.out.println("Darkmode is " + darkmodeOn);
-    }
+    public static void toggleDarkMode(Node node, String resource) {
+        String css = FXUtils.class.getResource(resource).toString();
+        ObservableList<String> stylesheets = node.getScene().getStylesheets();
 
-    public static void setDarkmode(Node node) {
-        String css = "/../views/style/darkmode.css";
-        System.out.println(node.getScene().getStylesheets());
-        if (darkmodeOn) {
-            node.getScene().getStylesheets().remove(css);
+        if (stylesheets.contains(css)) {
+            stylesheets.remove(css);
+            return;
         }
 
-        node.getScene().getStylesheets().add(css);
+        stylesheets.add(css);
     }
 }
