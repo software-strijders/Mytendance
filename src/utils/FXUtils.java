@@ -1,6 +1,5 @@
 package utils;
 
-import controllers.AddAbsenceController;
 import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,7 +7,6 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
@@ -17,7 +15,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
@@ -85,30 +82,6 @@ public final class FXUtils {
         alert.show();
     }
 
-    public static Stage loadStage(String title, String resource, Modality modality) throws IOException {
-        return loadStage(title, resource, new Stage(), modality);
-    }
-
-    public static Stage loadStage(String title, String resource, Stage stage, Modality modality) throws IOException {
-        loadStage(title, resource, stage);
-        stage.initModality(modality);
-
-        return stage;
-    }
-
-    public static Stage loadStage(String title, String resource) throws IOException {
-        return loadStage(title, resource, new Stage());
-    }
-
-    // This method might be deemed unnecessary once the testing phases are completed
-    public static Stage loadStage(String title, String resource, Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(loadResource(resource));
-        stage.setScene(new Scene(root));
-        stage.setTitle(title);
-
-        return stage;
-    }
-
     private static Node getNode(Event event) {
         return (Node)event.getSource();
     }
@@ -129,19 +102,6 @@ public final class FXUtils {
         getStage(node).close();
     }
 
-    public static void loadView(String title, String resource, boolean blockInput) {
-        try {
-            if (blockInput)
-                loadStage(title, resource, Modality.APPLICATION_MODAL).showAndWait();
-            else
-                loadStage(title, resource).show();
-        } catch (IOException exception) {
-            showWarning(exception, title);
-        } catch (Exception exception) {
-            showError(exception);
-        }
-    }
-
     public static FXMLLoader loadView(String title, String resource, Event event) {
         return loadView(title, resource, getStage(event));
     }
@@ -156,16 +116,10 @@ public final class FXUtils {
         } return null;
     }
 
-    public static FXMLLoader loadComponent(String title, String resource, Event event) throws IOException {
-        return loadComponent(title, resource, getStage(event));
-    }
-
     public static FXMLLoader loadComponent(String title, String resource, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(loadResource(resource));
         stage.setScene(new Scene(loader.load()));
         stage.setTitle(title);
-        stage.setMinWidth(1025);
-        stage.setMinHeight(750);
 
         return loader;
     }

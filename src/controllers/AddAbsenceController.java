@@ -134,13 +134,8 @@ public class AddAbsenceController {
 
     @FXML
     private void onStatusCheckBoxClick(ActionEvent event) {
-        if (this.statusCheckbox.isSelected()) {
-            this.student.callInSick();
-            FXUtils.showInfo("Je bent voor de komende lessen ziek gemeld :)");
-        } else {
-            this.student.callOffSick();
-            FXUtils.showInfo("Je bent voor de komende lessen weer aangemeld :)");
-        }
-        this.setUpStatus();
+        this.student.setUpcomingAttendances(this.statusCheckbox.isSelected());
+        FXUtils.showInfo(String.format("Je bent voor de komende lessen %s",
+                this.student.isSick() ? "ziek gemeld (=_= )" : "weer aangemeld :)"));
     }
 }

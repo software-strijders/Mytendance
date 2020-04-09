@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -118,19 +119,41 @@ class LectureTest {
     }
 
     @Test
+    void attendanceOfStudentShouldBeEqual() {
+        Attendance a1 = new Attendance(this.lecture, this.student);
+        this.lecture.addAttendance(a1);
+        assertSame(a1, this.lecture.getAttendanceOfStudent(this.student));
+    }
+
+    @Test
+    void attendanceOfStudentShouldNotBeEqual() {
+        Attendance a1 = new Attendance(this.lecture, this.student);
+        Attendance a2 = new Attendance(this.lecture, this.student);
+        this.lecture.addAttendance(a1);
+        assertNotSame(a2, this.lecture.getAttendanceOfStudent(this.student));
+    }
+
+    @Test
+    void attendanceOfStudentShouldReturnNull() {
+        assertNull(this.lecture.getAttendanceOfStudent(this.student));
+    }
+
+    @Test
     void lectureStartTimeShouldBeEqual() {
-        assertEquals(LocalTime.now().withHour(10).withMinute(30), this.lecture.getStartTime());
+        assertEquals(LocalTime.now().withHour(10).withMinute(30).truncatedTo(ChronoUnit.MINUTES),
+                this.lecture.getStartTime().truncatedTo(ChronoUnit.MINUTES));
     }
 
     @Test
     void lectureStartTimeShouldBeEqualNextDay() {
-        assertEquals(LocalDateTime.now().withHour(10).withMinute(30).plusDays(1).toLocalTime(),
-                this.lecture.getStartTime());
+        assertEquals(LocalDateTime.now().withHour(10).withMinute(30).plusDays(1).toLocalTime()
+                        .truncatedTo(ChronoUnit.MINUTES), this.lecture.getStartTime().truncatedTo(ChronoUnit.MINUTES));
     }
 
     @Test
     void lectureStartTimeShouldNotBeEqual() {
-        assertEquals(LocalTime.now().withHour(10).withMinute(31), this.lecture.getStartTime());
+        assertNotEquals(LocalTime.now().withHour(10).withMinute(31).truncatedTo(ChronoUnit.MINUTES),
+                this.lecture.getStartTime().truncatedTo(ChronoUnit.MINUTES));
     }
 
     @Test

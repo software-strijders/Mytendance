@@ -1,9 +1,11 @@
 package models;
 
+import enums.SubjectType;
 import models.user.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,6 +29,46 @@ class ClassTest {
 
         study = new FieldOfStudy("TICT-SD");
         newClass1 = new Class(1, 'E', study, students);
+    }
+
+    @Test
+    void shouldReturnUpcomingLectures() {
+        Lecture l1 = new Lecture(LocalDateTime.now().plusMinutes(1), 0, null, null, null);
+        Class c1 = new Class(0, (char)0, null);
+        c1.addLecture(l1);
+        assertTrue(c1.getUpcomingLectures().contains(l1));
+    }
+
+    @Test
+    void shouldReturnPastLectures() {
+        Lecture l1 = new Lecture(LocalDateTime.now().minusDays(1), 0, null, null, null);
+        Class c1 = new Class(0, (char)0, null);
+        c1.addLecture(l1);
+        assertFalse(c1.getUpcomingLectures().contains(l1));
+    }
+
+    @Test
+    void shouldReturnLecturesBySameSubjectAndSameDate() {
+        Lecture l1 = new Lecture(LocalDateTime.now(), 0, SubjectType.OOP, null, null);
+        Class c1 = new Class(0, (char)0, null);
+        c1.addLecture(l1);
+        assertTrue(c1.getLecturesBySubjectAndDate(SubjectType.OOP, LocalDate.now()).contains(l1));
+    }
+
+    @Test
+    void shouldNotReturnLecturesByOtherSubjectAndSameDate() {
+        Lecture l1 = new Lecture(LocalDateTime.now(), 0, SubjectType.GP_SD, null, null);
+        Class c1 = new Class(0, (char)0, null);
+        c1.addLecture(l1);
+        assertFalse(c1.getLecturesBySubjectAndDate(SubjectType.OOP, LocalDate.now()).contains(l1));
+    }
+
+    @Test
+    void shouldNotReturnLecturesBySameSubjectAndOtherDate() {
+        Lecture l1 = new Lecture(LocalDateTime.now().plusDays(1), 0, SubjectType.OOP, null, null);
+        Class c1 = new Class(0, (char)0, null);
+        c1.addLecture(l1);
+        assertFalse(c1.getLecturesBySubjectAndDate(SubjectType.OOP, LocalDate.now()).contains(l1));
     }
 
     @Test
