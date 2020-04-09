@@ -103,6 +103,18 @@ public class AddAbsenceController {
     }
 
     @FXML
+    public void onSubjectComboBoxClick(ActionEvent event) {
+        SubjectType selectedSubject = this.subjectComboBox.getValue();
+        LocalDate selectedDate = this.datedatePicker.getValue();
+        List<Lecture> lectures =  new ArrayList<>();
+
+        for (Class myClass : this.student.getClasses())
+            lectures.addAll(myClass.getLecturesBySubjectAndDate(selectedSubject, selectedDate));
+
+        this.lectureTableView.setItems(FXCollections.observableArrayList(lectures));
+    }
+
+    @FXML
     private void onConfirmClick(ActionEvent event) {
         try {
             this.obtainInformation();
@@ -118,18 +130,6 @@ public class AddAbsenceController {
         } catch (Exception exception) {
             FXUtils.showError(exception);
         }
-    }
-
-    @FXML
-    public void onSubjectComboBoxClick(ActionEvent event) {
-        SubjectType selectedSubject = this.subjectComboBox.getValue();
-        LocalDate selectedDate = this.datedatePicker.getValue();
-        List<Lecture> lectures =  new ArrayList<>();
-
-        for (Class myClass : this.student.getClasses())
-            lectures.addAll(myClass.getLecturesBySubjectAndDate(selectedSubject, selectedDate));
-
-        this.lectureTableView.setItems(FXCollections.observableArrayList(lectures));
     }
 
     @FXML
