@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class Student extends User {
 
     private List<Class> classes;
-    private boolean isSick;
+    private boolean sick;
 
     public Student(String firstName, String lastName, String email, String password) {
         this(firstName, lastName, email, password, Utils.idGenerator());
@@ -23,7 +23,7 @@ public class Student extends User {
     public Student(String firstName, String lastName, String email, String password, UUID userId) {
         super(firstName, lastName, email, password, userId);
         this.classes = new ArrayList<>();
-        this.isSick = false;
+        this.sick = false;
     }
 
     // We can't avoid this type of construction due to unchecked cast warnings
@@ -41,32 +41,23 @@ public class Student extends User {
     }
 
     public boolean isSick() {
-        return this.isSick;
+        return this.sick;
     }
 
     public void setSick(boolean sick) {
-        this.isSick = sick;
+        this.sick = sick;
     }
 
-    public void callInSick() {
+    public void setUpcomingAttendances(boolean sick) {
+        AttendanceType[] status = {AttendanceType.PRESENT, AttendanceType.Absent.ILL};
+        this.sick = sick;
+
         for (Class myClass : this.classes)
             for (Lecture lecture : myClass.getUpcomingLectures()) {
                 Attendance attendance = lecture.getAttendanceOfStudent(this);
 
-                if (attendance.isPresent())
-                    attendance.setType(AttendanceType.Absent.ILL);
+                if (attendance.getType().equals(status[sick ? 0 : 1])) // Java makes me sad sometimes :(
+                    attendance.setType(status[!sick ? 0 : 1]);
             }
-        this.isSick = true;
-    }
-
-    public void callOffSick() {
-        for (Class myClass : this.classes)
-            for (Lecture lecture : myClass.getUpcomingLectures()) {
-                Attendance attendance = lecture.getAttendanceOfStudent(this);
-
-                if (attendance.isSick())
-                    attendance.setType(AttendanceType.PRESENT);
-            }
-        this.isSick = false;
     }
 }

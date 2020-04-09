@@ -35,6 +35,19 @@ class StudentTest {
     }
 
     @Test
+    void studentShouldBeSick() {
+        Student s1 = new Student(null, null, null, null);
+        s1.setSick(true);
+        assertTrue(s1.isSick());
+    }
+
+    @Test
+    void studentShouldNotBeSick() {
+        Student s1 = new Student(null, null, null, null);
+        assertFalse(s1.isSick());
+    }
+
+    @Test
     void shouldFormatNameCorrectlyWithLowerCaseNames() {
         assertEquals("Xander Vedder", student1.toString());
     }

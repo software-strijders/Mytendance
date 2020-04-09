@@ -6,7 +6,6 @@ import models.user.Student;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,14 +29,9 @@ public class Attendance {
         this.description = description;
     }
 
-    public static List<Attendance> getAttendancesbyStudent(Student student) {
-        ArrayList<Attendance> attendancesByStudent = new ArrayList<>();
-        for (Attendance attendance : attendances) {
-            if (attendance.getStudent().equals(student)) {
-               attendancesByStudent.add(attendance);
-            }
-        }
-        return Collections.unmodifiableList(attendancesByStudent);
+    public static List<Attendance> getAttendancesByStudent(Student student) {
+        return attendances.stream().filter(attendance ->
+                attendance.getStudent().equals(student)).collect(Collectors.toList());
     }
 
     public static void addAttendance(Attendance attendance) {
@@ -77,10 +71,6 @@ public class Attendance {
         return this.type.equals(AttendanceType.PRESENT);
     }
 
-    public boolean isSick() {
-        return this.type.equals(AttendanceType.Absent.ILL);
-    }
-
     public String getDescription() {
         return this.description.isEmpty() ? "Er is geen reden opgegeven." : this.description;
     }
@@ -96,10 +86,9 @@ public class Attendance {
     }
 
     public List<Attendance> getAttendancesByDate(LocalDate date) {
-        return attendances.stream().filter(attendance ->
-                attendance.getLecture().getStartDate().toLocalDate().isEqual(date)).collect(Collectors.toList());
+        return attendances.stream().filter(attendance -> attendance.getLecture()
+                .getStartDate().toLocalDate().isEqual(date)).collect(Collectors.toList());
     }
-
 
     public void setDescription(String description) {
         this.description = description;

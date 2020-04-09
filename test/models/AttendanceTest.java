@@ -2,8 +2,12 @@ package models;
 
 import enums.AttendanceType;
 import models.user.Student;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +22,38 @@ class AttendanceTest {
         lecture = null;
         this.student = new Student("firstname", "lastname", "email", "password");
         this.a1 = new Attendance(lecture, this.student, AttendanceType.Absent.ENTOMBMENT, "Ik word begraven");
+    }
+
+    @AfterEach
+    void cleanUp() {
+        Attendance.clearAttendances();
+    }
+
+    @Test
+    void shouldReturnAttendanceByStudent() {
+        Attendance.addAttendance(this.a1);
+        assertTrue(Attendance.getAttendancesByStudent(this.student).contains(this.a1));
+    }
+
+    @Test
+    void shouldNotReturnAttendanceByOtherStudent() {
+        Attendance.addAttendance(this.a1);
+        Student s2 = new Student(null, null, null, null);
+        assertFalse(Attendance.getAttendancesByStudent(s2).contains(this.a1));
+    }
+
+    @Test
+    void shouldReturnAttendanceBySameDate() {
+        Lecture l1 = new Lecture(LocalDateTime.now(), 0, null, null, null);
+        Attendance a2 = new Attendance(l1, this.student);
+        assertTrue(a2.getAttendancesByDate(LocalDate.now()).contains(a2));
+    }
+
+    @Test
+    void shouldNotReturnAttendanceByOtherDate() {
+        Lecture l1 = new Lecture(LocalDateTime.now().plusDays(1), 0, null, null, null);
+        Attendance a2 = new Attendance(l1, this.student);
+        assertFalse(a2.getAttendancesByDate(LocalDate.now()).contains(a2));
     }
 
     @Test

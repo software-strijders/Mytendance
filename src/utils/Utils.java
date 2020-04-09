@@ -27,6 +27,11 @@ public final class Utils {
         return false;
     }
 
+    public static boolean isWithinTimeRange(LocalDateTime min, LocalDateTime max, LocalDateTime toCompare) {
+        // We want to check if the given time is between two values. If it is, it will return true.
+        return (toCompare.isAfter(min) && toCompare.isBefore(max)) || toCompare.isEqual(min);
+    }
+
     public static boolean isNumeric(String text) {
         return text.chars().anyMatch(Character::isDigit);
     }

@@ -70,7 +70,7 @@ public class AdjustAttendanceController {
 
     private void updateAttendanceTable() {
         ArrayList<Attendance> attendances = new ArrayList<>();
-        for(Attendance attendance : Attendance.getAttendancesbyStudent(loggedInStudent)) {
+        for(Attendance attendance : Attendance.getAttendancesByStudent(loggedInStudent)) {
             if (attendance.getLecture().getStartDate().toLocalDate().isEqual(datePicker.getValue())
                     && !attendance.isPresent()) {
                 attendances.add(attendance);

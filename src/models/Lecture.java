@@ -51,7 +51,7 @@ public class Lecture {
             LocalDateTime min = lecture.startDate;
 
             if (lecture.teacher.equals(lectureToCompare.teacher) &&
-                    isWithinTimeRange(min, max, lectureToCompare.startDate)) {
+                    Utils.isWithinTimeRange(min, max, lectureToCompare.startDate)) {
                 String pattern = "H:mm";
                 throw new IllegalArgumentException(
                         String.format("Deze les kan niet tussen %s en %s uur gegeven worden",
@@ -60,11 +60,6 @@ public class Lecture {
             }
         }
         return true;
-    }
-
-    private static boolean isWithinTimeRange(LocalDateTime min, LocalDateTime max, LocalDateTime toCompare) {
-        // We want to check if the given time is between two values. If it is, it will return true.
-        return (toCompare.isAfter(min) && toCompare.isBefore(max)) || toCompare.isEqual(min);
     }
 
     public static List<Lecture> getAllLectures() {
