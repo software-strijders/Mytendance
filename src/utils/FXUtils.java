@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -79,6 +80,8 @@ public final class FXUtils {
         Alert alert = new Alert(alertType);
         alert.setHeaderText(message);
         alert.setTitle(title);
+        Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(FXUtils.class.getResource("/views/style/images/logo.png").toString()));
         alert.show();
     }
 

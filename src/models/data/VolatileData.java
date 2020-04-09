@@ -143,15 +143,15 @@ public final class VolatileData {
 
         List<Lecture> lectures = new ArrayList<>();
 
-        Lecture l1 = new Lecture(now.withHour(10).withMinute(0), 60, SubjectType.OOAD, henk, v1d, null);
-        Lecture l2 = new Lecture(now.withHour(11).withMinute(0), 60, SubjectType.OOAD, henk, v1d, null);
-        Lecture l3 = new Lecture(now.withHour(12).withMinute(0), 60, SubjectType.GP_SD, henk, v1d, null);
-        Lecture l4 = new Lecture(now.withHour(13).withMinute(0), 60, SubjectType.GP_SD, henk, v1d, null);
+        Lecture l1 = new Lecture(now.withHour(10).withMinute(0), 60, SubjectType.OOAD, henk, v1e, null);
+        Lecture l2 = new Lecture(now.withHour(11).withMinute(0), 60, SubjectType.OOAD, henk, v1e, null);
+        Lecture l3 = new Lecture(now.withHour(12).withMinute(0), 60, SubjectType.GP_SD, henk, v1e, null);
+        Lecture l4 = new Lecture(now.withHour(13).withMinute(0), 60, SubjectType.GP_SD, henk, v1e, null);
 
-        Lecture l5 = new Lecture(now.plusDays(1).withHour(10).withMinute(0), 60, SubjectType.OOP, roelant, v1e, null);
-        Lecture l6 = new Lecture(now.plusDays(1).withHour(11).withMinute(0), 60, SubjectType.OOAD, roelant, v1e, null);
-        Lecture l7 = new Lecture(now.plusDays(1).withHour(13).withMinute(0), 60, SubjectType.GP_SD, roelant, v1e, null);
-        Lecture l8 = new Lecture(now.plusDays(1).withHour(14).withMinute(0), 60, SubjectType.OOP, roelant, v1e, null);
+        Lecture l5 = new Lecture(now.plusDays(1).withHour(10).withMinute(0), 60, SubjectType.OOP, roelant, v1d, null);
+        Lecture l6 = new Lecture(now.plusDays(1).withHour(11).withMinute(0), 60, SubjectType.OOAD, roelant, v1d, null);
+        Lecture l7 = new Lecture(now.plusDays(1).withHour(13).withMinute(0), 60, SubjectType.GP_SD, roelant, v1d, null);
+        Lecture l8 = new Lecture(now.plusDays(1).withHour(14).withMinute(0), 60, SubjectType.OOP, roelant, v1d, null);
 
         lectures.add(l1);
         lectures.add(l2);
