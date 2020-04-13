@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="Electron" modified="2020-04-09T11:11:11.187Z" agent="Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/12.9.3 Chrome/80.0.3987.158 Electron/8.2.0 Safari/537.36" etag="hcYq6YOyeKbtIys2qo7f" version="12.9.3" type="device">
+<mxfile host="Electron" modified="2020-04-09T23:40:18.051Z" agent="Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/12.9.3 Chrome/80.0.3987.158 Electron/8.2.0 Safari/537.36" etag="xruRAKnFhnMgdfPaqKus" version="12.9.3" type="device">
   <diagram id="t8BkwSDarhmtat6RAKDG" name="Page-1">
-    <mxGraphModel dx="1673" dy="920" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1185" dy="652" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -205,13 +205,13 @@
           <mxGeometry x="45" y="690" width="10" height="24" as="geometry" />
         </mxCell>
         <mxCell id="jnMp-Ym0JXM6t1_8VZrL-14" value="«static»&lt;br&gt;values()" style="html=1;verticalAlign=bottom;endArrow=block;labelBackgroundColor=none;fontFamily=Verdana;fontSize=12;edgeStyle=elbowEdgeStyle;elbow=vertical;" edge="1" parent="1" target="jnMp-Ym0JXM6t1_8VZrL-15">
-          <mxGeometry x="-0.2426" y="-211" relative="1" as="geometry">
+          <mxGeometry x="-0.2517" y="-228" relative="1" as="geometry">
             <mxPoint x="301" y="581" as="sourcePoint" />
             <Array as="points">
               <mxPoint x="582" y="581" />
             </Array>
             <mxPoint x="688" y="581" as="targetPoint" />
-            <mxPoint x="-211" y="-211" as="offset" />
+            <mxPoint x="-228" y="-228" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="jnMp-Ym0JXM6t1_8VZrL-17" value="&lt;b&gt;AttendanceType.Absent&lt;/b&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
@@ -346,13 +346,13 @@
           <mxGeometry x="296" y="946" width="541" height="144" as="geometry" />
         </mxCell>
         <mxCell id="jnMp-Ym0JXM6t1_8VZrL-61" value="getAttendanceOfStudent()" style="html=1;verticalAlign=bottom;endArrow=block;labelBackgroundColor=none;fontFamily=Verdana;fontSize=12;edgeStyle=elbowEdgeStyle;elbow=vertical;" edge="1" parent="1" target="jnMp-Ym0JXM6t1_8VZrL-60">
-          <mxGeometry x="1" y="-424" relative="1" as="geometry">
+          <mxGeometry x="0.1359" y="-195" relative="1" as="geometry">
             <mxPoint x="295.5" y="1239" as="sourcePoint" />
             <Array as="points">
               <mxPoint x="586" y="1239" />
             </Array>
             <mxPoint x="698.5" y="1239" as="targetPoint" />
-            <mxPoint as="offset" />
+            <mxPoint x="-195" y="-195" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="jnMp-Ym0JXM6t1_8VZrL-41" value="getLecturesBySubjectAndDate()" style="html=1;verticalAlign=bottom;endArrow=block;labelBackgroundColor=none;fontFamily=Verdana;fontSize=12;edgeStyle=elbowEdgeStyle;elbow=vertical;" edge="1" parent="1" source="jnMp-Ym0JXM6t1_8VZrL-38" target="jnMp-Ym0JXM6t1_8VZrL-12">
