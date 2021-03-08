@@ -1,0 +1,64 @@
+controllers/AttendanceOverviewController.java
+ controllers.AttendanceOverviewController
+models/Attendance.java
+ models.Attendance
+controllers/RoleSelectionController.java
+ controllers.RoleSelectionController
+controllers/UserLoginController.java
+ controllers.UserLoginController
+Mytendance.java
+ Mytendance
+utils/Utils.java
+ utils.Utils
+utils/FXUtils.java
+ utils.FXUtils
+controllers/AddAbsenceController.java
+ controllers.AddAbsenceController
+controllers/CreateUserController.java
+ controllers.CreateUserController
+controllers/AdjustAttendanceController.java
+ controllers.AdjustAttendanceController
+ controllers.AdjustAttendanceController$1
+models/Class.java
+ models.Class
+controllers/MytendanceController.java
+ controllers.MytendanceController
+models/user/UserFactory.java
+ models.user.UserFactory
+ models.user.UserFactory$1
+controllers/StudentLectureOverviewController.java
+ controllers.StudentLectureOverviewController
+controllers/CreateClassController.java
+ controllers.CreateClassController
+controllers/TeacherLectureOverviewController.java
+ controllers.TeacherLectureOverviewController
+models/data/VolatileData.java
+ models.data.VolatileData
+ models.data.VolatileData$1
+controllers/UserOverviewController.java
+ controllers.UserOverviewController
+enums/SubjectType.java
+ enums.SubjectType
+models/user/Teacher.java
+ models.user.Teacher
+controllers/CreateLectureController.java
+ controllers.CreateLectureController
+ controllers.CreateLectureController$1
+models/Lecture.java
+ models.Lecture
+models/user/Student.java
+ models.user.Student
+models/FieldOfStudy.java
+ models.FieldOfStudy
+enums/AttendanceType.java
+ enums.AttendanceType
+ enums.AttendanceType$Absent
+ enums.AttendanceType$State
+enums/UserType.java
+ enums.UserType
+controllers/TakeAttendanceController.java
+ controllers.TakeAttendanceController
+models/user/User.java
+ models.user.User
+models/user/Administrator.java
+ models.user.Administrator
